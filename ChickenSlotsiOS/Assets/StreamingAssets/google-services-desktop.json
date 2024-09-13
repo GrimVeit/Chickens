@@ -1,0 +1,32 @@
+{
+  "project_info": {
+    "project_number": "397681595289",
+    "firebase_url": "https://chickenslots-b00b7-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "chickenslots-b00b7",
+    "storage_bucket": "chickenslots-b00b7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:397681595289:ios:3527635cb3d3725a80b908",
+        "android_client_info": {
+          "package_name": "com.Anonim251.ChickenSlotsiOS"
+        }
+      },
+      "api_key": [
+        {
+          "current_key": "AIzaSyBezXA7wcu_CeRbSml_xAze8I1WoY26Skk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 0
+        },
+        "appinvite_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
