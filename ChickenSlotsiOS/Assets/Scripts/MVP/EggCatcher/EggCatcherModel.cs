@@ -11,7 +11,7 @@ public class EggCatcherModel
     public event Action OnGameFailed;
 
     private float initialDelay = 2f;
-    private float minDelay = 0.01f;
+    private float minDelay = 0.4f;
     private float decreaseAmount = 0.02f;
     private float currentDelay;
 

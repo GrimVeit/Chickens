@@ -18,7 +18,9 @@ public class FirebaseDatabaseRealtimeView : View
             Destroy(contentUsers.GetChild(i).gameObject);
         }
 
-        users = users.OrderBy(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
+        //users = users.OrderBy(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
+
+        users = users.OrderByDescending(entry => entry.Value).ToDictionary(x => x.Key, x => x.Value);
 
         foreach (var item in users)
         {

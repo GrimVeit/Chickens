@@ -113,6 +113,7 @@ public class MainMenuEntryPoint : MonoBehaviour
                 ActivateTransitionsSceneEvents();
                 ActivateEvents();
 
+
                 sceneRoot.Activate();
                 cooldownDailyRewardPresenter.Activate();
                 cooldownDailyBonusPresenter.Activate();

@@ -89,7 +89,7 @@ public class FirebaseAuthenticationModel
 
         if (!mainRegex.IsMatch(value))
         {
-            OnEnterRegisterLoginError?.Invoke("Nickname can only contain english letters, numbers, period and ");
+            OnEnterRegisterLoginError?.Invoke("Nickname can only contain english letters, numbers, periods and slashes");
             return;
         }
 

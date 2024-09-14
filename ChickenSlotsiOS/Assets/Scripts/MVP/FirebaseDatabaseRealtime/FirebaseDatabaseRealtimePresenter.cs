@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FirebaseDatabaseRealtimePresenter : MonoBehaviour
+public class FirebaseDatabaseRealtimePresenter
 {
     private FirebaseDatabaseRealtimeModel firebaseDatabaseRealtimeModel;
     private FirebaseDatabaseRealtimeView firebaseDatabaseRealtimeView;

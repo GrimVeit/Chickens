@@ -63,7 +63,6 @@ public class FirebaseDatabaseRealtimeModel
         var task = databaseReference.Child("Users").OrderByChild("Coins").LimitToFirst(15).GetValueAsync();
 
         yield return new WaitUntil(() => task.IsCompleted);
-        yield return null;
 
         if (task.IsFaulted)
         {
