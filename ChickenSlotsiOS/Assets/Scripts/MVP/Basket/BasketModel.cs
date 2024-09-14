@@ -20,6 +20,13 @@ public class BasketModel
 
     private bool isActive = true;
 
+    private IMoneyProvider moneyProvider;
+
+    public BasketModel(IMoneyProvider moneyProvider)
+    {
+        this.moneyProvider = moneyProvider;
+    }
+
     public void Initialize()
     {
         eggValueActions[EggValue.Ten] = HandlerEggTen;
@@ -53,6 +60,7 @@ public class BasketModel
     public void Activate()
     {
         currentRecord = 0;
+        coins = 0;
         isActive = true;
     }
 
@@ -63,6 +71,8 @@ public class BasketModel
             record = currentRecord;
             PlayerPrefs.SetInt(PlayerPrefsKeys.GAME_RECORD, record);
         }
+
+        moneyProvider.SendMoney(coins);
         isActive = false;
     }
 

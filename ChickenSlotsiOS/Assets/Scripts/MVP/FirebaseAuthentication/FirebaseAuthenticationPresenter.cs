@@ -33,26 +33,25 @@ public class FirebaseAuthenticationPresenter
 
     private void ActivateEvents()
     {
-        //firebaseAuthenticationView.OnClickSignInButton += firebaseAuthenticationModel.SignIn;
         firebaseAuthenticationView.OnClickSignUpButton += firebaseAuthenticationModel.SignUp;
-        //firebaseAuthenticationView.OnClickLogOutButton += firebaseAuthenticationModel.SignOut;
-        //firebaseAuthenticationView.OnClickLogOutButton += firebaseAuthenticationModel.DeleteAccount;
+        firebaseAuthenticationView.OnClickRandomNicknameButton += firebaseAuthenticationModel.RandomNickname;
         firebaseAuthenticationView.OnRegisterLoginValueChanged += firebaseAuthenticationModel.ChangeEnterLoginValue;
 
         firebaseAuthenticationModel.OnEnterRegisterLoginError += firebaseAuthenticationView.OnIncorrectRegisterLogin;
         firebaseAuthenticationModel.OnEnterRegisterLoginSuccess += firebaseAuthenticationView.OnCorrectRegisterLogin;
+        firebaseAuthenticationModel.OnGetRandomNickname += firebaseAuthenticationView.DisplayRandomNickname;
+        firebaseAuthenticationModel.OnSignUpMessage_Action += firebaseAuthenticationView.GetMessage;
     }
 
     private void DeactivateEvents()
     {
-        //firebaseAuthenticationView.OnClickSignInButton -= firebaseAuthenticationModel.SignIn;
         firebaseAuthenticationView.OnClickSignUpButton -= firebaseAuthenticationModel.SignUp;
-        //firebaseAuthenticationView.OnClickLogOutButton -= firebaseAuthenticationModel.SignOut;
-        //firebaseAuthenticationView.OnClickLogOutButton -= firebaseAuthenticationModel.DeleteAccount;
-        firebaseAuthenticationView.OnRegisterLoginValueChanged += firebaseAuthenticationModel.ChangeEnterLoginValue;
+        firebaseAuthenticationView.OnClickRandomNicknameButton -= firebaseAuthenticationModel.RandomNickname;
+        firebaseAuthenticationView.OnRegisterLoginValueChanged -= firebaseAuthenticationModel.ChangeEnterLoginValue;
 
-        firebaseAuthenticationModel.OnEnterRegisterLoginError += firebaseAuthenticationView.OnIncorrectRegisterLogin;
-        firebaseAuthenticationModel.OnEnterRegisterLoginSuccess += firebaseAuthenticationView.OnCorrectRegisterLogin;
+        firebaseAuthenticationModel.OnEnterRegisterLoginError -= firebaseAuthenticationView.OnIncorrectRegisterLogin;
+        firebaseAuthenticationModel.OnEnterRegisterLoginSuccess -= firebaseAuthenticationView.OnCorrectRegisterLogin;
+        firebaseAuthenticationModel.OnGetRandomNickname -= firebaseAuthenticationView.DisplayRandomNickname;
     }
 
     #region Input

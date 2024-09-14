@@ -5,6 +5,7 @@ using System.Collections;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class FirebaseAuthenticationModel
 {
@@ -14,7 +15,7 @@ public class FirebaseAuthenticationModel
     public event Action<string> OnSignInError_Action;
 
     public event Action OnSignUp_Action;
-    public event Action<string> OnSignUpError_Action;
+    public event Action<string> OnSignUpMessage_Action;
 
     public event Action OnSignOut_Action;
 
@@ -22,6 +23,8 @@ public class FirebaseAuthenticationModel
 
     public event Action OnEnterRegisterLoginSuccess;
     public event Action<string> OnEnterRegisterLoginError;
+
+    public event Action<string> OnGetRandomNickname;
 
 
     private FirebaseAuth auth;
@@ -105,6 +108,29 @@ public class FirebaseAuthenticationModel
         OnEnterRegisterLoginSuccess?.Invoke();
     }
 
+    public void RandomNickname()
+    {
+        Coroutines.Start(RandomizerCoroutine());
+    }
+
+    private IEnumerator RandomizerCoroutine()
+    {
+        UnityWebRequest request = UnityWebRequest.Get(URL);
+
+        yield return request.SendWebRequest();
+
+        if (request.result != UnityWebRequest.Result.Success)
+        {
+            Debug.Log("No randomizing nickname");
+            OnGetRandomNickname?.Invoke("NoConnect");
+            yield break;
+        }
+
+        string nick = request.downloadHandler.text;
+
+        OnGetRandomNickname?.Invoke(nick.Remove(nick.Length - 3));
+    }
+
     private IEnumerator SignInCoroutine(string emailTextValue, string passwordTextValue)
     {
         Task<AuthResult> task = auth.SignInWithEmailAndPasswordAsync(emailTextValue, passwordTextValue);
@@ -125,6 +151,8 @@ public class FirebaseAuthenticationModel
 
     private IEnumerator SignUpCoroutine(string emailTextValue, string passwordTextValue)
     {
+        OnSignUpMessage_Action?.Invoke("Loading...");
+
         var task = auth.CreateUserWithEmailAndPasswordAsync(emailTextValue, passwordTextValue);
 
         yield return new WaitUntil(predicate: () => task.IsCompleted);
@@ -133,11 +161,12 @@ public class FirebaseAuthenticationModel
         if (task.Exception != null)
         {
             Debug.Log("Не удалось создать аккаунт");
-            OnSignUpError_Action?.Invoke(task.Exception.Message);
+            OnSignUpMessage_Action?.Invoke(task.Exception.Message);
             yield break;
         }
 
         Debug.Log("Аккаунт создан");
+        OnSignUpMessage_Action?.Invoke("Success!");
         OnChangeUser?.Invoke(auth.CurrentUser.UserId);
         OnSignUp_Action?.Invoke();
 
@@ -148,7 +177,6 @@ public class FirebaseAuthenticationModel
         var task = auth.CurrentUser.DeleteAsync();
 
         yield return new WaitUntil(predicate: () => task.IsCompleted);
-        yield return null;
 
         if (task.Exception != null)
         {

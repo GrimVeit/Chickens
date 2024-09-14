@@ -1,33 +1,39 @@
-using DG.Tweening;
-using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class BankView : View
 {
-    [SerializeField] private TextMeshProUGUI textMoney;
-    [SerializeField] private Transform moneyDisplay;
-
-    private Vector3 defaultMoneyTableScale;
+    [SerializeField] private List<MoneyDisplay> moneyDisplays = new List<MoneyDisplay>();
 
     public void Initialize()
     {
-        defaultMoneyTableScale = moneyDisplay.localScale;
+        for (int i = 0; i < moneyDisplays.Count; i++)
+        {
+            moneyDisplays[i].Initialize();
+        }
     }
 
-    public void AddMoney()
+    public void OnAddMoney()
     {
-        moneyDisplay.DOScale(new Vector3(1.5f, 1.5f, 1.5f), 0.1f).OnComplete(() => moneyDisplay.DOScale(defaultMoneyTableScale, 0.2f));
+        for (int i = 0; i < moneyDisplays.Count; i++)
+        {
+            moneyDisplays[i].OnAddMoney();
+        }
     }
 
-    public void RemoveMoney()
+    public void OnRemoveMoney()
     {
-        moneyDisplay.DOScale(new Vector3(1.1f, 1.1f, 1.1f), 0.1f).OnComplete(() => moneyDisplay.DOScale(defaultMoneyTableScale, 0.2f));
+        for (int i = 0; i < moneyDisplays.Count; i++)
+        {
+            moneyDisplays[i].OnRemoveMoney();
+        }
     }
 
-    public void SendMoneyDisplay(float money)
+    public void OnSendMoney(float money)
     {
-        textMoney.text = money.ToString();
+        for (int i = 0; i < moneyDisplays.Count; i++)
+        {
+            moneyDisplays[i].OnSendMoney(money);
+        }
     }
 }

@@ -88,7 +88,7 @@ public class MainMenuEntryPoint : MonoBehaviour
                 dailyBonusPresenter = new DailyBonusPresenter(new DailyBonusModel(), viewContainer.GetView<DailyBonusView>());
                 dailyBonusPresenter.Initialize();
 
-                shopPresenter = new ShopPresenter(new ShopModel(), viewContainer.GetView<ShopView>());
+                shopPresenter = new ShopPresenter(new ShopModel(bankPresenter), viewContainer.GetView<ShopView>());
                 shopPresenter.Initialize();
 
                 FirebaseAuth firebaseAuth = FirebaseAuth.DefaultInstance;
@@ -111,7 +111,7 @@ public class MainMenuEntryPoint : MonoBehaviour
 
 
                 ActivateTransitionsSceneEvents();
-                ActivateEvents(); 
+                ActivateEvents();
 
                 sceneRoot.Activate();
                 cooldownDailyRewardPresenter.Activate();

@@ -16,18 +16,18 @@ public class BankPresenter : IMoneyProvider
         bankModel.Initialize();
         bankView.Initialize();
 
-        bankModel.OnAddMoney += bankView.AddMoney;
-        bankModel.OnRemoveMoney += bankView.RemoveMoney;
-        bankModel.OnChangeMoney += bankView.SendMoneyDisplay;
+        bankModel.OnAddMoney += bankView.OnAddMoney;
+        bankModel.OnRemoveMoney += bankView.OnRemoveMoney;
+        bankModel.OnChangeMoney += bankView.OnSendMoney;
 
-        bankView.SendMoneyDisplay(bankModel.Money);
+        bankView.OnSendMoney(bankModel.Money);
     }
 
     public void Dispose()
     {
-        bankModel.OnAddMoney -= bankView.AddMoney;
-        bankModel.OnRemoveMoney -= bankView.RemoveMoney;
-        bankModel.OnChangeMoney -= bankView.SendMoneyDisplay;
+        bankModel.OnAddMoney -= bankView.OnAddMoney;
+        bankModel.OnRemoveMoney -= bankView.OnRemoveMoney;
+        bankModel.OnChangeMoney -= bankView.OnSendMoney;
 
         bankModel.Destroy();
     }

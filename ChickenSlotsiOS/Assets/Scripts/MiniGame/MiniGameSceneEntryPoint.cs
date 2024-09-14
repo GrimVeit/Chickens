@@ -9,6 +9,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
     private UIMiniGameSceneRoot sceneRoot;
     private ViewContainer viewContainer;
 
+    private BankPresenter bankPresenter;
     private EggCatcherPresenter eggCatcherPresenter;
     private BasketPresenter basketPresenter;
 
@@ -21,10 +22,13 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         viewContainer = sceneRoot.GetComponent<ViewContainer>();
         viewContainer.Initialize();
 
+        bankPresenter = new BankPresenter(new BankModel(), viewContainer.GetView<BankView>());
+        bankPresenter.Initialize();
+
         eggCatcherPresenter = new EggCatcherPresenter(new EggCatcherModel(), viewContainer.GetView<EggCatcherView>());
         eggCatcherPresenter.Initialize();
 
-        basketPresenter = new BasketPresenter(new BasketModel(), viewContainer.GetView<BasketView>());
+        basketPresenter = new BasketPresenter(new BasketModel(bankPresenter), viewContainer.GetView<BasketView>());
         basketPresenter.Initialize();
 
         ActivateEvents();
@@ -63,6 +67,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         sceneRoot?.Dispose();
         eggCatcherPresenter?.Dispose();
         basketPresenter?.Dispose();
+        bankPresenter?.Dispose();
     }
 
     #region Input
