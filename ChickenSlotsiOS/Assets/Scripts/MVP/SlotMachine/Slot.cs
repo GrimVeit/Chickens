@@ -12,12 +12,12 @@ public class Slot : MonoBehaviour
     public event Action<int[], int> OnStopSpin;
 
     public ScrollRect scrollRect;
-    public float minScrollSpeed = 0.5f;
+    public float minScrollSpeed = 0.5f;
     public float maxScrollSpeed = 2f;
-    public float minDuration = 0.5f;
+    public float minDuration = 0.5f;
     public float maxDuration = 2f;
-    public RectTransform content;
-    public SlotValue[] slotValues;
+    public RectTransform content;
+    public SlotValue[] slotValues;
     public RectTransform centerPoint;
 
     private int _idSlotMach;
@@ -32,7 +32,7 @@ public class Slot : MonoBehaviour
     }
 
 
-    public void StartSpin()
+    public void StartSpin()
     {
         StartCoroutine(Spin());
     }
@@ -55,18 +55,18 @@ public class Slot : MonoBehaviour
             OnWheelSpeed?.Invoke(_idSlotMach, currentSpeed);
 
             scrollRect.verticalNormalizedPosition += currentSpeed * Time.deltaTime;
-            scrollRect.verticalNormalizedPosition = scrollRect.verticalNormalizedPosition % 1; // Çàöèêëèâàíèå
+            scrollRect.verticalNormalizedPosition = scrollRect.verticalNormalizedPosition % 1; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 
             yield return null;
         }
 
 
-        SlotValue closestSlotValue = GetClosestSlotValue();
+        SlotValue closestSlotValue = GetClosestSlotValue();
 
 
 
-        yield return StartCoroutine(SmoothScrollToItem(closestSlotValue.TransformSlotValue));
+        yield return StartCoroutine(SmoothScrollToItem(closestSlotValue.TransformSlotValue));
 
         combinationSlot = slotValues.Skip(closestSlotValue.Index).Take(combination.Length).ToArray();
 
