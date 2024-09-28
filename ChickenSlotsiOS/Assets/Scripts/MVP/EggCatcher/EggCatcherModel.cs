@@ -21,6 +21,13 @@ public class EggCatcherModel
     private int health;
     private int currentHealth;
 
+    private ISoundProvider soundProvider;
+
+    public EggCatcherModel(ISoundProvider soundProvider)
+    {
+        this.soundProvider = soundProvider;
+    }
+
     public void Initialize()
     {
         health = PlayerPrefs.GetInt(PlayerPrefsKeys.HEALTH_COUNT, 1);
@@ -63,12 +70,15 @@ public class EggCatcherModel
         if (currentHealth > 0)
         {
             OnRemoveHealth?.Invoke();
+            soundProvider.PlayOneShot("FallEgg");
             return;
         }
 
         if(currentHealth == 0)
         {
             OnRemoveHealth?.Invoke();
+
+            soundProvider.PlayOneShot("Success");
 
             Debug.Log("Вы проиграли");
 

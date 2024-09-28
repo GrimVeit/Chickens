@@ -47,6 +47,16 @@ public class MainMenuEntryPoint : MonoBehaviour
 
             if (dependencyStatus == DependencyStatus.Available)
             {
+                soundPresenter = new SoundPresenter
+                    (new SoundModel(sounds.sounds, PlayerPrefsKeys.IS_MUTE_SOUNDS),
+                    viewContainer.GetView<SoundView>());
+                soundPresenter.Initialize();
+
+                particleEffectPresenter = new ParticleEffectPresenter
+                    (new ParticleEffectModel(),
+                    viewContainer.GetView<ParticleEffectView>());
+                particleEffectPresenter.Initialize();
+
                 cooldownDailyRewardPresenter = new CooldownPresenter
                     (new CooldownModel(PlayerPrefsKeys.NEXT_DAILY_REWARD_TIME, TimeSpan.FromSeconds(20)),
                     viewContainer.GetView<CooldownView>("DailyReward"));
@@ -67,16 +77,6 @@ public class MainMenuEntryPoint : MonoBehaviour
                     viewContainer.GetView<WebViewView>("About"));
                 aboutWebViewPresenter.Initialize();
 
-                soundPresenter = new SoundPresenter
-                    (new SoundModel(sounds.sounds, PlayerPrefsKeys.IS_MUTE_SOUNDS),
-                    viewContainer.GetView<SoundView>());
-                soundPresenter.Initialize();
-
-                particleEffectPresenter = new ParticleEffectPresenter
-                    (new ParticleEffectModel(),
-                    viewContainer.GetView<ParticleEffectView>());
-                particleEffectPresenter.Initialize();
-
                 bankPresenter = new BankPresenter(new BankModel(), viewContainer.GetView<BankView>());
                 bankPresenter.Initialize();
 
@@ -88,7 +88,7 @@ public class MainMenuEntryPoint : MonoBehaviour
                 dailyBonusPresenter = new DailyBonusPresenter(new DailyBonusModel(), viewContainer.GetView<DailyBonusView>());
                 dailyBonusPresenter.Initialize();
 
-                shopPresenter = new ShopPresenter(new ShopModel(bankPresenter), viewContainer.GetView<ShopView>());
+                shopPresenter = new ShopPresenter(new ShopModel(bankPresenter, soundPresenter), viewContainer.GetView<ShopView>());
                 shopPresenter.Initialize();
 
                 FirebaseAuth firebaseAuth = FirebaseAuth.DefaultInstance;
@@ -112,6 +112,9 @@ public class MainMenuEntryPoint : MonoBehaviour
 
                 ActivateTransitionsSceneEvents();
                 ActivateEvents();
+
+                soundProvider = soundPresenter;
+                soundProvider.Play("Background");
 
 
                 sceneRoot.Activate();

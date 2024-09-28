@@ -10,12 +10,12 @@ public class SoundView : View
 
     public void Initialize()
     {
-        soundButton.onClick.AddListener(HandlerClickToSoundButton);
+        //soundButton.onClick.AddListener(HandlerClickToSoundButton);
     }
 
     public void Dispose()
     {
-        soundButton.onClick.RemoveListener(HandlerClickToSoundButton);
+        //soundButton.onClick.RemoveListener(HandlerClickToSoundButton);
     }
 
     public void MuteDisplay()

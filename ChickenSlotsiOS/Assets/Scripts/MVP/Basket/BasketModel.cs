@@ -21,10 +21,12 @@ public class BasketModel
     private bool isActive = true;
 
     private IMoneyProvider moneyProvider;
+    private ISoundProvider soundProvider;
 
-    public BasketModel(IMoneyProvider moneyProvider)
+    public BasketModel(IMoneyProvider moneyProvider, ISoundProvider soundProvider)
     {
         this.moneyProvider = moneyProvider;
+        this.soundProvider = soundProvider;
     }
 
     public void Initialize()
@@ -78,6 +80,8 @@ public class BasketModel
 
     public void GetEgg(EggValues eggValues)
     {
+        soundProvider.PlayOneShot("Pop");
+
         currentRecord += 1;
         eggValueActions[eggValues.EggValue]?.Invoke();
     }

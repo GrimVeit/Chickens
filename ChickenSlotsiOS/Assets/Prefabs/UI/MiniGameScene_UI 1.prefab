@@ -272,6 +272,7 @@ GameObject:
   - component: {fileID: 1117650039739120159}
   - component: {fileID: 5211234201988511694}
   - component: {fileID: 9112801898492742837}
+  - component: {fileID: 2397283023077869238}
   m_Layer: 5
   m_Name: MiniGameScene_UI 1
   m_TagString: Untagged
@@ -469,6 +470,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moneyDisplays: []
+--- !u!114 &2397283023077869238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814119222677865395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f08c63f2eb12eb43a3e2d0072323163, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundButton: {fileID: 0}
 --- !u!1 &1180046327997806134
 GameObject:
   m_ObjectHideFlags: 0

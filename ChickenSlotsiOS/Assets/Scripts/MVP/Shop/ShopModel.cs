@@ -6,12 +6,14 @@ public class ShopModel
     public event Action<int> OnBuyHealth;
 
     private IMoneyProvider moneyProvider;
+    private ISoundProvider soundProvider;
 
     private int currentCountHealth;
 
-    public ShopModel(IMoneyProvider moneyProvider)
+    public ShopModel(IMoneyProvider moneyProvider, ISoundProvider soundProvider)
     {
         this.moneyProvider = moneyProvider;
+        this.soundProvider = soundProvider;
     }
 
     public void Initialize()
@@ -29,8 +31,11 @@ public class ShopModel
     {
         if (!moneyProvider.CanAfford(coins))
         {
+            soundProvider.PlayOneShot("ClickLocked");
             return;
         }
+
+        soundProvider.PlayOneShot("ClickUnlocked");
 
         moneyProvider.SendMoney(-coins);
         currentCountHealth = index + 2;

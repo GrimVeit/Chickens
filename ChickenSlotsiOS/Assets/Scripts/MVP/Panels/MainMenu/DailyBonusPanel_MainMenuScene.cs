@@ -8,6 +8,13 @@ public class DailyBonusPanel_MainMenuScene : MovePanel
 
     [SerializeField] private Button backButton;
 
+    private ISoundProvider soundProvider;
+
+    public void SetSoundProvider(ISoundProvider soundProvider)
+    {
+        this.soundProvider = soundProvider;
+    }
+
     public override void ActivatePanel()
     {
         base.ActivatePanel();
@@ -24,6 +31,7 @@ public class DailyBonusPanel_MainMenuScene : MovePanel
 
     private void HandlerClickToBackButton()
     {
+        soundProvider.PlayOneShot("ClickButton");
         OnClickBackButton?.Invoke();
     }
 }
