@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class DailyBonusView : View
 {
+    public event Action<float> OnSpin;
     public event Action OnClickSpinButton;
     public event Action<int> OnGetBonus;
 
@@ -73,6 +74,8 @@ public class DailyBonusView : View
         {
             elapsedTime += Time.deltaTime;
             float currentSpeed = Mathf.Lerp(startSpeed, endSpeed, elapsedTime / duration);
+            Debug.Log(currentSpeed);
+            OnSpin?.Invoke(currentSpeed);
 
             //scrollRect.verticalNormalizedPosition += currentSpeed * Time.deltaTime;
             //scrollRect.verticalNormalizedPosition = scrollRect.verticalNormalizedPosition % 1; // Зацикливание

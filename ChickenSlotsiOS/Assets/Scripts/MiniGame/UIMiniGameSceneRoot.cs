@@ -1,8 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class UIMiniGameSceneRoot : MonoBehaviour
 {
@@ -12,9 +9,12 @@ public class UIMiniGameSceneRoot : MonoBehaviour
     [SerializeField] private FailGamePanel_MiniGameScene failGamePanel;
 
     private Panel currentPanel;
+    private ISoundProvider soundProvider;
 
     public void Initialize()
     {
+        miniGamePanel.SetSoundProvider(soundProvider);
+        failGamePanel.SetSoundProvider(soundProvider);
 
         miniGamePanel.Initialize();
         failGamePanel.Initialize();
@@ -24,6 +24,11 @@ public class UIMiniGameSceneRoot : MonoBehaviour
 
         currentPanel = miniGamePanel;
         currentPanel.ActivatePanel();
+    }
+
+    public void SetSoundProvider(ISoundProvider soundProvider)
+    {
+        this.soundProvider = soundProvider;
     }
 
     public void Dispose()

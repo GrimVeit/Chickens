@@ -24,11 +24,13 @@ public class CooldownModel
 
     private IEnumerator countdownButton_coroutine;
 
-    public CooldownModel(string key, TimeSpan timeToReload)
+    private ISoundProvider soundProvider;
+
+    public CooldownModel(string key, TimeSpan timeToReload, ISoundProvider soundProvider)
     {
         KEY = key;
         this.timeToReload = timeToReload;
-        //this.soundProvider = soundProvider;
+        this.soundProvider = soundProvider;
         //this.particleEffectProvider = particleEffectProvider;
     }
 
@@ -65,11 +67,12 @@ public class CooldownModel
         if (isRewardAvailable)
         {
             OnClickToActivatedButton?.Invoke();
+            soundProvider.PlayOneShot("ClickUnlocked");
             return;
         }
 
+        soundProvider.PlayOneShot("ClickLocked");
         OnClickToDeactivatedButton?.Invoke();
-        //soundProvider.PlayOneShot("Error");
     }
 
     public void ActivateCooldown()

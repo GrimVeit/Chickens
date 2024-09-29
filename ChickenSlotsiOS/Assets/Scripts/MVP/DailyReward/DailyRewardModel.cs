@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using UnityEngine;
 
 public class DailyRewardModel
 {
@@ -30,8 +28,8 @@ public class DailyRewardModel
 
     public void DailyReward()
     {
-        //particleEffectProvider.Play("DailyReward");
-        //soundProvider.PlayOneShot("DailyReward");
+        particleEffectProvider.Play("DailyReward");
+        soundProvider.PlayOneShot("Success");
         OnGetDailyReward?.Invoke();
         OnGetDailyReward_Count?.Invoke(reward);
     }

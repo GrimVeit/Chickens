@@ -10,6 +10,7 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
     private ViewContainer viewContainer;
 
     private SoundPresenter soundPresenter;
+    private ParticleEffectPresenter particleEffectPresenter;
 
     private BankPresenter bankPresenter;
     private EggCatcherPresenter eggCatcherPresenter;
@@ -20,7 +21,6 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
     public void Run(UIRootView uIRootView)
     {
         sceneRoot = Instantiate(sceneRootPrefab);
-        sceneRoot.Initialize();
         uIRootView.AttachSceneUI(sceneRoot.gameObject, Camera.main);
 
         viewContainer = sceneRoot.GetComponent<ViewContainer>();
@@ -29,10 +29,13 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
         soundPresenter = new SoundPresenter(new SoundModel(sounds.sounds, PlayerPrefsKeys.IS_MUTE_SOUNDS), viewContainer.GetView<SoundView>());
         soundPresenter.Initialize();
 
+        particleEffectPresenter = new ParticleEffectPresenter(new ParticleEffectModel(), viewContainer.GetView<ParticleEffectView>());
+        particleEffectPresenter.Initialize();
+
         bankPresenter = new BankPresenter(new BankModel(), viewContainer.GetView<BankView>());
         bankPresenter.Initialize();
 
-        eggCatcherPresenter = new EggCatcherPresenter(new EggCatcherModel(soundPresenter), viewContainer.GetView<EggCatcherView>());
+        eggCatcherPresenter = new EggCatcherPresenter(new EggCatcherModel(soundPresenter, particleEffectPresenter), viewContainer.GetView<EggCatcherView>());
         eggCatcherPresenter.Initialize();
 
         basketPresenter = new BasketPresenter(new BasketModel(bankPresenter, soundPresenter), viewContainer.GetView<BasketView>());
@@ -40,8 +43,12 @@ public class MiniGameSceneEntryPoint : MonoBehaviour
 
         ActivateEvents();
 
+
         soundProvider = soundPresenter;
         soundProvider.Play("Background");
+
+        sceneRoot.SetSoundProvider(soundProvider);
+        sceneRoot.Initialize();
 
         basketPresenter.Start();
     }

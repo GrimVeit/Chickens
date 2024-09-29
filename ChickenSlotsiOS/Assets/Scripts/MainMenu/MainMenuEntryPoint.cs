@@ -58,12 +58,12 @@ public class MainMenuEntryPoint : MonoBehaviour
                 particleEffectPresenter.Initialize();
 
                 cooldownDailyRewardPresenter = new CooldownPresenter
-                    (new CooldownModel(PlayerPrefsKeys.NEXT_DAILY_REWARD_TIME, TimeSpan.FromSeconds(20)),
+                    (new CooldownModel(PlayerPrefsKeys.NEXT_DAILY_REWARD_TIME, TimeSpan.FromDays(1), soundPresenter),
                     viewContainer.GetView<CooldownView>("DailyReward"));
                 cooldownDailyRewardPresenter.Initialize();
 
                 cooldownDailyBonusPresenter = new CooldownPresenter
-                    (new CooldownModel(PlayerPrefsKeys.NEXT_DAILY_BONUS_TIME, TimeSpan.FromSeconds(25)),
+                    (new CooldownModel(PlayerPrefsKeys.NEXT_DAILY_BONUS_TIME, TimeSpan.FromDays(1), soundPresenter),
                     viewContainer.GetView<CooldownView>("DailyBonus"));
                 cooldownDailyBonusPresenter.Initialize();
 
@@ -85,7 +85,7 @@ public class MainMenuEntryPoint : MonoBehaviour
                     viewContainer.GetView<DailyRewardView>());
                 dailyRewardPresenter.Initialize();
 
-                dailyBonusPresenter = new DailyBonusPresenter(new DailyBonusModel(), viewContainer.GetView<DailyBonusView>());
+                dailyBonusPresenter = new DailyBonusPresenter(new DailyBonusModel(soundPresenter), viewContainer.GetView<DailyBonusView>());
                 dailyBonusPresenter.Initialize();
 
                 shopPresenter = new ShopPresenter(new ShopModel(bankPresenter, soundPresenter), viewContainer.GetView<ShopView>());
@@ -96,7 +96,7 @@ public class MainMenuEntryPoint : MonoBehaviour
 
 
                 firebaseAuthenticationPresenter = new FirebaseAuthenticationPresenter
-                    (new FirebaseAuthenticationModel(firebaseAuth),
+                    (new FirebaseAuthenticationModel(firebaseAuth, soundPresenter),
                     viewContainer.GetView<FirebaseAuthenticationView>());
                 firebaseAuthenticationPresenter.Initialize();
 

@@ -31,7 +31,10 @@ public class ParticleEffectModel
         {
             OnActivateEffect?.Invoke();
             particleEffects[ID].Play();
+            return;
         }
+
+        Debug.Log("Ёффект с идентификатором " + ID + "не был найден");
     }
 
     public IParticleEffect GetParticleEffect(string id)

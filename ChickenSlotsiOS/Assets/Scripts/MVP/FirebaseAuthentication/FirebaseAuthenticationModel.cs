@@ -33,9 +33,12 @@ public class FirebaseAuthenticationModel
     private readonly Regex invalidRegex = new(@"(\.{2,}|/{2,})");
     private const string URL = "https://dinoipsum.com/api/?format=text&paragraphs=1&words=1";
 
-    public FirebaseAuthenticationModel(FirebaseAuth auth)
+    private ISoundProvider soundProvider;
+
+    public FirebaseAuthenticationModel(FirebaseAuth auth, ISoundProvider soundProvider)
     {
         this.auth = auth;
+        this.soundProvider = soundProvider;
     }
 
     public void Initialize()
@@ -81,9 +84,17 @@ public class FirebaseAuthenticationModel
 
     public void ChangeEnterLoginValue(string value)
     {
+        soundProvider.PlayOneShot("EnterText");
+
         if (value.Length < 5)
         {
             OnEnterRegisterLoginError?.Invoke("Nickname must be at least 5 characters long");
+            return;
+        }
+
+        if (value.Length > 17)
+        {
+            OnEnterRegisterLoginError?.Invoke("");
             return;
         }
 
@@ -110,6 +121,8 @@ public class FirebaseAuthenticationModel
 
     public void RandomNickname()
     {
+        soundProvider.PlayOneShot("ClickButton");
+
         Coroutines.Start(RandomizerCoroutine());
     }
 
@@ -151,6 +164,8 @@ public class FirebaseAuthenticationModel
 
     private IEnumerator SignUpCoroutine(string emailTextValue, string passwordTextValue)
     {
+        soundProvider.PlayOneShot("ClickButton");
+
         OnSignUpMessage_Action?.Invoke("Loading...");
 
         var task = auth.CreateUserWithEmailAndPasswordAsync(emailTextValue, passwordTextValue);
@@ -161,10 +176,12 @@ public class FirebaseAuthenticationModel
         if (task.Exception != null)
         {
             Debug.Log("Не удалось создать аккаунт");
+            soundProvider.PlayOneShot("LoseSignUp");
             OnSignUpMessage_Action?.Invoke(task.Exception.Message);
             yield break;
         }
 
+        soundProvider.PlayOneShot("SuccessSignUp");
         Debug.Log("Аккаунт создан");
         OnSignUpMessage_Action?.Invoke("Success!");
         OnChangeUser?.Invoke(auth.CurrentUser.UserId);

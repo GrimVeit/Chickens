@@ -22,10 +22,12 @@ public class EggCatcherModel
     private int currentHealth;
 
     private ISoundProvider soundProvider;
+    private IParticleEffectProvider particleEffectProvider;
 
-    public EggCatcherModel(ISoundProvider soundProvider)
+    public EggCatcherModel(ISoundProvider soundProvider, IParticleEffectProvider particleEffectProvider)
     {
         this.soundProvider = soundProvider;
+        this.particleEffectProvider = particleEffectProvider;
     }
 
     public void Initialize()
@@ -79,6 +81,7 @@ public class EggCatcherModel
             OnRemoveHealth?.Invoke();
 
             soundProvider.PlayOneShot("Success");
+            particleEffectProvider.Play("Win");
 
             Debug.Log("Вы проиграли");
 
