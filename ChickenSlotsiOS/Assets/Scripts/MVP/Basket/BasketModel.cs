@@ -12,11 +12,13 @@ public class BasketModel : IBasketModel
     private IMoneyProvider moneyProvider;
     private ISoundProvider soundProvider;
 
-    private List<int> indexTransforms = new List<int>() { 0, 1, 2, 3, 4 };
+    private int[] indexTransforms;
     private int currentIndexTransform = 2;
 
-    public BasketModel(IMoneyProvider moneyProvider, ISoundProvider soundProvider)
+    public BasketModel(int size, IMoneyProvider moneyProvider, ISoundProvider soundProvider)
     {
+        indexTransforms = new int[size];
+
         this.moneyProvider = moneyProvider;
         this.soundProvider = soundProvider;
     }
@@ -35,7 +37,7 @@ public class BasketModel : IBasketModel
     {
         if (!isActive) return;
 
-        if (currentIndexTransform < indexTransforms.Count - 1)
+        if (currentIndexTransform < indexTransforms.Length - 1)
         {
             currentIndexTransform += 1;
 
@@ -58,6 +60,12 @@ public class BasketModel : IBasketModel
     public void SetPositionIndex(int index)
     {
         if (!isActive) return;
+
+        if(index > indexTransforms.Length - 1)
+        {
+            Debug.LogError("Incorrect index");
+            return;
+        }
 
         OnMoveIndex?.Invoke(index);
     }

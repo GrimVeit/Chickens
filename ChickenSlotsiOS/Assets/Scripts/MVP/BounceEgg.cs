@@ -1,42 +1,48 @@
 using DG.Tweening;
-using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BounceEgg : Egg
 {
-    public event Action OnEggWin;
-    public event Action OnEggFallen;
-    public event Action OnEggFallen_Index;
-
     private List<Transform> bounceTransforms = new List<Transform>();
-    private int currentBounceIndex = 1;
+    private int currentBounceIndex = 0;
 
     private Tween tweenBounce;
 
+    private bool canTriggerJump = true;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.transform.CompareTag("Basket"))
+        if (other.GetComponent<Basket>() && canTriggerJump)
         {
+            canTriggerJump = false;
+            StartCoroutine(ResetTrigger());
             StartJump();
         }
 
-        //if (other.transform.CompareTag("Earth"))
-        //{
-        //    OnEggDown?.Invoke();
-        //    OnEggDown_Position?.Invoke(transform.position);
-        //    Dispose();
-        //}
+        if (other.GetComponent<Earth>())
+        {
+            OnEggDown?.Invoke(eggValues, transform.position);
+            Dispose();
+        }
+    }
+
+    private IEnumerator ResetTrigger()
+    {
+        yield return new WaitForSeconds(0.2f);
+        canTriggerJump = true;
     }
 
     private void EggChecker()
     {
-        if(currentBounceIndex < bounceTransforms.Count)
+        if(currentBounceIndex == bounceTransforms.Count)
         {
-            OnEggWin?.Invoke();
+            OnEggWin?.Invoke(eggValues);
+            Dispose();
         }
     }
+
     #region Bounce
 
     public void SetBounceTransforms(List<Transform> transforms)
@@ -50,7 +56,7 @@ public class BounceEgg : Egg
         {
             if (tweenBounce != null) tweenBounce.Kill();
 
-            tweenBounce = transform.DOJump(bounceTransforms[currentBounceIndex].position, 3, 1, 1.5f).SetEase(Ease.OutQuad).OnComplete(EggChecker);
+            tweenBounce = transform.DOJump(bounceTransforms[currentBounceIndex].position, 5, 1, 2f).SetEase(Ease.OutQuad).OnComplete(EggChecker);
 
             currentBounceIndex += 1;
         }

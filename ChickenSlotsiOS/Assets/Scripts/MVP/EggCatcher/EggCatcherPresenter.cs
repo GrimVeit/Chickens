@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 public class EggCatcherPresenter
 {
@@ -51,10 +52,16 @@ public class EggCatcherPresenter
         remove { eggCatcherModel.OnEggDown -= value; }
     }
 
+    public event Action<EggValue, Vector3> OnEggDown_EggValue
+    {
+        add { eggCatcherModel.OnEggDown_EggValue += value; }
+        remove { eggCatcherModel.OnEggDown_EggValue += value; }
+    }
+
     public event Action<EggValue> OnEggWin
     {
-        add { eggCatcherModel.OnEggWin += value; }
-        remove { eggCatcherModel.OnEggWin -= value; }
+        add { eggCatcherModel.OnEggWin_EggValue += value; }
+        remove { eggCatcherModel.OnEggWin_EggValue -= value; }
     }
 
     public void StartSpawner()

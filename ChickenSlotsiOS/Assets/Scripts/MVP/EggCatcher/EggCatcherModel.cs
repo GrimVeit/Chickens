@@ -6,7 +6,8 @@ using UnityEngine;
 public class EggCatcherModel
 {
     public event Action OnEggDown;
-    public event Action<EggValue> OnEggWin;
+    public event Action<EggValue, Vector3> OnEggDown_EggValue;
+    public event Action<EggValue> OnEggWin_EggValue;
 
     public event Action OnSpawnEgg;
 
@@ -21,8 +22,12 @@ public class EggCatcherModel
     private ISoundProvider soundProvider;
     private IParticleEffectProvider particleEffectProvider;
 
-    public EggCatcherModel(ISoundProvider soundProvider, IParticleEffectProvider particleEffectProvider)
+    public EggCatcherModel(float initialDelay, float minDelay, float decreaseAmount, ISoundProvider soundProvider, IParticleEffectProvider particleEffectProvider)
     {
+        this.initialDelay = initialDelay;
+        this.minDelay = minDelay;
+        this.decreaseAmount = decreaseAmount;
+
         this.soundProvider = soundProvider;
         this.particleEffectProvider = particleEffectProvider;
     }
@@ -39,12 +44,13 @@ public class EggCatcherModel
 
     public void EggWin(EggValues eggValues)
     {
-        OnEggWin?.Invoke(eggValues.EggValue);
+        OnEggWin_EggValue?.Invoke(eggValues.EggValue);
     }
 
-    public void EggDown()
+    public void EggDown(EggValues eggValues, Vector3 posDown)
     {
         OnEggDown?.Invoke();
+        OnEggDown_EggValue?.Invoke(eggValues.EggValue, posDown);
     }
 
     #region Spawner

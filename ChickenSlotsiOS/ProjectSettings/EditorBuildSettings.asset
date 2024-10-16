@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MiniGame2Scene.unity
     guid: 37710ffa2a9bdca4bab380d5fb0528ea
   - enabled: 1
+    path: Assets/Scenes/MiniGame3Scene.unity
+    guid: 4be8f4437f69cf747ab34bb4db0cc0a3
+  - enabled: 1
     path: Assets/Scenes/Slot1Scene.unity
     guid: f1e9973d5a3d89f4d806564ba71afb2a
   - enabled: 1

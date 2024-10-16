@@ -6,9 +6,8 @@ using UnityEngine.UI;
 
 public abstract class Chicken : MonoBehaviour
 {
-    public event Action OnEggDown;
+    public event Action<EggValues, Vector3> OnEggDown;
     public event Action<EggValues> OnEggWin;
-    public event Action<Vector3> OnEggDown_Position;
 
     [SerializeField] private protected Transform spawnTransform;
     [SerializeField] private protected Image chickenImage;
@@ -35,9 +34,8 @@ public abstract class Chicken : MonoBehaviour
     private protected void ActivateEvents(Egg egg)
     {
         egg.OnEggDestroyed += DestroyEgg;
-        egg.OnEggWin_EggValues += HandlerOnEggWin;
+        egg.OnEggWin += HandlerOnEggWin;
         egg.OnEggDown += HandlerOnEggDown;
-        egg.OnEggDown_Position += HandlerOnEggDown_Position;
     }
 
     private protected void DeactivateEvents(Egg egg)
@@ -45,9 +43,8 @@ public abstract class Chicken : MonoBehaviour
         if(egg != null)
         {
             egg.OnEggDestroyed -= DestroyEgg;
-            egg.OnEggWin_EggValues -= HandlerOnEggWin;
+            egg.OnEggWin -= HandlerOnEggWin;
             egg.OnEggDown -= HandlerOnEggDown;
-            egg.OnEggDown_Position -= HandlerOnEggDown_Position;
         }
     }
 
@@ -67,13 +64,8 @@ public abstract class Chicken : MonoBehaviour
         OnEggWin?.Invoke(eggValues);
     }
 
-    private protected void HandlerOnEggDown()
+    private protected void HandlerOnEggDown(EggValues eggValues, Vector3 vector)
     {
-        OnEggDown?.Invoke();
-    }
-
-    private protected void HandlerOnEggDown_Position(Vector3 vector)
-    {
-        OnEggDown_Position?.Invoke(vector);
+        OnEggDown?.Invoke(eggValues, vector);
     }
 }

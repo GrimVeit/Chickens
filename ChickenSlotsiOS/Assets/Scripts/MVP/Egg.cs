@@ -1,16 +1,13 @@
 using DG.Tweening;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Egg : MonoBehaviour
 {
     public Action<Egg> OnEggDestroyed;
-    public Action OnEggDown;
-    public Action<EggValues> OnEggWin_EggValues;
-    public Action<Vector3> OnEggDown_Position;
+    public Action<EggValues, Vector3> OnEggDown;
+    public Action<EggValues> OnEggWin;
 
     private protected EggValues eggValues;
 
@@ -51,22 +48,22 @@ public class Egg : MonoBehaviour
         OnEggDestroyed?.Invoke(this);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.GetComponent<Earth>())
-        {
-            OnEggDown?.Invoke();
-            OnEggDown_Position?.Invoke(transform.position);
-            Dispose();
-        }
+    //private void OnTriggerEnter2D(Collider2D other)
+    //{
+    //    if (other.GetComponent<Earth>())
+    //    {
+    //        OnEggDown?.Invoke();
+    //        OnEggDown_Position?.Invoke(transform.position);
+    //        Dispose();
+    //    }
 
-        if (other.GetComponent<Basket>())
-        {
-            OnEggWin_EggValues?.Invoke(eggValues);
-            OnEggDown_Position?.Invoke(transform.position);
-            Dispose();
-        }
-    }
+    //    if (other.GetComponent<Basket>())
+    //    {
+    //        OnEggWin_EggValues?.Invoke(eggValues);
+    //        OnEggDown_Position?.Invoke(transform.position);
+    //        Dispose();
+    //    }
+    //}
 
     public void SetLocalPosition(Vector3 vector)
     {

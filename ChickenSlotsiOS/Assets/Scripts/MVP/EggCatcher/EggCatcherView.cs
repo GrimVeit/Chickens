@@ -35,12 +35,12 @@ public class EggCatcherView : View
 
     #region Input
 
-    public event Action OnEggDown;
+    public event Action<EggValues, Vector3> OnEggDown;
     public event Action<EggValues> OnEggWin;
 
-    private void HandlerEggDown()
+    private void HandlerEggDown(EggValues eggValues, Vector3 posDown)
     {
-        OnEggDown?.Invoke();
+        OnEggDown?.Invoke(eggValues, posDown);
     }
 
     private void HandlerEggWin(EggValues eggValues)

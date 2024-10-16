@@ -78,6 +78,7 @@ RectTransform:
   - {fileID: 6312149616942235899}
   - {fileID: 4498142596543466628}
   - {fileID: 8151619406285150480}
+  - {fileID: 1703419162643949421}
   m_Father: {fileID: 6448967176329827679}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -241,11 +242,12 @@ GameObject:
   - component: {fileID: 293971493632134561}
   - component: {fileID: 2405726662876918920}
   - component: {fileID: 4331315088530889720}
-  - component: {fileID: 5707306073528363189}
   - component: {fileID: 2397283023077869238}
   - component: {fileID: 5211234201988511694}
   - component: {fileID: 9112801898492742837}
-  - component: {fileID: 5410709221199129808}
+  - component: {fileID: 8169008189818083342}
+  - component: {fileID: 651385538297166247}
+  - component: {fileID: 8703575550728638474}
   m_Layer: 5
   m_Name: MiniGame3Scene_UI
   m_TagString: Untagged
@@ -363,27 +365,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f1715db47db19243a846b0ed602d194, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5707306073528363189
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 814119222677865395}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80c88ef33431e7d428ef470f20e0c8f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  basket: {fileID: 6772976455973935668}
-  listTransforms:
-  - {fileID: 7315267485943978783}
-  - {fileID: 2600230890428571948}
-  - {fileID: 471393770339535413}
-  - {fileID: 1775150684644122281}
-  - {fileID: 1731126839897440059}
-  leftButton: {fileID: 3045227462886494342}
-  rightButton: {fileID: 6879435267558498697}
 --- !u!114 &2397283023077869238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -438,7 +419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moneyDisplays: []
---- !u!114 &5410709221199129808
+--- !u!114 &8169008189818083342
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -447,14 +428,51 @@ MonoBehaviour:
   m_GameObject: {fileID: 814119222677865395}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6c89acf3c7256b4eaf91eeb0e8bb8f1, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b9f901c4a0908342a6401369d71e824, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentEggsHealth: {fileID: 1781929467399996514}
   chickens:
   - {fileID: 6667787745208198460}
-  healthPrefab: {fileID: 160968395774575980, guid: 642be2efc7e96da4c9cdca00ffc192d0, type: 3}
   eggsPrefabs: {fileID: 5211234201988511694}
+--- !u!114 &651385538297166247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814119222677865395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 639ba9a138b47c04fa8470cec8e529b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  basket: {fileID: 2582375950182146651}
+  listTransforms:
+  - {fileID: 7315267485943978783}
+  - {fileID: 2600230890428571948}
+  - {fileID: 471393770339535413}
+  - {fileID: 1775150684644122281}
+  - {fileID: 1731126839897440059}
+  leftButton: {fileID: 3045227462886494342}
+  rightButton: {fileID: 6879435267558498697}
+--- !u!114 &8703575550728638474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814119222677865395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbbe988542f2ce84e9354df74e226e0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textCoins: {fileID: 1886443011226743835}
+  display100: {fileID: 2493937623559646339}
+  display10: {fileID: 1180046327997806134}
+  display1000: {fileID: 7759422822443167356}
+  parentEggsHealth: {fileID: 1781929467399996514}
+  healthPrefab: {fileID: 160968395774575980, guid: 642be2efc7e96da4c9cdca00ffc192d0, type: 3}
 --- !u!1 &1180046327997806134
 GameObject:
   m_ObjectHideFlags: 0
@@ -714,6 +732,50 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &1480968896115200976
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1703419162643949421}
+  - component: {fileID: 8333027321774196293}
+  m_Layer: 5
+  m_Name: Finish
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1703419162643949421
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480968896115200976}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4123561054496569363}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 761, y: -127}
+  m_SizeDelta: {x: 261.8, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &8333027321774196293
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480968896115200976}
+  m_CullTransparentMesh: 1
 --- !u!1 &1644655411053323524
 GameObject:
   m_ObjectHideFlags: 0
@@ -2855,12 +2917,13 @@ MonoBehaviour:
   chickenSpawn: {fileID: 21300000, guid: 4f14beb4e82453748b8c7b1759d38ede, type: 3}
   chickenUnspawn: {fileID: 21300000, guid: 7b930b80c44ba5f4f8400cd99b857003, type: 3}
   eggToPosition: {fileID: 5555338758083620259}
+  eggFinishPosition: {fileID: 5013937751236335992}
   transformsBounces:
-  - {fileID: 5013937751236335992}
   - {fileID: 875896267801021550}
   - {fileID: 6312149616942235899}
   - {fileID: 4498142596543466628}
   - {fileID: 8151619406285150480}
+  - {fileID: 1703419162643949421}
 --- !u!1 &7436303393298753552
 GameObject:
   m_ObjectHideFlags: 0
@@ -3143,6 +3206,7 @@ GameObject:
   - component: {fileID: 5094973272962091674}
   - component: {fileID: 1675951303369651842}
   - component: {fileID: 1518939090589784846}
+  - component: {fileID: 8002130196126354694}
   m_Layer: 5
   m_Name: Earth
   m_TagString: Earth
@@ -3252,6 +3316,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8002130196126354694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8122873819928177469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e68228cff515e640a0e9124bd5df31f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8421666335042704111
 GameObject:
   m_ObjectHideFlags: 0
@@ -3588,6 +3664,7 @@ GameObject:
   - component: {fileID: 2968391757407289525}
   - component: {fileID: 2270824969835998712}
   - component: {fileID: 5815284710463902266}
+  - component: {fileID: 2582375950182146651}
   m_Layer: 5
   m_Name: Nest
   m_TagString: Basket
@@ -3697,3 +3774,15 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2582375950182146651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8952311622989332046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f79557a32d21e546a4de4d5216db219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

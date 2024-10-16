@@ -6,15 +6,13 @@ public class NormalEgg : Egg
     {
         if (other.GetComponent<Basket>())
         {
-            OnEggWin_EggValues?.Invoke(eggValues);
-            OnEggDown_Position?.Invoke(transform.position);
+            OnEggWin?.Invoke(eggValues);
             Dispose();
         }
 
         if (other.GetComponent<Earth>())
         {
-            OnEggDown?.Invoke();
-            OnEggDown_Position?.Invoke(transform.position);
+            OnEggDown?.Invoke(eggValues, transform.position);
             Dispose();
         }
     }

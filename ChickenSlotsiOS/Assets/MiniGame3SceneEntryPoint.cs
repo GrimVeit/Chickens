@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MiniGame3SceneEntryPoint : MonoBehaviour
@@ -15,8 +13,9 @@ public class MiniGame3SceneEntryPoint : MonoBehaviour
     private ParticleEffectPresenter particleEffectPresenter;
     private BankPresenter bankPresenter;
 
-    private BasketPlatformPresenter basketPlatformPresenter;
-    private EggBounceCatcherPresenter eggBounceCatcherPresenter; 
+    private BasketPresenter basketPresenter;
+    private EggCatcherPresenter eggCatcherPresenter;
+    private ScorePresenter scorePresenter;
 
     private ISoundProvider soundProvider;
 
@@ -37,11 +36,15 @@ public class MiniGame3SceneEntryPoint : MonoBehaviour
         bankPresenter = new BankPresenter(new BankModel(), viewContainer.GetView<BankView>());
         bankPresenter.Initialize();
 
-        basketPlatformPresenter = new BasketPlatformPresenter(new BasketPlatformModel(5, soundPresenter), viewContainer.GetView<BasketPlatformView>());
-        basketPlatformPresenter.Initialize();
+        basketPresenter = new BasketPresenter(new BasketModel(5, bankPresenter, soundPresenter), viewContainer.GetView<BasketView_LeftRightControl>());
+        basketPresenter.Initialize();
 
-        eggBounceCatcherPresenter = new EggBounceCatcherPresenter(new EggBounceCatcherModel(soundPresenter, particleEffectPresenter), viewContainer.GetView<EggBounceCatcherView>());
-        eggBounceCatcherPresenter.Initialize();
+        eggCatcherPresenter = new EggCatcherPresenter(new EggCatcherModel(3, 1f, 0.02f, soundPresenter, particleEffectPresenter), viewContainer.GetView<EggCatcherView>());
+        eggCatcherPresenter.Initialize();
+
+        scorePresenter = new ScorePresenter(new ScoreModel(bankPresenter, soundPresenter), viewContainer.GetView<ScoreView>());
+        scorePresenter.Initialize();
+
         ActivateEvents();
 
 
@@ -51,29 +54,46 @@ public class MiniGame3SceneEntryPoint : MonoBehaviour
         sceneRoot.SetSoundProvider(soundProvider);
         sceneRoot.Initialize();
 
-        eggBounceCatcherPresenter.StartSpawner();
+        basketPresenter.Start();
+        eggCatcherPresenter.StartSpawner();
     }
 
     private void ActivateEvents()
     {
         sceneRoot.GoToMainMenu += HandleGoToMainMenu;
 
+        eggCatcherPresenter.OnEggDown += scorePresenter.RemoveHealth;
+        eggCatcherPresenter.OnEggWin += scorePresenter.AddScore;
+
+        scorePresenter.OnGameFailed += eggCatcherPresenter.DeactivateSpawner;
+        scorePresenter.OnGameFailed += basketPresenter.Stop;
+        scorePresenter.OnGameFailed += sceneRoot.OpenFailGamePanel;
+
     }
 
     private void DeactivateEvents()
     {
         sceneRoot.GoToMainMenu -= HandleGoToMainMenu;
+
+        eggCatcherPresenter.OnEggDown -= scorePresenter.RemoveHealth;
+        eggCatcherPresenter.OnEggWin -= scorePresenter.AddScore;
+
+        scorePresenter.OnGameFailed -= eggCatcherPresenter.DeactivateSpawner;
+        scorePresenter.OnGameFailed -= basketPresenter.Stop;
+        scorePresenter.OnGameFailed -= sceneRoot.OpenFailGamePanel;
     }
 
     public void Dispose()
     {
+        eggCatcherPresenter.DeactivateSpawner();
         DeactivateEvents();
 
         sceneRoot?.Dispose();
         soundPresenter?.Dispose();
         bankPresenter?.Dispose();
-        basketPlatformPresenter?.Dispose();
-        eggBounceCatcherPresenter.Dispose();
+        basketPresenter?.Dispose();
+        eggCatcherPresenter?.Dispose();
+        scorePresenter?.Dispose();
     }
 
     #region Input
