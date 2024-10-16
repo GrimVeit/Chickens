@@ -1,14 +1,11 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class BasketPresenter
 {
-    private BasketModel basketModel;
-    private BasketView basketView;
+    private IBasketModel basketModel;
+    private IBasketView basketView;
 
-    public BasketPresenter(BasketModel basketModel, BasketView basketView)
+    public BasketPresenter(BasketModel basketModel, IBasketView basketView)
     {
         this.basketModel = basketModel;
         this.basketView = basketView;
@@ -31,48 +28,23 @@ public class BasketPresenter
 
     private void ActivateEvents()
     {
-        basketView.OnStartMove_Action += basketModel.StartMove;
-        basketView.OnEndMove_Action += basketModel.EndMove;
-        basketView.OnMove_Action += basketModel.Move;
+        basketView.OnSetPositionIndex += basketModel.SetPositionIndex;
+        basketView.OnSetLeft += basketModel.MoveLeftIndex;
+        basketView.OnSetRight += basketModel.MoveRightIndex;
 
-        basketView.OnGetEgg_Action += basketModel.GetEgg;
-
-        basketModel.OnMove += basketView.Move;
-        basketModel.OnStartMove += basketView.StartMove;
-        basketModel.OnEndMove += basketView.EndMove;
-        basketModel.OnGetCoins += basketView.DisplayWin;
-        basketModel.OnChangeAllCountCoins += basketView.DisplayCoins;
+        basketModel.OnMoveIndex += basketView.MoveToIndex;
     }
 
     private void DeactivateEvents()
     {
-        basketView.OnStartMove_Action += basketModel.StartMove;
-        basketView.OnEndMove_Action += basketModel.EndMove;
-        basketView.OnMove_Action -= basketModel.Move;
+        basketView.OnSetPositionIndex -= basketModel.SetPositionIndex;
+        basketView.OnSetLeft -= basketModel.MoveLeftIndex;
+        basketView.OnSetRight -= basketModel.MoveRightIndex;
 
-        basketView.OnGetEgg_Action -= basketModel.GetEgg;
-
-        basketModel.OnMove -= basketView.Move;
-        basketModel.OnStartMove -= basketView.StartMove;
-        basketModel.OnEndMove -= basketView.EndMove;
-
-        basketModel.OnGetCoins -= basketView.DisplayWin;
-        basketModel.OnChangeAllCountCoins += basketView.DisplayCoins;
+        basketModel.OnMoveIndex -= basketView.MoveToIndex;
     }
 
     #region Input
-
-    public event Action OnStartMove
-    {
-        add { basketModel.OnStartMove += value; }
-        remove { basketModel.OnStartMove -= value; }
-    }
-
-    public event Action OnStopMove
-    {
-        add { basketModel.OnEndMove += value; }
-        remove { basketModel.OnEndMove -= value; }
-    }
 
     public void Start()
     {
@@ -85,4 +57,28 @@ public class BasketPresenter
     }
 
     #endregion
+}
+
+public interface IBasketModel
+{
+    public event Action<int> OnMoveIndex;
+
+    void Initialize();
+    void Dispose();
+    void Activate();
+    void Deactivate();
+    void MoveLeftIndex();
+    void MoveRightIndex();
+    void SetPositionIndex(int index);
+}
+
+public interface IBasketView
+{
+    public event Action<int> OnSetPositionIndex;
+    public event Action OnSetLeft;
+    public event Action OnSetRight;
+
+    void Initialize();
+    void Dispose();
+    void MoveToIndex(int index);
 }

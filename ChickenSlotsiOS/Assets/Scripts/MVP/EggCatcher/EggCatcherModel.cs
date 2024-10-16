@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class EggCatcherModel
 {
+    public event Action OnEggDown;
+    public event Action<EggValue> OnEggWin;
+
     public event Action OnSpawnEgg;
-    public event Action OnRemoveHealth;
-    public event Action<int> OnAddHealth;
-    public event Action OnGameFailed;
 
     private float initialDelay = 2f;
     private float minDelay = 0.4f;
@@ -16,10 +16,7 @@ public class EggCatcherModel
     private float currentDelay;
 
     private IEnumerator spawnEggs_ienumerator;
-    private bool isPaused = true;
-
-    private int health;
-    private int currentHealth;
+    private bool isPaused = false;
 
     private ISoundProvider soundProvider;
     private IParticleEffectProvider particleEffectProvider;
@@ -32,7 +29,7 @@ public class EggCatcherModel
 
     public void Initialize()
     {
-        health = PlayerPrefs.GetInt(PlayerPrefsKeys.HEALTH_COUNT, 1);
+
     }
 
     public void Dispose()
@@ -40,21 +37,42 @@ public class EggCatcherModel
 
     }
 
+    public void EggWin(EggValues eggValues)
+    {
+        OnEggWin?.Invoke(eggValues.EggValue);
+    }
+
+    public void EggDown()
+    {
+        OnEggDown?.Invoke();
+    }
+
+    #region Spawner
+
     public void ActivateSpawner()
     {
-        currentHealth = health;
-        OnAddHealth?.Invoke(currentHealth);
-
         if (spawnEggs_ienumerator != null)
             Coroutines.Stop(spawnEggs_ienumerator);
 
         spawnEggs_ienumerator = SpawnEggs_Coroutine();
         Coroutines.Start(spawnEggs_ienumerator);
+
+        Debug.Log("Старт спавнера");
+    }
+
+    public void DeactivateSpawner()
+    {
+        if (spawnEggs_ienumerator != null)
+            Coroutines.Stop(spawnEggs_ienumerator);
+
+        Debug.Log("Конец спавнера");
     }
 
     public void PauseSpawner()
     {
         isPaused = true;
+
+        Debug.Log("Пауза спавнера");
     }
 
     public void ResumeSpawner()
@@ -63,33 +81,8 @@ public class EggCatcherModel
             ActivateSpawner();
 
             isPaused = false;
-    }
 
-    public void DeactivateSpawner()
-    {
-        currentHealth -= 1;
-
-        if (currentHealth > 0)
-        {
-            OnRemoveHealth?.Invoke();
-            soundProvider.PlayOneShot("FallEgg");
-            return;
-        }
-
-        if(currentHealth == 0)
-        {
-            OnRemoveHealth?.Invoke();
-
-            soundProvider.PlayOneShot("Success");
-            particleEffectProvider.Play("Win");
-
-            Debug.Log("Вы проиграли");
-
-            if (spawnEggs_ienumerator != null)
-                Coroutines.Stop(spawnEggs_ienumerator);
-
-            OnGameFailed?.Invoke();
-        }
+        Debug.Log("Продолжение спавнера");
     }
 
     private IEnumerator SpawnEggs_Coroutine()
@@ -110,4 +103,6 @@ public class EggCatcherModel
 
         }
     }
+
+    #endregion
 }

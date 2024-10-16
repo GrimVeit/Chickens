@@ -142,86 +142,63 @@ public class GameEntryPoint
 
         var sceneEntryPoint = Object.FindObjectOfType<MainMenuEntryPoint>();
         sceneEntryPoint.Run(rootView);
-
-        sceneEntryPoint.GoToSlots1_Action += () => coroutines.StartCoroutine(LoadAndStartSceneSlots1());
-        sceneEntryPoint.GoToSlots2_Action += () => coroutines.StartCoroutine(LoadAndStartSceneSlots2());
-        sceneEntryPoint.GoToSlots3_Action += () => coroutines.StartCoroutine(LoadAndStartSceneSlots3());
-        sceneEntryPoint.GoToMiniGame_Action += () => coroutines.StartCoroutine(LoadAndStartSceneMiniGame());
+        sceneEntryPoint.GoToMiniGame1_Action += () => coroutines.StartCoroutine(LoadAndStartSceneMiniGame1());
+        sceneEntryPoint.GoToMiniGame2_Action += () => coroutines.StartCoroutine(LoadAndStartSceneMiniGame2());
+        sceneEntryPoint.GoToMiniGame3_Action += () => coroutines.StartCoroutine(LoadAndStartSceneMiniGame3());
 
         yield return rootView.HideLoadingScreen();
     }
 
-    private IEnumerator LoadAndStartSceneSlots1()
-    {
-        rootView.SetLoadScreen(1);
-
-        yield return rootView.ShowLoadingScreen();
-
-        yield return new WaitForSeconds(0.3f);
-
-        yield return LoadScene(Scenes.BOOT);
-        yield return LoadScene(Scenes.SLOT_1);
-
-        yield return new WaitForSeconds(0.2f);
-
-        var sceneEntryPoint = Object.FindObjectOfType<Slots1SceneEntryPoint>();
-        sceneEntryPoint.Run(rootView);
-
-        sceneEntryPoint.GoToMainMenu += () => coroutines.StartCoroutine(LoadAndStartMainMenu());
-
-        yield return rootView.HideLoadingScreen();
-    }
-
-    private IEnumerator LoadAndStartSceneSlots2()
-    {
-        rootView.SetLoadScreen(2);
-
-        yield return rootView.ShowLoadingScreen();
-
-        yield return LoadScene(Scenes.BOOT);
-        yield return LoadScene(Scenes.SLOT_2);
-
-        yield return new WaitForSeconds(0.5f);
-
-        var sceneEntryPoint = Object.FindObjectOfType<Slots2SceneEntryPoint>();
-        sceneEntryPoint.Run(rootView);
-
-        sceneEntryPoint.GoToMainMenu += () => coroutines.StartCoroutine(LoadAndStartMainMenu());
-
-        yield return rootView.HideLoadingScreen();
-    }
-
-    private IEnumerator LoadAndStartSceneSlots3()
-    {
-        rootView.SetLoadScreen(3);
-
-        yield return rootView.ShowLoadingScreen();
-
-        yield return LoadScene(Scenes.BOOT);
-        yield return LoadScene(Scenes.SLOT_3);
-
-        yield return new WaitForSeconds(0.5f);
-
-        var sceneEntryPoint = Object.FindObjectOfType<Slots3SceneEntryPoint>();
-        sceneEntryPoint.Run(rootView);
-
-        sceneEntryPoint.GoToMainMenu += () => coroutines.StartCoroutine(LoadAndStartMainMenu());
-
-        yield return rootView.HideLoadingScreen();
-    }
-
-    private IEnumerator LoadAndStartSceneMiniGame()
+    private IEnumerator LoadAndStartSceneMiniGame1()
     {
         rootView.SetLoadScreen(4);
 
         yield return rootView.ShowLoadingScreen();
 
         yield return LoadScene(Scenes.BOOT);
-        yield return LoadScene(Scenes.MINI_GAME);
+        yield return LoadScene(Scenes.MINI_GAME_1);
 
         yield return new WaitForSeconds(0.5f);
 
-        var sceneEntryPoint = Object.FindObjectOfType<MiniGameSceneEntryPoint>();
+        var sceneEntryPoint = Object.FindObjectOfType<MiniGame1SceneEntryPoint>();
+        sceneEntryPoint.Run(rootView);
+
+        sceneEntryPoint.GoToMainMenu += () => coroutines.StartCoroutine(LoadAndStartMainMenu());
+
+        yield return rootView.HideLoadingScreen();
+    }
+
+    private IEnumerator LoadAndStartSceneMiniGame2()
+    {
+        rootView.SetLoadScreen(5);
+
+        yield return rootView.ShowLoadingScreen();
+
+        yield return LoadScene(Scenes.BOOT);
+        yield return LoadScene(Scenes.MINI_GAME_2);
+
+        yield return new WaitForSeconds(0.5f);
+
+        var sceneEntryPoint = Object.FindObjectOfType<MiniGame2SceneEntryPoint>();
+        sceneEntryPoint.Run(rootView);
+
+        sceneEntryPoint.GoToMainMenu += () => coroutines.StartCoroutine(LoadAndStartMainMenu());
+
+        yield return rootView.HideLoadingScreen();
+    }
+
+    private IEnumerator LoadAndStartSceneMiniGame3()
+    {
+        rootView.SetLoadScreen(6);
+
+        yield return rootView.ShowLoadingScreen();
+
+        yield return LoadScene(Scenes.BOOT);
+        yield return LoadScene(Scenes.MINI_GAME_3);
+
+        yield return new WaitForSeconds(0.5f);
+
+        var sceneEntryPoint = Object.FindObjectOfType<MiniGame3SceneEntryPoint>();
         sceneEntryPoint.Run(rootView);
 
         sceneEntryPoint.GoToMainMenu += () => coroutines.StartCoroutine(LoadAndStartMainMenu());

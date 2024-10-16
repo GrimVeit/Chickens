@@ -50,7 +50,9 @@ public class UIMainMenuRoot : MonoBehaviour
         mainPanel.GoToSlots1_Action += HandlerGoToSlots1;
         mainPanel.GoToSlots2_Action += HandlerGoToSlots2;
         mainPanel.GoToSlots3_Action += HandlerGoToSlots3;
-        mainPanel.GoToMiniGame_Action += HandlerGoToMiniGame;
+        mainPanel.GoToMiniGame1_Action += HandlerGoToMiniGame1;
+        mainPanel.GoToMiniGame2_Action += HandlerGoToMiniGame2;
+        mainPanel.GoToMiniGame3_Action += HandlerGoToMiniGame3;
 
         mainPanel.GoToSettings_Action += OpenSettingsPanel;
 
@@ -79,7 +81,9 @@ public class UIMainMenuRoot : MonoBehaviour
         mainPanel.GoToSlots1_Action -= HandlerGoToSlots1;
         mainPanel.GoToSlots2_Action -= HandlerGoToSlots2;
         mainPanel.GoToSlots3_Action -= HandlerGoToSlots3;
-        mainPanel.GoToMiniGame_Action -= HandlerGoToMiniGame;
+        mainPanel.GoToMiniGame1_Action -= HandlerGoToMiniGame1;
+        mainPanel.GoToMiniGame2_Action -= HandlerGoToMiniGame2;
+        mainPanel.GoToMiniGame3_Action -= HandlerGoToMiniGame3;
 
         mainPanel.GoToSettings_Action -= OpenSettingsPanel;
 
@@ -252,11 +256,25 @@ public class UIMainMenuRoot : MonoBehaviour
         GoToSlots3_Action?.Invoke();
     }
 
-    private void HandlerGoToMiniGame()
+    private void HandlerGoToMiniGame1()
     {
         currentPanel.DeactivatePanel();
 
-        GoToMiniGame_Action?.Invoke();
+        GoToMiniGame1_Action?.Invoke();
+    }
+
+    private void HandlerGoToMiniGame2()
+    {
+        currentPanel.DeactivatePanel();
+
+        GoToMiniGame2_Action?.Invoke();
+    }
+
+    private void HandlerGoToMiniGame3()
+    {
+        currentPanel.DeactivatePanel();
+
+        GoToMiniGame3_Action?.Invoke();
     }
 
     #region Input Actions
@@ -302,7 +320,11 @@ public class UIMainMenuRoot : MonoBehaviour
 
     public event Action GoToSlots3_Action;
 
-    public event Action GoToMiniGame_Action;
+    public event Action GoToMiniGame1_Action;
+
+    public event Action GoToMiniGame2_Action;
+
+    public event Action GoToMiniGame3_Action;
 
     #endregion
 }

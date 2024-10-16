@@ -3,25 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasketModel
+public class BasketModel : IBasketModel
 {
-    public event Action<int> OnChangeAllCountCoins;
-    public event Action<int> OnGetCoins;
-    public event Action OnStartMove;
-    public event Action<Vector2> OnMove;
-    public event Action OnEndMove;
-
-    private int record;
-    private int currentRecord;
-
-    private Dictionary<EggValue, Action> eggValueActions = new Dictionary<EggValue, Action>();
-
-    private int coins = 0;
+    public event Action<int> OnMoveIndex;
 
     private bool isActive = true;
 
     private IMoneyProvider moneyProvider;
     private ISoundProvider soundProvider;
+
+    private List<int> indexTransforms = new List<int>() { 0, 1, 2, 3, 4 };
+    private int currentIndexTransform = 2;
 
     public BasketModel(IMoneyProvider moneyProvider, ISoundProvider soundProvider)
     {
@@ -31,82 +23,52 @@ public class BasketModel
 
     public void Initialize()
     {
-        eggValueActions[EggValue.Ten] = HandlerEggTen;
-        eggValueActions[EggValue.Hundred] = HandlerEggHundred;
-        eggValueActions[EggValue.Thousand] = HandlerEggThousand;
 
-        record = PlayerPrefs.GetInt(PlayerPrefsKeys.GAME_RECORD);
     }
 
-    public void StartMove()
+    public void Dispose()
+    {
+
+    }
+
+    public void MoveRightIndex()
     {
         if (!isActive) return;
 
-        OnStartMove?.Invoke();
+        if (currentIndexTransform < indexTransforms.Count - 1)
+        {
+            currentIndexTransform += 1;
+
+            OnMoveIndex?.Invoke(currentIndexTransform);
+        }
     }
 
-    public void Move(Vector2 vector)
+    public void MoveLeftIndex()
+    {
+        if(!isActive) return;
+
+        if (currentIndexTransform > 0)
+        {
+            currentIndexTransform -= 1;
+
+            OnMoveIndex?.Invoke(currentIndexTransform);
+        }
+    }
+
+    public void SetPositionIndex(int index)
     {
         if (!isActive) return;
 
-        OnMove?.Invoke(vector);
-    }
-
-    public void EndMove()
-    {
-        if (!isActive) return;
-
-        OnEndMove?.Invoke();
+        OnMoveIndex?.Invoke(index);
     }
 
     public void Activate()
     {
-        currentRecord = 0;
-        coins = 0;
         isActive = true;
     }
 
     public void Deactivate()
     {
-        if(currentRecord > record)
-        {
-            record = currentRecord;
-            PlayerPrefs.SetInt(PlayerPrefsKeys.GAME_RECORD, record);
-        }
-
-        moneyProvider.SendMoney(coins);
         isActive = false;
-    }
-
-    public void GetEgg(EggValues eggValues)
-    {
-        soundProvider.PlayOneShot("Pop");
-
-        currentRecord += 1;
-        eggValueActions[eggValues.EggValue]?.Invoke();
-    }
-
-    private void AddCoins(int coins)
-    {
-        this.coins += coins;
-        OnGetCoins?.Invoke(coins);
-        OnChangeAllCountCoins?.Invoke(this.coins);
-        Debug.Log($"{this.coins} монет");
-
-    }
-
-    private void HandlerEggTen()
-    {
-        AddCoins(10);
-    }
-
-    private void HandlerEggHundred()
-    {
-        AddCoins(100);
-    }
-
-    private void HandlerEggThousand()
-    {
-        AddCoins(1000);
     }
 }

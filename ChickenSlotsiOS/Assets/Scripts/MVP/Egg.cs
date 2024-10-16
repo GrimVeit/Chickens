@@ -1,45 +1,85 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Egg : MonoBehaviour, IEgg
+public class Egg : MonoBehaviour
 {
-    public event Action OnEggSpawned;
-    public event Action OnEggDown;
-    public event Action OnEggDestroyed;
+    public Action<Egg> OnEggDestroyed;
+    public Action OnEggDown;
+    public Action<EggValues> OnEggWin_EggValues;
+    public Action<Vector3> OnEggDown_Position;
 
-    public EggValues GetEggValues() => eggValue;
-    private EggValues eggValue;
+    private protected EggValues eggValues;
 
-    [SerializeField] private Image image;
+    private protected Tween moveTween;
+    private protected Tween rotateTween;
+
+    [SerializeField] private protected Image image;
 
     public void Initialize(EggValues eggValue)
     {
-        this.eggValue = eggValue;
+        this.eggValues = eggValue;
         this.image.sprite = eggValue.SpriteEgg;
+    }
 
-        OnEggSpawned?.Invoke();
+
+    public void MoveTo(Vector3 to, float time, Action action = null)
+    {
+        if (moveTween != null) moveTween.Kill();
+
+        moveTween = transform.DOMove(to, time).SetEase(Ease.Linear).OnComplete(() => action?.Invoke());
+    }
+
+    public void Rotate()
+    {
+        if (rotateTween != null) rotateTween.Kill();
+
+        int randomValue = UnityEngine.Random.Range(0, 2) == 0 ? 360 : -360;
+
+        rotateTween = transform.DORotate(new Vector3(0, 0, randomValue), 0.7f, RotateMode.FastBeyond360).SetEase(Ease.Linear).SetLoops(-1);
     }
 
     public void Dispose()
     {
-        OnEggDestroyed?.Invoke();
-        Destroy(gameObject);
+        if (moveTween != null) moveTween.Kill();
+
+        if (rotateTween != null) rotateTween.Kill();
+
+        OnEggDestroyed?.Invoke(this);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.transform.CompareTag("Earth"))
+        if (other.GetComponent<Earth>())
         {
             OnEggDown?.Invoke();
+            OnEggDown_Position?.Invoke(transform.position);
+            Dispose();
+        }
+
+        if (other.GetComponent<Basket>())
+        {
+            OnEggWin_EggValues?.Invoke(eggValues);
+            OnEggDown_Position?.Invoke(transform.position);
+            Dispose();
         }
     }
-}
 
-public interface IEgg
-{
-    EggValues GetEggValues();
-    void Dispose();
+    public void SetLocalPosition(Vector3 vector)
+    {
+        transform.localPosition = vector;
+    }
+
+    public void SetLocalRotation(Quaternion quaternion)
+    {
+        transform.localRotation = quaternion;
+    }
+
+    public void DestroyEgg()
+    {
+        Destroy(gameObject);
+    }
 }

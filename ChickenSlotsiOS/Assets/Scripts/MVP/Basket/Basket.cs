@@ -1,22 +1,14 @@
+using DG.Tweening;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-public class Basket : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHandler
+public class Basket : MonoBehaviour
 {
-    public event Action OnStartMove;
-    public event Action OnEndMove;
-    public event Action<Vector2> OnMove;
-    public event Action<EggValues> OnGetEggValues;
-    public RectTransform RectTransform => rectTransform;
-
-    private RectTransform rectTransform;
+    private Tween moveTween;
 
     public void Initialize()
     {
-        rectTransform = GetComponent<RectTransform>();
+
     }
 
     public void Dispose()
@@ -24,27 +16,11 @@ public class Basket : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHa
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void MoveTo(Transform transformMove)
     {
-        if (collision.transform.TryGetComponent(out IEgg egg))
-        {
-            OnGetEggValues?.Invoke(egg.GetEggValues());
-            egg.Dispose();
-        }
-    }
+        if (moveTween != null)
+            moveTween.Kill();
 
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        OnStartMove?.Invoke();
-    }
-
-    public void OnDrag(PointerEventData eventData)
-    {
-        OnMove?.Invoke(eventData.delta);
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        OnEndMove?.Invoke();
+        moveTween = transform.DOLocalMove(transformMove.localPosition, 0.08f);
     }
 }

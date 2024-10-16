@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class EggCatcherPresenter
 {
@@ -32,33 +29,42 @@ public class EggCatcherPresenter
 
     private void ActivateActions()
     {
-        eggCatcherView.OnEggDown += eggCatcherModel.DeactivateSpawner;
+        eggCatcherView.OnEggWin += eggCatcherModel.EggWin;
+        eggCatcherView.OnEggDown += eggCatcherModel.EggDown;
 
         eggCatcherModel.OnSpawnEgg += eggCatcherView.Spawn;
-        eggCatcherModel.OnAddHealth += eggCatcherView.AddHealth;
-        eggCatcherModel.OnRemoveHealth += eggCatcherView.RemoveHealth;
     }
 
     private void DeactivateEvents()
     {
-        eggCatcherView.OnEggDown -= eggCatcherModel.DeactivateSpawner;
+        eggCatcherView.OnEggWin -= eggCatcherModel.EggWin;
+        eggCatcherView.OnEggDown -= eggCatcherModel.EggDown;
 
         eggCatcherModel.OnSpawnEgg -= eggCatcherView.Spawn;
-        eggCatcherModel.OnAddHealth -= eggCatcherView.AddHealth;
-        eggCatcherModel.OnRemoveHealth -= eggCatcherView.RemoveHealth;
     }
 
     #region Input
 
-    public event Action OnFailGame
+    public event Action OnEggDown
     {
-        add { eggCatcherModel.OnGameFailed += value; }
-        remove { eggCatcherModel.OnGameFailed -= value; }
+        add { eggCatcherModel.OnEggDown += value; }
+        remove { eggCatcherModel.OnEggDown -= value; }
+    }
+
+    public event Action<EggValue> OnEggWin
+    {
+        add { eggCatcherModel.OnEggWin += value; }
+        remove { eggCatcherModel.OnEggWin -= value; }
     }
 
     public void StartSpawner()
     {
         eggCatcherModel.ActivateSpawner();
+    }
+
+    public void DeactivateSpawner()
+    {
+        eggCatcherModel.DeactivateSpawner();
     }
 
     public void PauseSpawner()

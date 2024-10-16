@@ -144,7 +144,9 @@ public class MainMenuEntryPoint : MonoBehaviour
         sceneRoot.GoToSlots1_Action += HandleGoToSlots1;
         sceneRoot.GoToSlots2_Action += HandleGoToSlots2;
         sceneRoot.GoToSlots3_Action += HandleGoToSlots3;
-        sceneRoot.GoToMiniGame_Action += HandleGoToMiniGame;
+        sceneRoot.GoToMiniGame1_Action += HandleGoToMiniGame1;
+        sceneRoot.GoToMiniGame2_Action += HandleGoToMiniGame2;
+        sceneRoot.GoToMiniGame3_Action += HandleGoToMiniGame3;
 
         sceneRoot.OnActivatePrivacyPolicyPanel += privacyPolicyWebViewPresenter.Load;
         sceneRoot.OnActivateAboutPanel += aboutWebViewPresenter.Load;
@@ -158,7 +160,9 @@ public class MainMenuEntryPoint : MonoBehaviour
         sceneRoot.GoToSlots1_Action -= HandleGoToSlots1;
         sceneRoot.GoToSlots2_Action -= HandleGoToSlots2;
         sceneRoot.GoToSlots3_Action -= HandleGoToSlots3;
-        sceneRoot.GoToMiniGame_Action -= HandleGoToMiniGame;
+        sceneRoot.GoToMiniGame1_Action -= HandleGoToMiniGame1;
+        sceneRoot.GoToMiniGame2_Action -= HandleGoToMiniGame2;
+        sceneRoot.GoToMiniGame3_Action -= HandleGoToMiniGame3;
 
         sceneRoot.OnActivatePrivacyPolicyPanel -= privacyPolicyWebViewPresenter.Load;
         sceneRoot.OnActivateAboutPanel -= aboutWebViewPresenter.Load;
@@ -247,7 +251,9 @@ public class MainMenuEntryPoint : MonoBehaviour
     public event Action GoToSlots1_Action;
     public event Action GoToSlots2_Action;
     public event Action GoToSlots3_Action;
-    public event Action GoToMiniGame_Action;
+    public event Action GoToMiniGame1_Action;
+    public event Action GoToMiniGame2_Action;
+    public event Action GoToMiniGame3_Action;
 
     private void HandleGoToSlots1()
     {
@@ -267,10 +273,22 @@ public class MainMenuEntryPoint : MonoBehaviour
         GoToSlots3_Action?.Invoke();
     }
 
-    private void HandleGoToMiniGame()
+    private void HandleGoToMiniGame1()
     {
         Dispose();
-        GoToMiniGame_Action?.Invoke();
+        GoToMiniGame1_Action?.Invoke();
+    }
+
+    private void HandleGoToMiniGame2()
+    {
+        Dispose();
+        GoToMiniGame2_Action?.Invoke();
+    }
+
+    private void HandleGoToMiniGame3()
+    {
+        Dispose();
+        GoToMiniGame3_Action?.Invoke();
     }
 
     #endregion
