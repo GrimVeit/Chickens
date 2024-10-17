@@ -40,7 +40,7 @@ public class MiniGame2SceneEntryPoint : MonoBehaviour
         eggCatcherPresenter = new EggCatcherPresenter(new EggCatcherModel(2, 0.5f, 0.02f, soundPresenter, particleEffectPresenter), viewContainer.GetView<EggCatcherView>());
         eggCatcherPresenter.Initialize();
 
-        basketPresenter = new BasketPresenter(new BasketModel(4, bankPresenter, soundPresenter), viewContainer.GetView<BasketView_ChooseButttonView>());
+        basketPresenter = new BasketPresenter(new BasketModel(4, 0, bankPresenter, soundPresenter), viewContainer.GetView<BasketView_ChooseButttonView>());
         basketPresenter.Initialize();
 
         scorePresenter = new ScorePresenter(new ScoreModel(bankPresenter, soundPresenter), viewContainer.GetView<ScoreView>());
@@ -68,7 +68,7 @@ public class MiniGame2SceneEntryPoint : MonoBehaviour
 
         eggCatcherPresenter.OnEggDown += scorePresenter.RemoveHealth;
         eggCatcherPresenter.OnEggDown_EggValue += pointAnimationPresenter.PlayAnimation;
-        eggCatcherPresenter.OnEggWin += scorePresenter.AddScore;
+        eggCatcherPresenter.OnEggWin_EggValue += scorePresenter.AddScore;
 
         scorePresenter.OnGameFailed += basketPresenter.Stop;
         scorePresenter.OnGameFailed += eggCatcherPresenter.DeactivateSpawner;
@@ -82,7 +82,7 @@ public class MiniGame2SceneEntryPoint : MonoBehaviour
 
         eggCatcherPresenter.OnEggDown -= scorePresenter.RemoveHealth;
         eggCatcherPresenter.OnEggDown_EggValue -= pointAnimationPresenter.PlayAnimation;
-        eggCatcherPresenter.OnEggWin -= scorePresenter.AddScore;
+        eggCatcherPresenter.OnEggWin_EggValue -= scorePresenter.AddScore;
 
         scorePresenter.OnGameFailed -= basketPresenter.Stop;
         scorePresenter.OnGameFailed -= eggCatcherPresenter.DeactivateSpawner;
@@ -96,10 +96,10 @@ public class MiniGame2SceneEntryPoint : MonoBehaviour
 
         sceneRoot?.Dispose();
         soundPresenter?.Dispose();
+        scorePresenter?.Dispose();
         eggCatcherPresenter?.Dispose();
         basketPresenter?.Dispose();
         bankPresenter?.Dispose();
-        scorePresenter?.Dispose();
         pointAnimationPresenter?.Dispose();
     }
 

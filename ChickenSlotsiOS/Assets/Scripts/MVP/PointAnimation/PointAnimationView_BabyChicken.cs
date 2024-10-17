@@ -16,6 +16,11 @@ public class PointAnimationView_BabyChicken : View, IPointAnimationView
 
     [SerializeField] private List<BabyChicken> babyChickens;
 
+    public void PlayAnimation()
+    {
+
+    }
+
     public void PlayAnimation(Vector3 vector)
     {
         
@@ -45,7 +50,7 @@ public class PointAnimationView_BabyChicken : View, IPointAnimationView
         babyChicken.transform.SetPositionAndRotation(vector, babyChickenPrefab.transform.rotation);
         babyChicken.OnEndMove += DestroyBabyChicken;
         babyChicken.SetMoveTransformFinish(GetRandomTransformToMoveFinish());
-        babyChicken.ActivateAnimation(2, 0.15f, vector);
+        babyChicken.ActivateAnimation(2, 0.15f);
     }
 
     private void DestroyBabyChicken(BabyChicken babyChicken)

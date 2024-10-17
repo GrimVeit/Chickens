@@ -100,10 +100,13 @@ public class MainMenuEntryPoint : MonoBehaviour
                     viewContainer.GetView<FirebaseAuthenticationView>());
                 firebaseAuthenticationPresenter.Initialize();
 
+                Debug.Log("Success");
+
                 firebaseDatabaseRealtimePresenter = new FirebaseDatabaseRealtimePresenter
                     (new FirebaseDatabaseRealtimeModel(firebaseAuth, databaseReference),
                     viewContainer.GetView<FirebaseDatabaseRealtimeView>());
                 firebaseDatabaseRealtimePresenter.Initialize();
+
 
                 sceneRoot.SetSoundProvider(soundPresenter);
                 sceneRoot.SetParticleEffectProvider(particleEffectPresenter);

@@ -13,14 +13,16 @@ public class BasketModel : IBasketModel
     private ISoundProvider soundProvider;
 
     private int[] indexTransforms;
-    private int currentIndexTransform = 2;
+    private int currentIndexTransform = 0;
 
-    public BasketModel(int size, IMoneyProvider moneyProvider, ISoundProvider soundProvider)
+    public BasketModel(int size, int startIndex, IMoneyProvider moneyProvider, ISoundProvider soundProvider)
     {
         indexTransforms = new int[size];
 
         this.moneyProvider = moneyProvider;
         this.soundProvider = soundProvider;
+
+        SetPositionIndex(startIndex);
     }
 
     public void Initialize()

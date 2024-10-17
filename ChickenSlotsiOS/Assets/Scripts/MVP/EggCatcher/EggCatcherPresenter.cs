@@ -52,13 +52,25 @@ public class EggCatcherPresenter
         remove { eggCatcherModel.OnEggDown -= value; }
     }
 
+    public event Action OnEggWin
+    {
+        add { eggCatcherModel.OnEggWin += value; }
+        remove { eggCatcherModel.OnEggWin -= value; }
+    }
+
+    public event Action<Vector3> OnEggDown_Position
+    {
+        add { eggCatcherModel.OnEggDown_Position += value; }
+        remove { eggCatcherModel.OnEggDown_Position -= value; }
+    }
+
     public event Action<EggValue, Vector3> OnEggDown_EggValue
     {
         add { eggCatcherModel.OnEggDown_EggValue += value; }
         remove { eggCatcherModel.OnEggDown_EggValue += value; }
     }
-
-    public event Action<EggValue> OnEggWin
+    
+    public event Action<EggValue> OnEggWin_EggValue
     {
         add { eggCatcherModel.OnEggWin_EggValue += value; }
         remove { eggCatcherModel.OnEggWin_EggValue -= value; }

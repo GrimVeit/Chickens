@@ -31,7 +31,7 @@ public class BabyChicken : MonoBehaviour
         eggImage.sprite = sprite;
     }
 
-    public void ActivateAnimation(float duration, float speed, Vector3 vector)
+    public void ActivateAnimation(float duration, float speed)
     {
         eggImage.enabled = true;
         chickenImage.enabled = true;
@@ -42,7 +42,7 @@ public class BabyChicken : MonoBehaviour
             StartCoroutine(egg_IEnumerator);
 
 
-        babyChicken_IEnumerator = BabyChicken_Coroutine(duration, speed, vector);
+        babyChicken_IEnumerator = BabyChicken_Coroutine(duration, speed);
         egg_IEnumerator = Egg_Coroutine();
         StartCoroutine(babyChicken_IEnumerator);
         StartCoroutine(egg_IEnumerator);
@@ -54,7 +54,7 @@ public class BabyChicken : MonoBehaviour
         eggImage.enabled = false;
     }
 
-    private IEnumerator BabyChicken_Coroutine(float dura, float speed, Vector3 vector)
+    private IEnumerator BabyChicken_Coroutine(float dura, float speed)
     {
         float duration = dura;
         float elapsedTime = 0f;

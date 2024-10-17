@@ -6,6 +6,8 @@ using UnityEngine;
 public class EggCatcherModel
 {
     public event Action OnEggDown;
+    public event Action OnEggWin;
+    public event Action<Vector3> OnEggDown_Position;
     public event Action<EggValue, Vector3> OnEggDown_EggValue;
     public event Action<EggValue> OnEggWin_EggValue;
 
@@ -44,12 +46,14 @@ public class EggCatcherModel
 
     public void EggWin(EggValues eggValues)
     {
+        OnEggWin?.Invoke();
         OnEggWin_EggValue?.Invoke(eggValues.EggValue);
     }
 
     public void EggDown(EggValues eggValues, Vector3 posDown)
     {
         OnEggDown?.Invoke();
+        OnEggDown_Position?.Invoke(posDown);
         OnEggDown_EggValue?.Invoke(eggValues.EggValue, posDown);
     }
 
