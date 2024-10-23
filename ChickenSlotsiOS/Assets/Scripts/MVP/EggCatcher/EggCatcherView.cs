@@ -13,6 +13,7 @@ public class EggCatcherView : View
         for (int i = 0; i < chickens.Count; i++)
         {
             chickens[i].OnEggDown += HandlerEggDown;
+            chickens[i].OnEggJump += HandlerEggJump;
             chickens[i].OnEggWin += HandlerEggWin;
             chickens[i].Initialize();
         }
@@ -23,6 +24,7 @@ public class EggCatcherView : View
         for (int i = 0; i < chickens.Count; i++)
         {
             chickens[i].OnEggDown -= HandlerEggDown;
+            chickens[i].OnEggJump -= HandlerEggJump;
             chickens[i].OnEggWin -= HandlerEggWin;
         }
     }
@@ -37,6 +39,7 @@ public class EggCatcherView : View
 
     public event Action<EggValues, Vector3> OnEggDown;
     public event Action<EggValues> OnEggWin;
+    public event Action OnEggJump;
 
     private void HandlerEggDown(EggValues eggValues, Vector3 posDown)
     {
@@ -46,6 +49,11 @@ public class EggCatcherView : View
     private void HandlerEggWin(EggValues eggValues)
     {
         OnEggWin?.Invoke(eggValues);
+    }
+
+    private void HandlerEggJump()
+    {
+        OnEggJump?.Invoke();
     }
 
     #endregion

@@ -31,7 +31,7 @@ public class FailGamePanel_MiniGameScene : MovePanel
 
     private void HandlerGoToMainMenu()
     {
-        soundProvider.PlayOneShot("ClickButton");
+        soundProvider.PlayOneShot("Button");
         GoToMainMenu?.Invoke();
     }
 }

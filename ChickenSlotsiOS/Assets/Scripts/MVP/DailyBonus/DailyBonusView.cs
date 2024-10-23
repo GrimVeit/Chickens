@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class DailyBonusView : View
 {
     public event Action<float> OnSpin;
+    public event Action OnEndSpin;
     public event Action OnClickSpinButton;
     public event Action<int> OnGetBonus;
 
@@ -88,6 +89,7 @@ public class DailyBonusView : View
         Bonus bonus = GetClosestBonus();
         Debug.Log(bonus.Coins);
         OnGetBonus?.Invoke(bonus.Coins);
+        OnEndSpin?.Invoke();
     }
 
     private Bonus GetClosestBonus()

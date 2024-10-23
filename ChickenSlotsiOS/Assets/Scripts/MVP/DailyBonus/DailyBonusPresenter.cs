@@ -31,7 +31,7 @@ public class DailyBonusPresenter
     private void ActivateEvents()
     {
         dailyBonusView.OnClickSpinButton += dailyBonusModel.Spin;
-        dailyBonusView.OnSpin += dailyBonusModel.OnSpin;
+        dailyBonusView.OnEndSpin += dailyBonusModel.OnEndSpin;
         dailyBonusView.OnGetBonus += dailyBonusModel.GetBonus;
 
         dailyBonusModel.OnGetBonus += dailyBonusView.DisplayCoins;
@@ -43,6 +43,8 @@ public class DailyBonusPresenter
     private void DeactivateEvents()
     {
         dailyBonusView.OnClickSpinButton -= dailyBonusModel.Spin;
+        dailyBonusView.OnSpin -= dailyBonusModel.OnSpin;
+        dailyBonusView.OnEndSpin -= dailyBonusModel.OnEndSpin;
         dailyBonusView.OnGetBonus -= dailyBonusModel.GetBonus;
 
         dailyBonusModel.OnGetBonus -= dailyBonusView.DisplayCoins;

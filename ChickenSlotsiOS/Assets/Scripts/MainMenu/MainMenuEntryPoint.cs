@@ -29,9 +29,6 @@ public class MainMenuEntryPoint : MonoBehaviour
     private CooldownPresenter cooldownDailyRewardPresenter;
     private CooldownPresenter cooldownDailyBonusPresenter;
 
-
-    private ISoundProvider soundProvider;
-
     public void Run(UIRootView uIRootView)
     {
         sceneRoot = Instantiate(menuRootPrefab);
@@ -63,7 +60,7 @@ public class MainMenuEntryPoint : MonoBehaviour
                 cooldownDailyRewardPresenter.Initialize();
 
                 cooldownDailyBonusPresenter = new CooldownPresenter
-                    (new CooldownModel(PlayerPrefsKeys.NEXT_DAILY_BONUS_TIME, TimeSpan.FromDays(1), soundPresenter),
+                    (new CooldownModel(PlayerPrefsKeys.NEXT_DAILY_BONUS_TIME, TimeSpan.FromSeconds(5), soundPresenter),
                     viewContainer.GetView<CooldownView>("DailyBonus"));
                 cooldownDailyBonusPresenter.Initialize();
 
@@ -116,9 +113,6 @@ public class MainMenuEntryPoint : MonoBehaviour
                 ActivateTransitionsSceneEvents();
                 ActivateEvents();
 
-                soundProvider = soundPresenter;
-                soundProvider.Play("Background");
-
 
                 sceneRoot.Activate();
                 cooldownDailyRewardPresenter.Activate();
@@ -135,7 +129,7 @@ public class MainMenuEntryPoint : MonoBehaviour
             }
             else
             {
-                Debug.LogError(System.String.Format(
+                Debug.LogError(string.Format(
                   "Could not resolve all Firebase dependencies: {0}", dependencyStatus));
                 // Firebase Unity SDK is not safe to use here.
             }

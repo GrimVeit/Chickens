@@ -71,4 +71,9 @@ public class DailyBonusModel
         float pitch = Mathf.Lerp(1, 0.88f, 1 - currentSpeed);
         soundSpin.SetPitch(pitch * 1f);
     }
+
+    public void OnEndSpin()
+    {
+        soundSpin.Stop();
+    }
 }

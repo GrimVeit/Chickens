@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -28,6 +27,11 @@ public class SoundModel
     {
         isMute = PlayerPrefs.GetInt(KEY, 1) == 0;
 
+        foreach (var sound in sounds.Values)
+        {
+            sound.Initialize();
+        }
+
         CheckMuteUnmute();
     }
 
@@ -39,6 +43,11 @@ public class SoundModel
         else value = 1;
 
         PlayerPrefs.SetInt(KEY, value);
+
+        foreach (var sound in sounds.Values)
+        {
+            sound.Dispose();
+        }
     }
 
     public void MuteUnmute()
@@ -65,7 +74,7 @@ public class SoundModel
     {
         foreach (var sound in sounds.Values)
         {
-            sound.Mute();
+            sound.MainMute();
         }
     }
 
@@ -73,7 +82,7 @@ public class SoundModel
     {
         foreach (var sound in sounds.Values)
         {
-            sound.Unmute();
+            sound.MainUnmute();
         }
     }
 

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 public class BasketModel : IBasketModel
@@ -22,7 +23,8 @@ public class BasketModel : IBasketModel
         this.moneyProvider = moneyProvider;
         this.soundProvider = soundProvider;
 
-        SetPositionIndex(startIndex);
+        currentIndexTransform = startIndex;
+        OnMoveIndex?.Invoke(currentIndexTransform);
     }
 
     public void Initialize()
@@ -41,10 +43,13 @@ public class BasketModel : IBasketModel
 
         if (currentIndexTransform < indexTransforms.Length - 1)
         {
+
             currentIndexTransform += 1;
 
             OnMoveIndex?.Invoke(currentIndexTransform);
         }
+
+        soundProvider.PlayOneShot("Wooden");
     }
 
     public void MoveLeftIndex()
@@ -57,6 +62,8 @@ public class BasketModel : IBasketModel
 
             OnMoveIndex?.Invoke(currentIndexTransform);
         }
+
+        soundProvider.PlayOneShot("Wooden");
     }
 
     public void SetPositionIndex(int index)
@@ -69,7 +76,10 @@ public class BasketModel : IBasketModel
             return;
         }
 
-        OnMoveIndex?.Invoke(index);
+        currentIndexTransform = index;
+        OnMoveIndex?.Invoke(currentIndexTransform);
+
+        soundProvider.PlayOneShot("Wooden");
     }
 
     public void Activate()

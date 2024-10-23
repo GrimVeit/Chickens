@@ -56,6 +56,8 @@ public class BounceEgg : Egg
         {
             if (tweenBounce != null) tweenBounce.Kill();
 
+            OnEggJump?.Invoke();
+
             tweenBounce = transform.DOJump(bounceTransforms[currentBounceIndex].position, 5, 1, 2f).SetEase(Ease.OutQuad).OnComplete(EggChecker);
 
             currentBounceIndex += 1;

@@ -18,8 +18,6 @@ public class MiniGame2SceneEntryPoint : MonoBehaviour
     private ScorePresenter scorePresenter;
     private PointAnimationPresenter pointAnimationPresenter;
 
-    private ISoundProvider soundProvider;
-
     public void Run(UIRootView uIRootView)
     {
         sceneRoot = Instantiate(sceneRootPrefab);
@@ -51,11 +49,8 @@ public class MiniGame2SceneEntryPoint : MonoBehaviour
 
         ActivateEvents();
 
-
-        soundProvider = soundPresenter;
-        soundProvider.Play("Background");
-
-        sceneRoot.SetSoundProvider(soundProvider);
+        sceneRoot.SetSoundProvider(soundPresenter);
+        sceneRoot.SetParticleProvider(particleEffectPresenter);
         sceneRoot.Initialize();
 
         basketPresenter.Start();

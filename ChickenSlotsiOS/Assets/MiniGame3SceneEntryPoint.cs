@@ -56,6 +56,7 @@ public class MiniGame3SceneEntryPoint : MonoBehaviour
         soundProvider.Play("Background");
 
         sceneRoot.SetSoundProvider(soundProvider);
+        sceneRoot.SetParticleProvider(particleEffectPresenter);
         sceneRoot.Initialize();
 
         basketPresenter.Start();

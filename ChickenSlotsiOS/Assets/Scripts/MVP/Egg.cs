@@ -8,6 +8,7 @@ public class Egg : MonoBehaviour
     public Action<Egg> OnEggDestroyed;
     public Action<EggValues, Vector3> OnEggDown;
     public Action<EggValues> OnEggWin;
+    public Action OnEggJump;
 
     private protected EggValues eggValues;
 

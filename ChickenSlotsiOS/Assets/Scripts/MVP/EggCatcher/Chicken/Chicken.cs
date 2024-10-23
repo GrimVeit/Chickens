@@ -8,6 +8,7 @@ public abstract class Chicken : MonoBehaviour
 {
     public event Action<EggValues, Vector3> OnEggDown;
     public event Action<EggValues> OnEggWin;
+    public event Action OnEggJump;
 
     [SerializeField] private protected Transform spawnTransform;
     [SerializeField] private protected Image chickenImage;
@@ -36,6 +37,7 @@ public abstract class Chicken : MonoBehaviour
         egg.OnEggDestroyed += DestroyEgg;
         egg.OnEggWin += HandlerOnEggWin;
         egg.OnEggDown += HandlerOnEggDown;
+        egg.OnEggJump += HandlerOnEggJump;
     }
 
     private protected void DeactivateEvents(Egg egg)
@@ -45,6 +47,7 @@ public abstract class Chicken : MonoBehaviour
             egg.OnEggDestroyed -= DestroyEgg;
             egg.OnEggWin -= HandlerOnEggWin;
             egg.OnEggDown -= HandlerOnEggDown;
+            egg.OnEggJump -= HandlerOnEggJump;
         }
     }
 
@@ -67,5 +70,10 @@ public abstract class Chicken : MonoBehaviour
     private protected void HandlerOnEggDown(EggValues eggValues, Vector3 vector)
     {
         OnEggDown?.Invoke(eggValues, vector);
+    }
+
+    private protected void HandlerOnEggJump()
+    {
+        OnEggJump?.Invoke();
     }
 }

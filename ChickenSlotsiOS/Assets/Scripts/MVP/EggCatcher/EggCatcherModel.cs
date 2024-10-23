@@ -46,15 +46,24 @@ public class EggCatcherModel
 
     public void EggWin(EggValues eggValues)
     {
+        soundProvider.PlayOneShot("Pop");
+
         OnEggWin?.Invoke();
         OnEggWin_EggValue?.Invoke(eggValues.EggValue);
     }
 
     public void EggDown(EggValues eggValues, Vector3 posDown)
     {
+        soundProvider.PlayOneShot("FallEgg");
+
         OnEggDown?.Invoke();
         OnEggDown_Position?.Invoke(posDown);
         OnEggDown_EggValue?.Invoke(eggValues.EggValue, posDown);
+    }
+
+    public void EggJump()
+    {
+        soundProvider.PlayOneShot("Jump");
     }
 
     #region Spawner

@@ -12,6 +12,7 @@ public class UIMiniGame3SceneRoot : MonoBehaviour
 
     private Panel currentPanel;
     private ISoundProvider soundProvider;
+    private IParticleEffectProvider particleEffectProvider;
 
     public void Initialize()
     {
@@ -31,6 +32,11 @@ public class UIMiniGame3SceneRoot : MonoBehaviour
     public void SetSoundProvider(ISoundProvider soundProvider)
     {
         this.soundProvider = soundProvider;
+    }
+
+    public void SetParticleProvider(IParticleEffectProvider particleEffectProvider)
+    {
+        this.particleEffectProvider = particleEffectProvider;
     }
 
     public void Dispose()
@@ -59,11 +65,16 @@ public class UIMiniGame3SceneRoot : MonoBehaviour
 
     public void OpenFailGamePanel()
     {
+        particleEffectProvider.Play("Win");
+        soundProvider.PlayOneShot("Win");
+
         OpenOtherPanel(failGamePanel);
     }
 
     private void HandlerGoToMainMenu()
     {
+        soundProvider.PlayOneShot("Button");
+
         currentPanel.DeactivatePanel();
 
         GoToMainMenu?.Invoke();

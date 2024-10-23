@@ -535,54 +535,63 @@ MonoBehaviour:
     volume: 0.5
     pitch: 1
     isLoop: 1
+    isPlayAwake: 1
   - id: ClickButton
     audioSource: {fileID: 867771301}
     audioClip: {fileID: 8300000, guid: f32d8d60f197f204ba10bab042d4cf87, type: 3}
     volume: 0.7
     pitch: 1
     isLoop: 0
+    isPlayAwake: 0
   - id: ClickLocked
     audioSource: {fileID: 1026488821}
     audioClip: {fileID: 8300000, guid: 44766caa059435f4fb71af84b2bea7e4, type: 3}
     volume: 0.7
     pitch: 1
     isLoop: 0
+    isPlayAwake: 0
   - id: ClickUnlocked
     audioSource: {fileID: 663696440}
     audioClip: {fileID: 8300000, guid: 8e746bda97a9f634f9c225c03bd4bfcb, type: 3}
     volume: 0.7
     pitch: 1
     isLoop: 0
+    isPlayAwake: 0
   - id: Spin
     audioSource: {fileID: 2065273071}
     audioClip: {fileID: 8300000, guid: ee77d7946f6a2a1498b60a0a8f73fcd5, type: 3}
     volume: 0.1
     pitch: 1
     isLoop: 1
+    isPlayAwake: 0
   - id: EnterText
     audioSource: {fileID: 354238783}
     audioClip: {fileID: 8300000, guid: d4b4564ad8ca7254c9d41efb905858eb, type: 3}
     volume: 0.5
     pitch: 1
     isLoop: 0
+    isPlayAwake: 0
   - id: LoseSignUp
     audioSource: {fileID: 683525065}
     audioClip: {fileID: 8300000, guid: a53d4265ccfe2b74eb1bb125940a2b4c, type: 3}
     volume: 1
     pitch: 1
     isLoop: 0
+    isPlayAwake: 0
   - id: SuccessSignUp
     audioSource: {fileID: 717386698}
     audioClip: {fileID: 8300000, guid: c6b0984182d3c1743a7c5a2903b259f8, type: 3}
     volume: 1
     pitch: 1
     isLoop: 0
+    isPlayAwake: 0
   - id: Success
     audioSource: {fileID: 752166668}
     audioClip: {fileID: 8300000, guid: c6b0984182d3c1743a7c5a2903b259f8, type: 3}
     volume: 1
     pitch: 1
     isLoop: 0
+    isPlayAwake: 0
 --- !u!1 &663696439
 GameObject:
   m_ObjectHideFlags: 0

@@ -32,6 +32,7 @@ public class EggCatcherPresenter
     {
         eggCatcherView.OnEggWin += eggCatcherModel.EggWin;
         eggCatcherView.OnEggDown += eggCatcherModel.EggDown;
+        eggCatcherView.OnEggJump += eggCatcherModel.EggJump;
 
         eggCatcherModel.OnSpawnEgg += eggCatcherView.Spawn;
     }
@@ -40,6 +41,7 @@ public class EggCatcherPresenter
     {
         eggCatcherView.OnEggWin -= eggCatcherModel.EggWin;
         eggCatcherView.OnEggDown -= eggCatcherModel.EggDown;
+        eggCatcherView.OnEggJump -= eggCatcherModel.EggJump;
 
         eggCatcherModel.OnSpawnEgg -= eggCatcherView.Spawn;
     }
