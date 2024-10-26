@@ -17,6 +17,7 @@ public class MiniGame3SceneEntryPoint : MonoBehaviour
     private EggCatcherPresenter eggCatcherPresenter;
     private ScorePresenter scorePresenter;
     private PointAnimationPresenter pointAnimationPresenter;
+    private TimerPresenter timerPresenter;
 
     private ISoundProvider soundProvider;
 
@@ -40,7 +41,7 @@ public class MiniGame3SceneEntryPoint : MonoBehaviour
         basketPresenter = new BasketPresenter(new BasketModel(5, 0, bankPresenter, soundPresenter), viewContainer.GetView<BasketView_LeftRightControl>());
         basketPresenter.Initialize();
 
-        eggCatcherPresenter = new EggCatcherPresenter(new EggCatcherModel(3, 1f, 0.02f, soundPresenter, particleEffectPresenter), viewContainer.GetView<EggCatcherView>());
+        eggCatcherPresenter = new EggCatcherPresenter(new EggCatcherModel(7, 2f, 0.04f, soundPresenter, particleEffectPresenter), viewContainer.GetView<EggCatcherView>());
         eggCatcherPresenter.Initialize();
 
         scorePresenter = new ScorePresenter(new ScoreModel(bankPresenter, soundPresenter), viewContainer.GetView<ScoreView>());
@@ -48,6 +49,9 @@ public class MiniGame3SceneEntryPoint : MonoBehaviour
 
         pointAnimationPresenter = new PointAnimationPresenter(new PointAnimationModel(), viewContainer.GetView<PointAnimationView_Frog>());
         pointAnimationPresenter.Initialize();
+
+        timerPresenter = new TimerPresenter(new TimerModel(), viewContainer.GetView<TimerView>());
+        timerPresenter.Initialize();
 
         ActivateEvents();
 
@@ -59,14 +63,15 @@ public class MiniGame3SceneEntryPoint : MonoBehaviour
         sceneRoot.SetParticleProvider(particleEffectPresenter);
         sceneRoot.Initialize();
 
+        timerPresenter.StartTimer(3);
         basketPresenter.Start();
-        eggCatcherPresenter.StartSpawner();
     }
 
     private void ActivateEvents()
     {
         sceneRoot.GoToMainMenu += HandleGoToMainMenu;
 
+        timerPresenter.OnStopTimer += eggCatcherPresenter.StartSpawner;
         eggCatcherPresenter.OnEggDown += scorePresenter.RemoveHealth;
         eggCatcherPresenter.OnEggDown_Position += pointAnimationPresenter.PlayAnimation;
         eggCatcherPresenter.OnEggWin += pointAnimationPresenter.PlayAnimation;
@@ -82,6 +87,7 @@ public class MiniGame3SceneEntryPoint : MonoBehaviour
     {
         sceneRoot.GoToMainMenu -= HandleGoToMainMenu;
 
+        timerPresenter.OnStopTimer -= eggCatcherPresenter.StartSpawner;
         eggCatcherPresenter.OnEggDown -= scorePresenter.RemoveHealth;
         eggCatcherPresenter.OnEggDown_Position -= pointAnimationPresenter.PlayAnimation;
         eggCatcherPresenter.OnEggWin -= pointAnimationPresenter.PlayAnimation;
@@ -104,6 +110,7 @@ public class MiniGame3SceneEntryPoint : MonoBehaviour
         basketPresenter?.Dispose();
         eggCatcherPresenter?.Dispose();
         pointAnimationPresenter?.Dispose();
+        timerPresenter?.Dispose();
     }
 
     #region Input

@@ -26,6 +26,7 @@ public class EggCatcherView : View
             chickens[i].OnEggDown -= HandlerEggDown;
             chickens[i].OnEggJump -= HandlerEggJump;
             chickens[i].OnEggWin -= HandlerEggWin;
+            chickens[i].Dispose();
         }
     }
 

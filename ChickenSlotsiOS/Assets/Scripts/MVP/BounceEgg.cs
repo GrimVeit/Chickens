@@ -10,6 +10,9 @@ public class BounceEgg : Egg
 
     private Tween tweenBounce;
 
+    private float jumpPower;
+    private float jumpDuration;
+
     private bool canTriggerJump = true;
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -45,9 +48,11 @@ public class BounceEgg : Egg
 
     #region Bounce
 
-    public void SetBounceTransforms(List<Transform> transforms)
+    public void SetJumpData(List<Transform> transforms, float jumpPower, float jumpDuration)
     {
         bounceTransforms = transforms;
+        this.jumpDuration = jumpDuration;
+        this.jumpPower = jumpPower;
     }
 
     public void StartJump()
@@ -58,7 +63,7 @@ public class BounceEgg : Egg
 
             OnEggJump?.Invoke();
 
-            tweenBounce = transform.DOJump(bounceTransforms[currentBounceIndex].position, 5, 1, 2f).SetEase(Ease.OutQuad).OnComplete(EggChecker);
+            tweenBounce = transform.DOJump(bounceTransforms[currentBounceIndex].position, jumpPower, 1, jumpDuration).SetEase(Ease.OutQuad).OnComplete(EggChecker);
 
             currentBounceIndex += 1;
         }

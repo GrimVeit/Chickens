@@ -18,9 +18,14 @@ public abstract class Chicken : MonoBehaviour
     private protected List<Egg> eggs = new List<Egg>();
     private protected IEnumerator changeSkinIEnumerator;
 
-    public void Initialize()
+    public virtual void Initialize()
     {
         chickenImage.sprite = chickenUnspawn;
+    }
+
+    public virtual void Dispose()
+    {
+
     }
 
     public abstract void SpawnEgg(EggPrefab prefab);

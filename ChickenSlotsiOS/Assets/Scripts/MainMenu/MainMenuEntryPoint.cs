@@ -89,6 +89,8 @@ public class MainMenuEntryPoint : MonoBehaviour
                 shopPresenter.Initialize();
 
                 FirebaseAuth firebaseAuth = FirebaseAuth.DefaultInstance;
+                FirebaseDatabase.DefaultInstance.SetPersistenceEnabled(false);
+                FirebaseDatabase.DefaultInstance.GoOnline();
                 DatabaseReference databaseReference = FirebaseDatabase.DefaultInstance.RootReference;
 
 
@@ -112,7 +114,6 @@ public class MainMenuEntryPoint : MonoBehaviour
 
                 ActivateTransitionsSceneEvents();
                 ActivateEvents();
-
 
                 sceneRoot.Activate();
                 cooldownDailyRewardPresenter.Activate();

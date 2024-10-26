@@ -106,7 +106,6 @@ public class Sound : ISound
         while (elapsedTime < durationChangeVolume)
         {
             elapsedTime += Time.deltaTime;
-            Debug.Log(Mathf.Lerp(startVolume, endVolume, elapsedTime / durationChangeVolume));
             if (audioSource == null) yield break;
             audioSource.volume = Mathf.Lerp(startVolume, endVolume, elapsedTime / durationChangeVolume);
             yield return null;
