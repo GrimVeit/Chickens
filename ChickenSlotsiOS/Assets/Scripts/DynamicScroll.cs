@@ -12,7 +12,6 @@ public class DynamicScroll : MonoBehaviour
     [SerializeField] private Transform content;
     [SerializeField] private List<GameIcon> gameIcons = new List<GameIcon>();
 
-    //private IEnumerator chooseGameIcon_IEnumerator;
     private IEnumerator smoothScroll_IEnumerator;
 
     private GameIcon currentGameIcon;
@@ -49,28 +48,6 @@ public class DynamicScroll : MonoBehaviour
         currentGameIcon.Select();
     }
 
-    //public void OnEndDrag(PointerEventData eventData)
-    //{
-    //    StartFindScrollGameIcon();
-    //}
-
-    //private void StartFindScrollGameIcon()
-    //{
-    //    StopSmoothScroll();
-
-    //    if (chooseGameIcon_IEnumerator != null)
-    //        StopCoroutine(chooseGameIcon_IEnumerator);
-
-    //    chooseGameIcon_IEnumerator = ChooseGameIcon();
-    //    StartCoroutine(chooseGameIcon_IEnumerator);
-    //}
-
-    //private void StopFindScrollGameIcon()
-    //{
-    //    if (chooseGameIcon_IEnumerator != null)
-    //        StopCoroutine(chooseGameIcon_IEnumerator);
-    //}
-
     private void StartSmoothScroll(GameIcon gameIcon)
     {
         //StopFindScrollGameIcon();
@@ -83,26 +60,6 @@ public class DynamicScroll : MonoBehaviour
         smoothScroll_IEnumerator = SmoothScrollToItem(currentGameIcon.RectTransform);
         StartCoroutine(smoothScroll_IEnumerator);
     }
-
-    //private void StopSmoothScroll()
-    //{
-    //    if (smoothScroll_IEnumerator != null)
-    //        StopCoroutine(smoothScroll_IEnumerator);
-    //}
-
-    //private IEnumerator ChooseGameIcon()
-    //{
-    //    while (scrollRect.velocity.magnitude > 200f)
-    //    {
-    //        Debug.Log(scrollRect.velocity.magnitude);
-    //        yield return null;
-    //    }
-
-    //    SelectCurrentGameIcon(GetClosestGameIcon());
-
-    //    yield return SmoothScrollToItem(currentGameIcon.RectTransform);
-    //}
-
 
     private IEnumerator SmoothScrollToItem(RectTransform item)
     {
@@ -123,26 +80,4 @@ public class DynamicScroll : MonoBehaviour
         scrollRect.velocity = Vector2.zero;
         content.position = targetPosition;
     }
-
-    //private GameIcon GetClosestGameIcon()
-    //{
-    //    float centerPosition = centerPoint.position.y;
-    //    float minDistance = float.MaxValue;
-    //    GameIcon closestItem = null;
-
-
-    //    foreach (var gameIcon in gameIcons)
-    //    {
-    //        float distance = Mathf.Abs(gameIcon.RectTransform.position.x - centerPosition);
-
-    //        if (distance < minDistance)
-    //        {
-    //            minDistance = distance;
-    //            closestItem = gameIcon;
-    //        }
-    //    }
-
-
-    //    return closestItem;
-    //}
 }

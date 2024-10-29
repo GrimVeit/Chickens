@@ -29,6 +29,8 @@ public class MainMenuEntryPoint : MonoBehaviour
     private CooldownPresenter cooldownDailyRewardPresenter;
     private CooldownPresenter cooldownDailyBonusPresenter;
 
+    private DynamicScrollPresenter dynamicScrollPresenter;
+
     public void Run(UIRootView uIRootView)
     {
         sceneRoot = Instantiate(menuRootPrefab);
@@ -40,6 +42,7 @@ public class MainMenuEntryPoint : MonoBehaviour
 
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task =>
         {
+
             var dependencyStatus = task.Result;
 
             if (dependencyStatus == DependencyStatus.Available)
@@ -49,20 +52,28 @@ public class MainMenuEntryPoint : MonoBehaviour
                     viewContainer.GetView<SoundView>());
                 soundPresenter.Initialize();
 
+                Debug.Log("Тут работает");
+
                 particleEffectPresenter = new ParticleEffectPresenter
                     (new ParticleEffectModel(),
                     viewContainer.GetView<ParticleEffectView>());
                 particleEffectPresenter.Initialize();
+
+                Debug.Log("Тут работает");
 
                 cooldownDailyRewardPresenter = new CooldownPresenter
                     (new CooldownModel(PlayerPrefsKeys.NEXT_DAILY_REWARD_TIME, TimeSpan.FromDays(1), soundPresenter),
                     viewContainer.GetView<CooldownView>("DailyReward"));
                 cooldownDailyRewardPresenter.Initialize();
 
+                Debug.Log("Тут работает");
+
                 cooldownDailyBonusPresenter = new CooldownPresenter
-                    (new CooldownModel(PlayerPrefsKeys.NEXT_DAILY_BONUS_TIME, TimeSpan.FromSeconds(5), soundPresenter),
+                    (new CooldownModel(PlayerPrefsKeys.NEXT_DAILY_BONUS_TIME, TimeSpan.FromDays(1), soundPresenter),
                     viewContainer.GetView<CooldownView>("DailyBonus"));
                 cooldownDailyBonusPresenter.Initialize();
+
+                Debug.Log("Тут работает");
 
                 privacyPolicyWebViewPresenter = new WebViewPresenter
                     (new WebViewModel("https://fgo.today/policy"),
@@ -88,23 +99,30 @@ public class MainMenuEntryPoint : MonoBehaviour
                 shopPresenter = new ShopPresenter(new ShopModel(bankPresenter, soundPresenter), viewContainer.GetView<ShopView>());
                 shopPresenter.Initialize();
 
+                Debug.Log("Success");
+
                 FirebaseAuth firebaseAuth = FirebaseAuth.DefaultInstance;
                 FirebaseDatabase.DefaultInstance.SetPersistenceEnabled(false);
                 FirebaseDatabase.DefaultInstance.GoOnline();
                 DatabaseReference databaseReference = FirebaseDatabase.DefaultInstance.RootReference;
 
+                Debug.Log("Success");
 
                 firebaseAuthenticationPresenter = new FirebaseAuthenticationPresenter
                     (new FirebaseAuthenticationModel(firebaseAuth, soundPresenter),
                     viewContainer.GetView<FirebaseAuthenticationView>());
                 firebaseAuthenticationPresenter.Initialize();
 
-                Debug.Log("Success");
 
                 firebaseDatabaseRealtimePresenter = new FirebaseDatabaseRealtimePresenter
                     (new FirebaseDatabaseRealtimeModel(firebaseAuth, databaseReference),
                     viewContainer.GetView<FirebaseDatabaseRealtimeView>());
                 firebaseDatabaseRealtimePresenter.Initialize();
+
+                dynamicScrollPresenter = new DynamicScrollPresenter
+                    (new DynamicScrollModel(soundPresenter), 
+                    viewContainer.GetView<DynamicScrollView>());
+                dynamicScrollPresenter.Initialize();
 
 
                 sceneRoot.SetSoundProvider(soundPresenter);
@@ -242,6 +260,7 @@ public class MainMenuEntryPoint : MonoBehaviour
         shopPresenter?.Dispose();
         firebaseAuthenticationPresenter?.Dispose();
         firebaseDatabaseRealtimePresenter?.Dispose();
+        dynamicScrollPresenter?.Dispose();
     }
 
     #region Input actions
