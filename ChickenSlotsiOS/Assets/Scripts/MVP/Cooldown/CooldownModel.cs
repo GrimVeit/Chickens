@@ -38,7 +38,9 @@ public class CooldownModel
     {
         //effectReload = particleEffectProvider.GetParticleEffect(ID);
 
+        Debug.Log("Success");
         nextRewardTime = DateTime.Parse(PlayerPrefs.GetString(KEY, DateTime.Now.ToString()));
+        Debug.Log("Success");
     }
 
     public void Activate()

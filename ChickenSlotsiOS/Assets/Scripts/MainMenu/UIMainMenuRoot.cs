@@ -3,12 +3,14 @@ using UnityEngine;
 
 public class UIMainMenuRoot : MonoBehaviour
 {
-    [SerializeField] private MainPanel_MainMenuScene mainPanel;
+    [SerializeField] private MainChoosePanel_MainMenuScene chooseGamePanel;
+    [SerializeField] private ChooseArcadaGamePanel_MainMenuScene arcadaPanel;
+    [SerializeField] private ChooseCompaignGamePanel_MainMenuScene compaignPanel;
+    [SerializeField] private HeaderPanel_MainMenuScene headerPanel;
+    [SerializeField] private FooterPanel_MainMenuScene footerPanel;
+
     [SerializeField] private DailyBonusPanel_MainMenuScene dailyBonusPanel;
     [SerializeField] private DailyRewardPanel_MainMenuScene dailyRewardPanel;
-    [SerializeField] private SettingsPanel_MainMenuScene settingsPanel;
-    [SerializeField] private PrivacyPolicyPanel_MainMenuScene privacyPolicyPanel;
-    [SerializeField] private AboutPanel_MainMenuScene aboutPanel;
     [SerializeField] private CooldownDailyRewardPanel_MainMenuScene cooldownDailyRewardPanel;
     [SerializeField] private CooldownDailyBonusPanel_MainMenuScene cooldownDailyBonusPanel;
     [SerializeField] private ShopPanel_MainMenuScene shopPanel;
@@ -25,7 +27,11 @@ public class UIMainMenuRoot : MonoBehaviour
 
     public void Initialize()
     {
-        mainPanel.SetSoundProvider(soundProvider);
+        chooseGamePanel.SetSoundProvider(soundProvider);
+        arcadaPanel.SetSoundProvider(soundProvider);
+        compaignPanel.SetSoundProvider(soundProvider);
+        footerPanel.SetSoundProvider(soundProvider);
+        headerPanel.SetSoundProvider(soundProvider);
         dailyBonusPanel.SetSoundProvider(soundProvider);
         dailyRewardPanel.SetSoundProvider(soundProvider);
         cooldownDailyBonusPanel.SetSoundProvider(soundProvider);
@@ -33,12 +39,13 @@ public class UIMainMenuRoot : MonoBehaviour
         shopPanel.SetSoundProvider(soundProvider);
         leaderboardPanel.SetSoundProvider(soundProvider);
 
-        mainPanel.Initialize();
+        chooseGamePanel.Initialize();
+        arcadaPanel.Initialize();
+        compaignPanel.Initialize();
+        footerPanel.Initialize();
+        headerPanel.Initialize();
         dailyBonusPanel.Initialize();
         dailyRewardPanel.Initialize();
-        settingsPanel.Initialize();
-        privacyPolicyPanel.Initialize();
-        aboutPanel.Initialize();
         cooldownDailyRewardPanel.Initialize();
         cooldownDailyBonusPanel.Initialize();
         shopPanel.Initialize();
@@ -47,64 +54,52 @@ public class UIMainMenuRoot : MonoBehaviour
 
     public void Activate()
     {
-        mainPanel.GoToSlots1_Action += HandlerGoToSlots1;
-        mainPanel.GoToSlots2_Action += HandlerGoToSlots2;
-        mainPanel.GoToSlots3_Action += HandlerGoToSlots3;
-        mainPanel.GoToMiniGame1_Action += HandlerGoToMiniGame1;
-        mainPanel.GoToMiniGame2_Action += HandlerGoToMiniGame2;
-        mainPanel.GoToMiniGame3_Action += HandlerGoToMiniGame3;
+        chooseGamePanel.OnClickToChooseArcadaGameButton += OpenArcadaPanel;
+        chooseGamePanel.OnClickToChooseCompaignGameButton += OpenCompaignPanel;
 
-        mainPanel.GoToSettings_Action += OpenSettingsPanel;
+        arcadaPanel.OnGoToBack += OpenMainChoosePanel;
+        compaignPanel.OnGoToBack += OpenMainChoosePanel;
 
-        dailyRewardPanel.OnClickBackButton += OpenMainPanel;
-        dailyBonusPanel.OnClickBackButton += OpenMainPanel;
+        arcadaPanel.GoToMiniGame1_Action += HandlerGoToMiniGame1;
+        arcadaPanel.GoToMiniGame2_Action += HandlerGoToMiniGame2;
+        arcadaPanel.GoToMiniGame3_Action += HandlerGoToMiniGame3;
 
-        settingsPanel.OnClickBackButton += OpenMainPanel;
-        settingsPanel.OnClickPrivacyPolicy += OpenPrivacyPolicyPanel;
-        settingsPanel.OnClickAbout += OpenAboutPanel;
-
-        privacyPolicyPanel.OnClickBackButton += OpenSettingsPanel;
-        aboutPanel.OnClickBackButton += OpenSettingsPanel;
+        dailyRewardPanel.OnClickBackButton += CloseDailyRewardPanel;
+        dailyBonusPanel.OnClickBackButton += CloseDailyBonusPanel;
 
         cooldownDailyBonusPanel.OnClickBackButton += CloseCooldownDailyBonusPanel;
         cooldownDailyRewardPanel.OnClickBackButton += CloseCooldownDailyRewardPanel;
 
-        mainPanel.GoToShop_Action += OpenShopPanel;
-        shopPanel.OnClickBackButton += OpenMainPanel;
+        footerPanel.GoToShop_Action += OpenShopPanel;
+        shopPanel.OnClickBackButton += CloseShopPanel;
 
-        mainPanel.GoToLeaderboard_Action += OpenLeaderboardPanel;
-        leaderboardPanel.OnClickBackButton += OpenMainPanel;
+        headerPanel.GoToLeaderboard_Action += OpenLeaderboardPanel;
+        leaderboardPanel.OnClickBackButton += CloseLeaderBoardPanel;
     }
 
     public void Deactivate()
     {
-        mainPanel.GoToSlots1_Action -= HandlerGoToSlots1;
-        mainPanel.GoToSlots2_Action -= HandlerGoToSlots2;
-        mainPanel.GoToSlots3_Action -= HandlerGoToSlots3;
-        mainPanel.GoToMiniGame1_Action -= HandlerGoToMiniGame1;
-        mainPanel.GoToMiniGame2_Action -= HandlerGoToMiniGame2;
-        mainPanel.GoToMiniGame3_Action -= HandlerGoToMiniGame3;
+        chooseGamePanel.OnClickToChooseArcadaGameButton -= OpenArcadaPanel;
+        chooseGamePanel.OnClickToChooseCompaignGameButton -= OpenCompaignPanel;
 
-        mainPanel.GoToSettings_Action -= OpenSettingsPanel;
+        arcadaPanel.OnGoToBack -= OpenMainChoosePanel;
+        compaignPanel.OnGoToBack -= OpenMainChoosePanel;
 
-        dailyRewardPanel.OnClickBackButton -= OpenMainPanel;
-        dailyBonusPanel.OnClickBackButton -= OpenMainPanel;
+        arcadaPanel.GoToMiniGame1_Action -= HandlerGoToMiniGame1;
+        arcadaPanel.GoToMiniGame2_Action -= HandlerGoToMiniGame2;
+        arcadaPanel.GoToMiniGame3_Action -= HandlerGoToMiniGame3;
 
-        settingsPanel.OnClickBackButton -= OpenMainPanel;
-        settingsPanel.OnClickPrivacyPolicy -= OpenPrivacyPolicyPanel;
-        settingsPanel.OnClickAbout -= OpenAboutPanel;
-
-        privacyPolicyPanel.OnClickBackButton -= OpenSettingsPanel;
-        aboutPanel.OnClickBackButton -= OpenSettingsPanel;
+        dailyRewardPanel.OnClickBackButton -= CloseDailyRewardPanel;
+        dailyBonusPanel.OnClickBackButton -= CloseDailyBonusPanel;
 
         cooldownDailyBonusPanel.OnClickBackButton -= CloseCooldownDailyBonusPanel;
         cooldownDailyRewardPanel.OnClickBackButton -= CloseCooldownDailyRewardPanel;
 
-        mainPanel.GoToShop_Action -= OpenShopPanel;
-        shopPanel.OnClickBackButton -= OpenMainPanel;
+        footerPanel.GoToShop_Action -= OpenShopPanel;
+        shopPanel.OnClickBackButton -= CloseShopPanel;
 
-        mainPanel.GoToLeaderboard_Action -= OpenLeaderboardPanel;
-        leaderboardPanel.OnClickBackButton -= OpenMainPanel;
+        headerPanel.GoToLeaderboard_Action -= OpenLeaderboardPanel;
+        leaderboardPanel.OnClickBackButton -= CloseLeaderBoardPanel;
     }
 
     public void SetSoundProvider(ISoundProvider soundProvider)
@@ -119,12 +114,13 @@ public class UIMainMenuRoot : MonoBehaviour
 
     public void Dispose()
     {
-        mainPanel.Dispose();
-        privacyPolicyPanel.Dispose();
-        aboutPanel.Dispose();
+        chooseGamePanel.Dispose();
+        arcadaPanel.Dispose();
+        compaignPanel.Dispose();
+        footerPanel.Dispose();
+        headerPanel.Dispose();
         dailyBonusPanel.Dispose();
         dailyRewardPanel.Dispose();
-        settingsPanel.Dispose();
         cooldownDailyBonusPanel.Dispose();
         cooldownDailyRewardPanel.Dispose();
         shopPanel.Dispose();
@@ -153,54 +149,126 @@ public class UIMainMenuRoot : MonoBehaviour
         panel.DeactivatePanel();
     }
 
-    public void OpenMainPanel()
+
+
+    public void OpenArcadaPanel()
     {
-        OpenPanel(mainPanel);
+        OpenPanel(arcadaPanel);
     }
 
-    public void OpenMainPanel_Other()
+    public void OpenCompaignPanel()
     {
-        OpenOtherPanel(mainPanel);
+        OpenPanel(compaignPanel);
     }
+
+    public void OpenMainChoosePanel()
+    {
+        OpenPanel(chooseGamePanel); 
+    }
+
+
 
     public void OpenRegisterPanel()
     {
         OpenPanel(registerPanel);
     }
 
-    public void OpenSettingsPanel()
+
+
+    public void OpenFooterPanel()
     {
-        OpenPanel(settingsPanel);
+        OpenOtherPanel(footerPanel);
     }
+
+    public void CloseFooterPanel()
+    {
+        CloseOtherPanel(footerPanel);
+    }
+
+
+
+    public void OpenHeaderPanel()
+    {
+        OpenOtherPanel(headerPanel);
+    }
+
+    public void CloseHeaderPanel()
+    {
+        CloseOtherPanel(headerPanel);
+    }
+
+
+
 
     private void OpenShopPanel()
     {
-        OpenPanel(shopPanel);
+        CloseHeaderPanel();
+        CloseFooterPanel();
+
+        OpenOtherPanel(shopPanel);
     }
+
+    private void CloseShopPanel()
+    {
+        OpenHeaderPanel();
+        OpenFooterPanel();
+
+        CloseOtherPanel(shopPanel);
+    }
+
+
+
 
     private void OpenLeaderboardPanel()
     {
-        OpenPanel(leaderboardPanel);
+        CloseHeaderPanel();
+        CloseFooterPanel();
+
+        OpenOtherPanel(leaderboardPanel);
     }
 
-    private void OpenPrivacyPolicyPanel()
+    private void CloseLeaderBoardPanel()
     {
-        OpenPanel(privacyPolicyPanel);
+        OpenHeaderPanel();
+        OpenFooterPanel();
+
+        CloseOtherPanel(leaderboardPanel);
     }
 
-    private void OpenAboutPanel()
-    {
-        OpenPanel(aboutPanel);
-    }
+
 
     public void OpenDailyBonusPanel()
     {
-        OpenPanel(dailyBonusPanel);
+        CloseHeaderPanel();
+        CloseFooterPanel();
+
+        OpenOtherPanel(dailyBonusPanel);
     }
+
+    public void CloseDailyBonusPanel()
+    {
+        OpenHeaderPanel();
+        OpenFooterPanel();
+
+        CloseOtherPanel(dailyBonusPanel);
+    }
+
+
 
     public void OpenDailyRewardPanel()
     {
-        OpenPanel(dailyRewardPanel);
+        CloseHeaderPanel();
+        CloseFooterPanel();
+
+        OpenOtherPanel(dailyRewardPanel);
+    }
+
+    public void CloseDailyRewardPanel()
+    {
+        OpenHeaderPanel();
+        OpenFooterPanel();
+
+        CloseOtherPanel(dailyRewardPanel);
     }
 
 
@@ -221,6 +289,9 @@ public class UIMainMenuRoot : MonoBehaviour
         CloseOtherPanel(cooldownDailyRewardPanel);
     }
 
+
+
+
     public void OpenCooldownDailyBonusPanel()
     {
         OpenOtherPanel(cooldownDailyBonusPanel);
@@ -233,28 +304,6 @@ public class UIMainMenuRoot : MonoBehaviour
 
 
 
-
-
-    private void HandlerGoToSlots1()
-    {
-        currentPanel.DeactivatePanel();
-
-        GoToSlots1_Action?.Invoke();
-    }
-
-    private void HandlerGoToSlots2()
-    {
-        currentPanel.DeactivatePanel();
-
-        GoToSlots2_Action?.Invoke();
-    }
-
-    private void HandlerGoToSlots3()
-    {
-        currentPanel.DeactivatePanel();
-
-        GoToSlots3_Action?.Invoke();
-    }
 
     private void HandlerGoToMiniGame1()
     {
@@ -281,44 +330,14 @@ public class UIMainMenuRoot : MonoBehaviour
 
     public event Action OnActivateMainMenuPanel
     {
-        add { mainPanel.OnOpenPanel += value; }
-        remove { mainPanel.OnOpenPanel -= value; }
+        add { arcadaPanel.OnOpenPanel += value; }
+        remove { arcadaPanel.OnOpenPanel -= value; }
     }
     public event Action OnDeactivateMainMenuPanel
     {
-        add { mainPanel.OnClosePanel += value; }
-        remove { mainPanel.OnClosePanel -= value; }
+        add { arcadaPanel.OnClosePanel += value; }
+        remove { arcadaPanel.OnClosePanel -= value; }
     }
-
-    public event Action OnActivatePrivacyPolicyPanel
-    {
-        add { privacyPolicyPanel.OnActivatePrivacyPolicyPanel += value; }
-        remove { privacyPolicyPanel.OnActivatePrivacyPolicyPanel -= value; }
-    }
-
-    public event Action OnDeactivatePrivacyPolicyPanel
-    {
-        add { privacyPolicyPanel.OnDeactivatePrivacyPolicyPanel += value; }
-        remove { privacyPolicyPanel.OnDeactivatePrivacyPolicyPanel -= value; }
-    }
-
-    public event Action OnActivateAboutPanel
-    {
-        add { aboutPanel.OnActivateAboutPanel += value; }
-        remove { aboutPanel.OnActivateAboutPanel -= value; }
-    }
-
-    public event Action OnDeactivateAboutPanel
-    {
-        add { aboutPanel.OnDeactivateAboutPanel += value; }
-        remove { aboutPanel.OnDeactivateAboutPanel -= value; }
-    }
-
-    public event Action GoToSlots1_Action;
-
-    public event Action GoToSlots2_Action;
-
-    public event Action GoToSlots3_Action;
 
     public event Action GoToMiniGame1_Action;
 

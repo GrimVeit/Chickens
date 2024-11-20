@@ -19,6 +19,7 @@ public class CooldownView : View, IIdentify
 
     public void Initialize()
     {
+        Debug.Log(this.name);
         cooldownButton.onClick.AddListener(HandlerClickToCooldownButton);
     }
 

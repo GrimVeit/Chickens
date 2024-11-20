@@ -16,15 +16,21 @@ public class CooldownPresenter
 
     public void Initialize()
     {
+        Debug.Log("Success");
+
         cooldownButtonView.OnClickCooldownButton += cooldownButtonModel.ClickButton;
 
         cooldownButtonModel.OnCountdownTimer += cooldownButtonView.ChangeTimer;
         cooldownButtonModel.OnSetAvailableButton += cooldownButtonView.ActivateButton;
         cooldownButtonModel.OnSetUnvailableButton += cooldownButtonView.DeactivateButton;
 
+        Debug.Log("Success");
         cooldownButtonModel.SetID(cooldownButtonView.GetID());
+        Debug.Log("Success");
         cooldownButtonModel.Initialize();
+        Debug.Log("Success");
         cooldownButtonView.Initialize();
+        Debug.Log("Success");
     }
 
     public void Activate()
