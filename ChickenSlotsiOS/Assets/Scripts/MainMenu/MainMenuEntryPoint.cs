@@ -28,6 +28,9 @@ public class MainMenuEntryPoint : MonoBehaviour
 
     private DynamicScrollPresenter dynamicScrollPresenter;
 
+    private GameProgressPresenter gameProgressPresenter;
+    private GameTrackerPresenter gameTrackerPresenter;
+
     public void Run(UIRootView uIRootView)
     {
         sceneRoot = Instantiate(menuRootPrefab);
@@ -122,14 +125,27 @@ public class MainMenuEntryPoint : MonoBehaviour
 
                 Debug.Log("Success");
 
+                gameProgressPresenter = new GameProgressPresenter(new GameProgressModel());
+
+                Debug.Log("Success");
+
+                gameTrackerPresenter = new GameTrackerPresenter(new GameTrackerModel(), viewContainer.GetView<GameTrackerView>());
+                gameTrackerPresenter.Initialize();
+
+                Debug.Log("Success");
 
                 sceneRoot.SetSoundProvider(soundPresenter);
                 sceneRoot.SetParticleEffectProvider(particleEffectPresenter);
                 sceneRoot.Initialize();
 
-
                 ActivateTransitionsSceneEvents();
                 ActivateEvents();
+
+                Debug.Log("Success");
+
+                gameProgressPresenter.Initialize();
+
+                Debug.Log("Success");
 
                 sceneRoot.Activate();
                 cooldownDailyRewardPresenter.Activate();
@@ -190,7 +206,9 @@ public class MainMenuEntryPoint : MonoBehaviour
 
         firebaseAuthenticationPresenter.OnSignUp += firebaseDatabaseRealtimePresenter.CreateEmptyDataToServer;
         firebaseAuthenticationPresenter.OnSignUp += firebaseDatabaseRealtimePresenter.DisplayUsersRecords;
-        firebaseAuthenticationPresenter.OnSignUp += sceneRoot.OpenArcadaPanel;
+        firebaseAuthenticationPresenter.OnSignUp += sceneRoot.OpenRegisterPanel;
+
+        gameProgressPresenter.OnGetData += gameTrackerPresenter.SetData;
     }
 
     private void DeactivateEvents()
@@ -215,7 +233,9 @@ public class MainMenuEntryPoint : MonoBehaviour
 
         firebaseAuthenticationPresenter.OnSignUp -= firebaseDatabaseRealtimePresenter.CreateEmptyDataToServer;
         firebaseAuthenticationPresenter.OnSignUp -= firebaseDatabaseRealtimePresenter.DisplayUsersRecords;
-        firebaseAuthenticationPresenter.OnSignUp -= sceneRoot.OpenArcadaPanel;
+        firebaseAuthenticationPresenter.OnSignUp -= sceneRoot.OpenMainChoosePanel;
+
+        gameProgressPresenter.OnGetData -= gameTrackerPresenter.SetData;
     }
 
     private void OnDestroy()
@@ -241,6 +261,9 @@ public class MainMenuEntryPoint : MonoBehaviour
         firebaseAuthenticationPresenter?.Dispose();
         firebaseDatabaseRealtimePresenter?.Dispose();
         dynamicScrollPresenter?.Dispose();
+
+        gameProgressPresenter?.Dispose();
+        gameTrackerPresenter?.Dispose();
     }
 
     #region Input actions
