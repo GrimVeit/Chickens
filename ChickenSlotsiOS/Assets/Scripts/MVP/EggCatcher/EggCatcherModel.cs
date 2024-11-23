@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EggCatcherModel
@@ -24,6 +23,8 @@ public class EggCatcherModel
     private ISoundProvider soundProvider;
     private IParticleEffectProvider particleEffectProvider;
 
+    private bool isActive;
+
     public EggCatcherModel(float initialDelay, float minDelay, float decreaseAmount, ISoundProvider soundProvider, IParticleEffectProvider particleEffectProvider)
     {
         this.initialDelay = initialDelay;
@@ -32,6 +33,13 @@ public class EggCatcherModel
 
         this.soundProvider = soundProvider;
         this.particleEffectProvider = particleEffectProvider;
+    }
+
+    public void SetTimerSpawnerData(float initialDelay, float minDelay, float decreaseAmount)
+    {
+        this.initialDelay = initialDelay;
+        this.minDelay= minDelay;
+        this.decreaseAmount = decreaseAmount;
     }
 
     public void Initialize()
@@ -46,6 +54,8 @@ public class EggCatcherModel
 
     public void EggWin(EggValues eggValues)
     {
+        if (!isActive) return;
+
         soundProvider.PlayOneShot("Pop");
 
         OnEggWin?.Invoke();
@@ -54,6 +64,8 @@ public class EggCatcherModel
 
     public void EggDown(EggValues eggValues, Vector3 posDown)
     {
+        if (!isActive) return;
+
         soundProvider.PlayOneShot("FallEgg");
 
         OnEggDown?.Invoke();
@@ -70,6 +82,8 @@ public class EggCatcherModel
 
     public void ActivateSpawner()
     {
+        isActive = true;
+
         if (spawnEggs_ienumerator != null)
             Coroutines.Stop(spawnEggs_ienumerator);
 
@@ -81,6 +95,8 @@ public class EggCatcherModel
 
     public void DeactivateSpawner()
     {
+        isActive = false;
+
         if (spawnEggs_ienumerator != null)
             Coroutines.Stop(spawnEggs_ienumerator);
 

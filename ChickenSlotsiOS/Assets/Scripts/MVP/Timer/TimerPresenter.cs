@@ -23,7 +23,7 @@ public class TimerPresenter
 
     private void ActivateEvents()
     {
-        timerModel.OnStartTimer += timerView.ActivateTimer;
+        timerModel.OnActivateTimer += timerView.ActivateTimer;
         timerModel.OnStopTimer += timerView.DeactivateTimer;
 
         timerModel.OnItterationTimer += timerView.ChangeTime;
@@ -31,7 +31,7 @@ public class TimerPresenter
 
     private void DeactivateEvents()
     {
-        timerModel.OnStartTimer -= timerView.ActivateTimer;
+        timerModel.OnActivateTimer -= timerView.ActivateTimer;
         timerModel.OnStopTimer -= timerView.DeactivateTimer;
 
         timerModel.OnItterationTimer -= timerView.ChangeTime;
@@ -39,14 +39,14 @@ public class TimerPresenter
 
     #region Input
 
-    public void StartTimer(int seconds)
+    public void ActivateTimer(int seconds)
     {
-        timerModel.StartTimer(seconds);
+        timerModel.ActivateTimer(seconds);
     }
 
-    public void StopTimer()
+    public void DeactivateTimer()
     {
-        timerModel.StopTimer();
+        timerModel.DeactivateTimer();
     }
 
     public event Action OnStopTimer

@@ -78,6 +78,11 @@ public class EggCatcherPresenter
         remove { eggCatcherModel.OnEggWin_EggValue -= value; }
     }
 
+    public void SetTimerSpawnerData(float initialDelay, float minDelay, float decreaseAmount)
+    {
+        eggCatcherModel.SetTimerSpawnerData(initialDelay , minDelay , decreaseAmount);
+    }
+
     public void StartSpawner()
     {
         eggCatcherModel.ActivateSpawner();

@@ -21,12 +21,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MiniGame3Scene.unity
     guid: 4be8f4437f69cf747ab34bb4db0cc0a3
   - enabled: 1
-    path: Assets/Scenes/Slot1Scene.unity
-    guid: f1e9973d5a3d89f4d806564ba71afb2a
-  - enabled: 1
-    path: Assets/Scenes/Slot2Scene.unity
-    guid: 1fd95352ace049249aed4846978c372d
-  - enabled: 1
-    path: Assets/Scenes/Slot3Scene.unity
-    guid: d055232c2ae42214ebec88bfc2c3cb83
+    path: Assets/Scenes/Compaign/MiniGame1CompaignScene.unity
+    guid: ba0aa8633552b3a44b1b2f086583f7a9
   m_configObjects: {}

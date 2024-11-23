@@ -57,7 +57,7 @@ public class MiniGame2SceneEntryPoint : MonoBehaviour
         sceneRoot.SetParticleProvider(particleEffectPresenter);
         sceneRoot.Initialize();
 
-        timerPresenter.StartTimer(3);
+        timerPresenter.ActivateTimer(3);
         basketPresenter.Start();
     }
 

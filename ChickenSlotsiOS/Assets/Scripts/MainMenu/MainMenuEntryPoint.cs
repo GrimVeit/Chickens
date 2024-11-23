@@ -126,6 +126,7 @@ public class MainMenuEntryPoint : MonoBehaviour
                 Debug.Log("Success");
 
                 gameProgressPresenter = new GameProgressPresenter(new GameProgressModel());
+                gameProgressPresenter.UnselectAll();
 
                 Debug.Log("Success");
 
@@ -176,6 +177,10 @@ public class MainMenuEntryPoint : MonoBehaviour
         sceneRoot.GoToMiniGame1_Action += HandleGoToMiniGame1;
         sceneRoot.GoToMiniGame2_Action += HandleGoToMiniGame2;
         sceneRoot.GoToMiniGame3_Action += HandleGoToMiniGame3;
+
+        gameTrackerPresenter.OnGoToMiniGame1 += HandleGoToMiniGame1_Compaign;
+        gameTrackerPresenter.OnGoToMiniGame2 += HandleGoToMiniGame1_Compaign;
+        gameTrackerPresenter.OnGoToMiniGame3 += HandleGoToMiniGame1_Compaign;
     }
 
     private void DeactivateTransitionsSceneEvents()
@@ -183,6 +188,10 @@ public class MainMenuEntryPoint : MonoBehaviour
         sceneRoot.GoToMiniGame1_Action -= HandleGoToMiniGame1;
         sceneRoot.GoToMiniGame2_Action -= HandleGoToMiniGame2;
         sceneRoot.GoToMiniGame3_Action -= HandleGoToMiniGame3;
+
+        gameTrackerPresenter.OnGoToMiniGame1 -= HandleGoToMiniGame1_Compaign;
+        gameTrackerPresenter.OnGoToMiniGame2 -= HandleGoToMiniGame1_Compaign;
+        gameTrackerPresenter.OnGoToMiniGame3 -= HandleGoToMiniGame1_Compaign;
     }
 
     private void ActivateEvents()
@@ -209,6 +218,7 @@ public class MainMenuEntryPoint : MonoBehaviour
         firebaseAuthenticationPresenter.OnSignUp += sceneRoot.OpenRegisterPanel;
 
         gameProgressPresenter.OnGetData += gameTrackerPresenter.SetData;
+        gameTrackerPresenter.OnSelectGame += gameProgressPresenter.SelectGame;
     }
 
     private void DeactivateEvents()
@@ -236,6 +246,7 @@ public class MainMenuEntryPoint : MonoBehaviour
         firebaseAuthenticationPresenter.OnSignUp -= sceneRoot.OpenMainChoosePanel;
 
         gameProgressPresenter.OnGetData -= gameTrackerPresenter.SetData;
+        gameTrackerPresenter.OnSelectGame += gameProgressPresenter.SelectGame;
     }
 
     private void OnDestroy()
@@ -272,6 +283,8 @@ public class MainMenuEntryPoint : MonoBehaviour
     public event Action GoToMiniGame2_Action;
     public event Action GoToMiniGame3_Action;
 
+    public event Action GoToMiniGame1_Compaign_Action;
+
     private void HandleGoToMiniGame1()
     {
         Dispose();
@@ -288,6 +301,13 @@ public class MainMenuEntryPoint : MonoBehaviour
     {
         Dispose();
         GoToMiniGame3_Action?.Invoke();
+    }
+
+
+    private void HandleGoToMiniGame1_Compaign()
+    {
+        Dispose();
+        GoToMiniGame1_Compaign_Action?.Invoke();
     }
 
     #endregion

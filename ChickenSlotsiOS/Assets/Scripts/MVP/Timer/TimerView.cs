@@ -1,8 +1,11 @@
 using TMPro;
 using UnityEngine;
 
-public class TimerView : View
+public class TimerView : View, IIdentify
 {
+    public string GetID() => id;
+
+    [SerializeField] private string id;
     [SerializeField] private TextMeshProUGUI textCount;
 
     public void ChangeTime(int sec)

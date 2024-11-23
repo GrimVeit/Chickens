@@ -13,7 +13,7 @@ public class GameTrackerView : View
     {
         for (int i = 0; i < gameTrackerConstructs.Count; i++)
         {
-            //gameTrackerConstructs[i].OnChooseLevel += HandlerChooseLevel;
+            gameTrackerConstructs[i].OnChooseLevel += HandlerChooseLevel;
             gameTrackerConstructs[i].Initialize();
         }
     }
@@ -22,7 +22,7 @@ public class GameTrackerView : View
     {
         for (int i = 0; i < gameTrackerConstructs.Count; i++)
         {
-            //gameTrackerConstructs[i].OnChooseLevel -= HandlerChooseLevel;
+            gameTrackerConstructs[i].OnChooseLevel -= HandlerChooseLevel;
             gameTrackerConstructs[i].Dispose();
         }
     }
@@ -50,7 +50,7 @@ public class GameTrackerView : View
 
     private void HandlerChooseLevel(int level, int typeGame)
     {
-        OnSelectGame(level, typeGame);
+        OnSelectGame?.Invoke(level, typeGame);
     }
 
     #endregion

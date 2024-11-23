@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class GameTrackerModel
 {
+    public event Action OnGoToMiniGame1;
+    public event Action OnGoToMiniGame2;
+    public event Action OnGoToMiniGame3;
+
+    public event Action<int> OnSelectGame;
+
     public event Action<int> OnAvailableLevel;
     public event Action<int> OnUnavailableLevel;
     public event Action<int> OnCurrentLevel;
@@ -14,11 +20,6 @@ public class GameTrackerModel
     public void SetData(List<GameData> data)
     {
         gameDatas = data;
-
-        for (int i = 0; i < gameDatas.Count; i++)
-        {
-            Debug.Log($"NumberGame - {gameDatas[i].Number}, Unlocked - {gameDatas[i].IsOpen}");
-        }
 
         GameData currentGameData = gameDatas.LastOrDefault(level => level.IsOpen);
 
@@ -50,12 +51,26 @@ public class GameTrackerModel
 
     public void SelectGame(int level, int typeGame)
     {
-        var gameData = gameDatas.FirstOrDefault(gr => gr.Number == level);
+        var gameData = gameDatas.FirstOrDefault(gr => gr.Number == level - 1);
 
         if (gameData == null)
             Debug.LogWarning($"Not found {level} level");
 
         if (!gameData.IsOpen)
             Debug.Log($"Level {level} not open");
+
+        OnSelectGame?.Invoke(gameData.Number);
+
+        switch (typeGame)
+        {
+            case 0:
+                OnGoToMiniGame1?.Invoke(); break;
+            case 1:
+                OnGoToMiniGame2?.Invoke(); break;
+            case 2:
+                OnGoToMiniGame3?.Invoke(); break;
+            default: 
+                Debug.LogError($"Game {typeGame} not found"); break;
+        }
     }
 }

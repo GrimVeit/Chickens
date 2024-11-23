@@ -22,6 +22,11 @@ public class GameProgressPresenter : IGameUnlocker
 
     #region Input
 
+    public void UnlockSecondGame()
+    {
+        gameProgressModel.UnlockSecondGame();
+    }
+
     public void UnlockGame(int number)
     {
         gameProgressModel.UnlockGame(number);
@@ -30,6 +35,17 @@ public class GameProgressPresenter : IGameUnlocker
     public void SelectGame(int number)
     {
         gameProgressModel.SelectGame(number);
+    }
+
+    public void UnselectAll()
+    {
+        gameProgressModel.UnselectAll();
+    }
+
+    public event Action<int> OnGetSelectGame
+    {
+        add { gameProgressModel.OnGetSelectGame += value; }
+        remove { gameProgressModel.OnGetSelectGame -= value; }
     }
 
     public event Action<List<GameData>> OnGetData

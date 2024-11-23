@@ -4,28 +4,32 @@ using UnityEngine;
 
 public class TimerModel
 {
+    public event Action OnActivateTimer;
+    public event Action OnDeactivateTimer;
     public event Action OnStartTimer;
     public event Action OnStopTimer;
     public event Action<int> OnItterationTimer;
 
     private IEnumerator timerCoroutine;
 
-    public void StartTimer(int seconds)
+    public void ActivateTimer(int seconds)
     {
-        OnStartTimer?.Invoke();
+        OnActivateTimer?.Invoke();
         Coroutines.Start(Timer_Coroutine(seconds));
     }
 
-    public void StopTimer()
+    public void DeactivateTimer()
     {
         if (timerCoroutine != null)
             Coroutines.Stop(timerCoroutine);
 
-        OnStopTimer?.Invoke();
+        OnDeactivateTimer?.Invoke();
     }
 
     private IEnumerator Timer_Coroutine(int seconds)
     {
+        OnStartTimer?.Invoke();
+
         int duration = seconds;
 
         while(duration > 0)
@@ -35,6 +39,6 @@ public class TimerModel
             duration -= 1;
         }
 
-        StopTimer();
+        OnStopTimer?.Invoke();
     }
 }
