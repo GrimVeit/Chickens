@@ -79,7 +79,7 @@ public class MiniGame3SceneEntryPoint : MonoBehaviour
 
         scorePresenter.OnGameFailed += eggCatcherPresenter.DeactivateSpawner;
         scorePresenter.OnGameFailed += basketPresenter.Stop;
-        scorePresenter.OnGameFailed += sceneRoot.OpenFailGamePanel;
+        scorePresenter.OnGameFailed += sceneRoot.OpenWinGamePanel;
 
     }
 
@@ -95,7 +95,7 @@ public class MiniGame3SceneEntryPoint : MonoBehaviour
 
         scorePresenter.OnGameFailed -= eggCatcherPresenter.DeactivateSpawner;
         scorePresenter.OnGameFailed -= basketPresenter.Stop;
-        scorePresenter.OnGameFailed -= sceneRoot.OpenFailGamePanel;
+        scorePresenter.OnGameFailed -= sceneRoot.OpenWinGamePanel;
     }
 
     public void Dispose()

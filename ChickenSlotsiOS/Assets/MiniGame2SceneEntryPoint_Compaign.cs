@@ -1,12 +1,14 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class MiniGame2SceneEntryPoint : MonoBehaviour
+public class MiniGame2SceneEntryPoint_Compaign : MonoBehaviour
 {
     [SerializeField] private Sounds sounds;
-    [SerializeField] private UIMiniGame2SceneRoot sceneRootPrefab;
+    [SerializeField] private UIMiniGame2SceneRoot_Compaign sceneRootPrefab;
 
-    private UIMiniGame2SceneRoot sceneRoot;
+    private UIMiniGame2SceneRoot_Compaign sceneRoot;
     private ViewContainer viewContainer;
 
     private SoundPresenter soundPresenter;
@@ -17,7 +19,11 @@ public class MiniGame2SceneEntryPoint : MonoBehaviour
     private BasketPresenter basketPresenter;
     private ScorePresenter scorePresenter;
     private PointAnimationPresenter pointAnimationPresenter;
-    private TimerPresenter timerPresenter;
+
+    private TimerPresenter timerPreparationPresenter;
+    private TimerPresenter timerMainPresenter;
+
+    private GameProgressPresenter gameProgressPresenter;
 
     public void Run(UIRootView uIRootView)
     {
@@ -48,24 +54,32 @@ public class MiniGame2SceneEntryPoint : MonoBehaviour
         pointAnimationPresenter = new PointAnimationPresenter(new PointAnimationModel(), viewContainer.GetView<PointAnimationView_BabyChicken>());
         pointAnimationPresenter.Initialize();
 
-        timerPresenter = new TimerPresenter(new TimerModel(), viewContainer.GetView<TimerView>());
-        timerPresenter.Initialize();
+        timerPreparationPresenter = new TimerPresenter(new TimerModel(), viewContainer.GetView<TimerView>("Preparation"));
+        timerPreparationPresenter.Initialize();
+
+        timerMainPresenter = new TimerPresenter(new TimerModel(), viewContainer.GetView<TimerView>("Main"));
+        timerMainPresenter.Initialize();
+
+        gameProgressPresenter = new GameProgressPresenter(new GameProgressModel());
 
         ActivateEvents();
+
+        gameProgressPresenter.Initialize();
 
         sceneRoot.SetSoundProvider(soundPresenter);
         sceneRoot.SetParticleProvider(particleEffectPresenter);
         sceneRoot.Initialize();
 
-        timerPresenter.ActivateTimer(3);
+        timerPreparationPresenter.ActivateTimer(3);
         basketPresenter.Start();
     }
 
     private void ActivateEvents()
     {
         sceneRoot.GoToMainMenu += HandleGoToMainMenu;
+        sceneRoot.TryAgain += HandleGoToTryAgain;
 
-        timerPresenter.OnStopTimer += eggCatcherPresenter.StartSpawner;
+        timerPreparationPresenter.OnStopTimer += eggCatcherPresenter.StartSpawner;
         eggCatcherPresenter.OnEggDown += scorePresenter.RemoveHealth;
         eggCatcherPresenter.OnEggDown_EggValue += pointAnimationPresenter.PlayAnimation;
         eggCatcherPresenter.OnEggWin_EggValue += scorePresenter.AddScore;
@@ -79,8 +93,9 @@ public class MiniGame2SceneEntryPoint : MonoBehaviour
     private void DeactivateEvents()
     {
         sceneRoot.GoToMainMenu -= HandleGoToMainMenu;
+        sceneRoot.TryAgain -= HandleGoToTryAgain;
 
-        timerPresenter.OnStopTimer -= eggCatcherPresenter.StartSpawner;
+        timerPreparationPresenter.OnStopTimer -= eggCatcherPresenter.StartSpawner;
         eggCatcherPresenter.OnEggDown -= scorePresenter.RemoveHealth;
         eggCatcherPresenter.OnEggDown_EggValue -= pointAnimationPresenter.PlayAnimation;
         eggCatcherPresenter.OnEggWin_EggValue -= scorePresenter.AddScore;
@@ -102,14 +117,21 @@ public class MiniGame2SceneEntryPoint : MonoBehaviour
         basketPresenter?.Dispose();
         bankPresenter?.Dispose();
         pointAnimationPresenter?.Dispose();
-        timerPresenter?.Dispose();
+        timerPreparationPresenter?.Dispose();
     }
 
     #region Input
 
     public event Action GoToMainMenu;
+    public event Action GoToTryAgain;
 
     private void HandleGoToMainMenu()
+    {
+        Dispose();
+        GoToMainMenu?.Invoke();
+    }
+
+    private void HandleGoToTryAgain()
     {
         Dispose();
         GoToMainMenu?.Invoke();

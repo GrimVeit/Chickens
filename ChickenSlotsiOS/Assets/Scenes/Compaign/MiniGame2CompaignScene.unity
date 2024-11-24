@@ -388,6 +388,8 @@ GameObject:
   m_Component:
   - component: {fileID: 495777832}
   - component: {fileID: 495777833}
+  - component: {fileID: 495777835}
+  - component: {fileID: 495777834}
   m_Layer: 0
   m_Name: SceneEntryPoint
   m_TagString: Untagged
@@ -424,6 +426,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds: {fileID: 919670007}
   sceneRootPrefab: {fileID: 4319292764053039896, guid: e24dc66e56b08594b92b43ebaf4ea012, type: 3}
+--- !u!114 &495777834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495777831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2baa114d4e7490049ab924fa709b1811, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds: {fileID: 0}
+  sceneRootPrefab: {fileID: 0}
+--- !u!114 &495777835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495777831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29451efc9dceb514ba8f5d164f25b8e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds: {fileID: 0}
+  levelMinigame1_Datas: {fileID: 0}
+  sceneRootPrefab: {fileID: 0}
 --- !u!1 &919670006
 GameObject:
   m_ObjectHideFlags: 0

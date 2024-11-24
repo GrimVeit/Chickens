@@ -277,6 +277,9 @@ public class UIMainMenuRoot : MonoBehaviour
 
     public void OpenCooldownDailyRewardPanel()
     {
+        CloseHeaderPanel();
+        CloseFooterPanel();
+
         isCooldownDailyRewardPanelActivated = true;
         OpenOtherPanel(cooldownDailyRewardPanel);
     }
@@ -284,6 +287,9 @@ public class UIMainMenuRoot : MonoBehaviour
     public void CloseCooldownDailyRewardPanel()
     {
         if (!isCooldownDailyRewardPanelActivated) return;
+
+        OpenHeaderPanel();
+        OpenFooterPanel();
 
         isCooldownDailyRewardPanelActivated = false;
         CloseOtherPanel(cooldownDailyRewardPanel);
@@ -294,11 +300,17 @@ public class UIMainMenuRoot : MonoBehaviour
 
     public void OpenCooldownDailyBonusPanel()
     {
+        CloseHeaderPanel();
+        CloseFooterPanel();
+
         OpenOtherPanel(cooldownDailyBonusPanel);
     }
 
     public void CloseCooldownDailyBonusPanel()
     {
+        OpenHeaderPanel();
+        OpenFooterPanel();
+
         CloseOtherPanel(cooldownDailyBonusPanel);
     }
 

@@ -82,6 +82,7 @@ public class MiniGame1SceneEntryPoint_Compaign : MonoBehaviour
     private void ActivateEvents()
     {
         sceneRoot.GoToMainMenu += HandleGoToMainMenu;
+        sceneRoot.TryAgain += HandleGoToTryAgain;
 
         gameProgressPresenter.OnGetSelectGame += levelPresenter.ChooseLevel;
         levelPresenter.OnSetSpawnerData += eggCatcherPresenter.SetTimerSpawnerData;
@@ -107,6 +108,7 @@ public class MiniGame1SceneEntryPoint_Compaign : MonoBehaviour
     private void DeactivateEvents()
     {
         sceneRoot.GoToMainMenu -= HandleGoToMainMenu;
+        sceneRoot.TryAgain -= HandleGoToTryAgain;
 
         gameProgressPresenter.OnGetSelectGame -= levelPresenter.ChooseLevel;
         levelPresenter.OnSetSpawnerData -= eggCatcherPresenter.SetTimerSpawnerData;
@@ -159,10 +161,16 @@ public class MiniGame1SceneEntryPoint_Compaign : MonoBehaviour
     #region Input
 
     public event Action GoToMainMenu;
+    public event Action GoToTryAgain;
 
     private void HandleGoToMainMenu()
     {
         GoToMainMenu?.Invoke();
+    }
+
+    private void HandleGoToTryAgain()
+    {
+        GoToTryAgain?.Invoke();
     }
 
     #endregion

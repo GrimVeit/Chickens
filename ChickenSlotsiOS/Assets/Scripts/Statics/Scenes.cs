@@ -11,6 +11,8 @@ public static class Scenes
     public const string MINI_GAME_3 = "MiniGame3Scene";
 
     public const string MINI_GAME_1_COMPAIGN = "MiniGame1CompaignScene";
+    public const string MINI_GAME_2_COMPAIGN = "MiniGame2CompaignScene";
+    public const string MINI_GAME_3_COMPAIGN = "MiniGame3CompaignScene";
     //public const string COUNTRY_CHECKER = "CountryChecker";
     //public const string OTHER = "Other";
 }

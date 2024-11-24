@@ -5,8 +5,10 @@ using UnityEngine.UI;
 public class FailGamePanel_MiniGameScene : MovePanel
 {
     public event Action GoToMainMenu;
+    public event Action OnTryAgain;
 
     [SerializeField] private Button backButton;
+    [SerializeField] private Button tryAgainButton;
 
     private ISoundProvider soundProvider;
 
@@ -15,23 +17,31 @@ public class FailGamePanel_MiniGameScene : MovePanel
         this.soundProvider = soundProvider;
     }
 
-    public override void ActivatePanel()
+    public override void Initialize()
     {
-        base.ActivatePanel();
+        base.Initialize();
 
         backButton.onClick.AddListener(HandlerGoToMainMenu);
+        tryAgainButton.onClick.AddListener(HandlerTryAgain);
     }
 
-    public override void DeactivatePanel()
+    public override void Dispose()
     {
-        base.DeactivatePanel();
+        base.Dispose();
 
         backButton.onClick.RemoveListener(HandlerGoToMainMenu);
+        tryAgainButton.onClick.RemoveListener(HandlerTryAgain);
     }
 
     private void HandlerGoToMainMenu()
     {
         soundProvider.PlayOneShot("Button");
         GoToMainMenu?.Invoke();
+    }
+
+    private void HandlerTryAgain()
+    {
+        soundProvider.PlayOneShot("Button");
+        OnTryAgain?.Invoke();
     }
 }

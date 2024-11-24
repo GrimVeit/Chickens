@@ -109,9 +109,9 @@ GameObject:
   - component: {fileID: 3246686072730472196}
   - component: {fileID: 7888227086917520895}
   - component: {fileID: 3917229074712495158}
-  - component: {fileID: 7432896778428053395}
+  - component: {fileID: 5040303023397549786}
   m_Layer: 5
-  m_Name: FailPanel
+  m_Name: WinPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -191,7 +191,7 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &7432896778428053395
+--- !u!114 &5040303023397549786
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -200,7 +200,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 497275048704432719}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02461220a726a3241bbac12c2b782b31, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e84ba1bd0d7cd04983d82a99fd8017a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 497275048704432719}
@@ -385,7 +385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   miniGamePanel: {fileID: 6374959178863883883}
-  failGamePanel: {fileID: 7432896778428053395}
+  winGamePanel: {fileID: 0}
 --- !u!114 &4331315088530889720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -534,6 +534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69e536dd8558f474297bd7adbd24b216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
   textCount: {fileID: 1921813408261819721}
 --- !u!1 &1180046327997806134
 GameObject:

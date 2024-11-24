@@ -10,16 +10,27 @@ public class TimerModel
     public event Action OnStopTimer;
     public event Action<int> OnItterationTimer;
 
+    private bool isActive;
+
     private IEnumerator timerCoroutine;
 
     public void ActivateTimer(int seconds)
     {
+        isActive = true;
+
+        if (timerCoroutine != null)
+            Coroutines.Stop(timerCoroutine);
+
+        timerCoroutine = Timer_Coroutine(seconds);
+        Coroutines.Start(timerCoroutine);
+
         OnActivateTimer?.Invoke();
-        Coroutines.Start(Timer_Coroutine(seconds));
     }
 
     public void DeactivateTimer()
     {
+        isActive = false;
+
         if (timerCoroutine != null)
             Coroutines.Stop(timerCoroutine);
 
@@ -39,6 +50,7 @@ public class TimerModel
             duration -= 1;
         }
 
-        OnStopTimer?.Invoke();
+        if(isActive)
+           OnStopTimer?.Invoke();
     }
 }

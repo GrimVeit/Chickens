@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIMiniGame1SceneRoot_Compaign : MonoBehaviour
+public class UIMiniGame2SceneRoot_Compaign : MonoBehaviour
 {
     public event Action GoToMainMenu;
     public event Action TryAgain;

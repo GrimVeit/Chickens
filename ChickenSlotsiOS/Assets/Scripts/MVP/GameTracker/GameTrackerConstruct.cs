@@ -46,6 +46,7 @@ public class GameTrackerConstruct :MonoBehaviour
 
         objectTextChicken.SetActive(false);
         objectTextEgg.SetActive(true);
+        objectTextEgg.transform.SetParent(object_UnavailableEgg.transform);
     }
 
     public void CurrentLevel()
@@ -56,6 +57,7 @@ public class GameTrackerConstruct :MonoBehaviour
 
         objectTextChicken.SetActive(false);
         objectTextEgg.SetActive(true);
+        objectTextEgg.transform.SetParent(buttonPlay_AvailableEgg.transform);
     }
 
     #region Input
