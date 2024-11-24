@@ -1,6 +1,15 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelMinigame1_Display : MonoBehaviour
+[CreateAssetMenu(fileName = "LevelData_2", menuName = "LevelData_2")]
+public class LevelMinigame2_Datas : ScriptableObject
+{
+    public List<LevelMinigame2_Data> Datas = new List<LevelMinigame2_Data>();
+}
+
+[System.Serializable]
+public class LevelMinigame2_Data
 {
     [SerializeField] private int level;
 
@@ -13,4 +22,5 @@ public class LevelMinigame1_Display : MonoBehaviour
     public float InitialDelay => initialDelay;
     public float MinDelay => minDelay;
     public float DecreaseAmount => decreaseAmount;
+
 }

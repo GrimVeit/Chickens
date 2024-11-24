@@ -385,7 +385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   miniGamePanel: {fileID: 6374959178863883883}
-  winGamePanel: {fileID: 0}
+  winGamePanel: {fileID: 5040303023397549786}
 --- !u!114 &4331315088530889720
 MonoBehaviour:
   m_ObjectHideFlags: 0

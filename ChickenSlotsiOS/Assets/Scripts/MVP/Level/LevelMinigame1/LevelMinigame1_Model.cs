@@ -3,7 +3,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 
-public class LevelMinigame1_Model : MonoBehaviour
+public class LevelMinigame1_Model
 {
     public event Action<float, float, float> OnSetSpawnerData;
     public event Action<int> OnChooseLevel;

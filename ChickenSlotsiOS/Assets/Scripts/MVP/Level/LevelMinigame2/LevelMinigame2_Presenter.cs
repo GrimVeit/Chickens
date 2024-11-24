@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
 
 public class LevelMinigame2_Presenter
 {
@@ -25,11 +23,26 @@ public class LevelMinigame2_Presenter
 
     private void ActivateEvents()
     {
-
+        levelModel.OnChooseLevel += levelView.DisplayLevel;
     }
 
     private void DeactivateEvents()
     {
-
+        levelModel.OnChooseLevel -= levelView.DisplayLevel;
     }
+
+    #region Input
+
+    public event Action<float, float, float> OnSetSpawnerData
+    {
+        add { levelModel.OnSetSpawnerData += value; }
+        remove { levelModel.OnSetSpawnerData -= value; }
+    }
+
+    public void ChooseLevel(int level)
+    {
+        levelModel.ChooseLevel(level);
+    }
+
+    #endregion
 }

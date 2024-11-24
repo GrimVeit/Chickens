@@ -6,7 +6,7 @@ public class UIMiniGame1SceneRoot : MonoBehaviour
     public event Action GoToMainMenu;
 
     [SerializeField] private MiniGamePanel_MiniGameScene miniGamePanel;
-    [SerializeField] private FailGamePanel_MiniGameScene failGamePanel;
+    [SerializeField] private WinGamePanel winGamePanel;
 
     private Panel currentPanel;
 
@@ -16,13 +16,13 @@ public class UIMiniGame1SceneRoot : MonoBehaviour
     public void Initialize()
     {
         miniGamePanel.SetSoundProvider(soundProvider);
-        failGamePanel.SetSoundProvider(soundProvider);
+        winGamePanel.SetSoundProvider(soundProvider);
 
         miniGamePanel.Initialize();
-        failGamePanel.Initialize();
+        winGamePanel.Initialize();
 
         miniGamePanel.GoToMainMenu += HandlerGoToMainMenu;
-        failGamePanel.GoToMainMenu += HandlerGoToMainMenu;
+        winGamePanel.GoToMainMenu += HandlerGoToMainMenu;
 
         currentPanel = miniGamePanel;
         currentPanel.ActivatePanel();
@@ -41,10 +41,10 @@ public class UIMiniGame1SceneRoot : MonoBehaviour
     public void Dispose()
     {
         miniGamePanel.GoToMainMenu -= HandlerGoToMainMenu;
-        failGamePanel.GoToMainMenu -= HandlerGoToMainMenu;
+        winGamePanel.GoToMainMenu -= HandlerGoToMainMenu;
 
         miniGamePanel.Dispose();
-        failGamePanel.Dispose();
+        winGamePanel.Dispose();
     }
 
     private void OpenPanel(Panel panel)
@@ -67,7 +67,7 @@ public class UIMiniGame1SceneRoot : MonoBehaviour
         particleEffectProvider.Play("Win");
         soundProvider.PlayOneShot("Win");
 
-        OpenOtherPanel(failGamePanel);
+        OpenOtherPanel(winGamePanel);
     }
 
     private void HandlerGoToMainMenu()

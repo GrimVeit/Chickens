@@ -6,6 +6,7 @@ using UnityEngine;
 public class MiniGame2SceneEntryPoint_Compaign : MonoBehaviour
 {
     [SerializeField] private Sounds sounds;
+    [SerializeField] private LevelMinigame2_Datas levelMinigame2_Datas;
     [SerializeField] private UIMiniGame2SceneRoot_Compaign sceneRootPrefab;
 
     private UIMiniGame2SceneRoot_Compaign sceneRoot;
@@ -24,6 +25,8 @@ public class MiniGame2SceneEntryPoint_Compaign : MonoBehaviour
     private TimerPresenter timerMainPresenter;
 
     private GameProgressPresenter gameProgressPresenter;
+
+    private LevelMinigame2_Presenter levelPresenter;
 
     public void Run(UIRootView uIRootView)
     {
@@ -62,6 +65,11 @@ public class MiniGame2SceneEntryPoint_Compaign : MonoBehaviour
 
         gameProgressPresenter = new GameProgressPresenter(new GameProgressModel());
 
+        levelPresenter = new LevelMinigame2_Presenter
+            (new LevelMinigame2_Model(levelMinigame2_Datas), 
+            viewContainer.GetView<LevelMinigame2_View>());
+        levelPresenter.Initailize();
+
         ActivateEvents();
 
         gameProgressPresenter.Initialize();
@@ -79,14 +87,24 @@ public class MiniGame2SceneEntryPoint_Compaign : MonoBehaviour
         sceneRoot.GoToMainMenu += HandleGoToMainMenu;
         sceneRoot.TryAgain += HandleGoToTryAgain;
 
+        gameProgressPresenter.OnGetSelectGame += levelPresenter.ChooseLevel;
+        levelPresenter.OnSetSpawnerData += eggCatcherPresenter.SetTimerSpawnerData;
+
         timerPreparationPresenter.OnStopTimer += eggCatcherPresenter.StartSpawner;
+        timerPreparationPresenter.OnStopTimer += ActivateMainTimer;
         eggCatcherPresenter.OnEggDown += scorePresenter.RemoveHealth;
         eggCatcherPresenter.OnEggDown_EggValue += pointAnimationPresenter.PlayAnimation;
         eggCatcherPresenter.OnEggWin_EggValue += scorePresenter.AddScore;
 
+        scorePresenter.OnGameFailed += timerMainPresenter.DeactivateTimer;
         scorePresenter.OnGameFailed += basketPresenter.Stop;
         scorePresenter.OnGameFailed += eggCatcherPresenter.DeactivateSpawner;
-        scorePresenter.OnGameFailed += sceneRoot.OpenWinGamePanel;
+        scorePresenter.OnGameFailed += sceneRoot.OpenFailGamePanel;
+
+        timerMainPresenter.OnStopTimer += basketPresenter.Stop;
+        timerMainPresenter.OnStopTimer += sceneRoot.OpenWinGamePanel;
+        timerMainPresenter.OnStopTimer += gameProgressPresenter.UnlockSecondGame;
+        timerMainPresenter.OnStopTimer += eggCatcherPresenter.DeactivateSpawner;
 
     }
 
@@ -95,14 +113,24 @@ public class MiniGame2SceneEntryPoint_Compaign : MonoBehaviour
         sceneRoot.GoToMainMenu -= HandleGoToMainMenu;
         sceneRoot.TryAgain -= HandleGoToTryAgain;
 
+        gameProgressPresenter.OnGetSelectGame -= levelPresenter.ChooseLevel;
+        levelPresenter.OnSetSpawnerData -= eggCatcherPresenter.SetTimerSpawnerData;
+
         timerPreparationPresenter.OnStopTimer -= eggCatcherPresenter.StartSpawner;
+        timerPreparationPresenter.OnStopTimer -= ActivateMainTimer;
         eggCatcherPresenter.OnEggDown -= scorePresenter.RemoveHealth;
         eggCatcherPresenter.OnEggDown_EggValue -= pointAnimationPresenter.PlayAnimation;
         eggCatcherPresenter.OnEggWin_EggValue -= scorePresenter.AddScore;
 
+        scorePresenter.OnGameFailed -= timerMainPresenter.DeactivateTimer;
         scorePresenter.OnGameFailed -= basketPresenter.Stop;
         scorePresenter.OnGameFailed -= eggCatcherPresenter.DeactivateSpawner;
-        scorePresenter.OnGameFailed -= sceneRoot.OpenWinGamePanel;
+        scorePresenter.OnGameFailed -= sceneRoot.OpenFailGamePanel;
+
+        timerMainPresenter.OnStopTimer -= basketPresenter.Stop;
+        timerMainPresenter.OnStopTimer -= sceneRoot.OpenWinGamePanel;
+        timerMainPresenter.OnStopTimer -= gameProgressPresenter.UnlockSecondGame;
+        timerMainPresenter.OnStopTimer -= eggCatcherPresenter.DeactivateSpawner;
     }
 
     public void Dispose()
@@ -118,6 +146,19 @@ public class MiniGame2SceneEntryPoint_Compaign : MonoBehaviour
         bankPresenter?.Dispose();
         pointAnimationPresenter?.Dispose();
         timerPreparationPresenter?.Dispose();
+        timerMainPresenter?.Dispose();
+        gameProgressPresenter?.Dispose();
+        levelPresenter?.Dispose();
+    }
+
+    private void OnDestroy()
+    {
+        Dispose();
+    }
+
+    private void ActivateMainTimer()
+    {
+        timerMainPresenter.ActivateTimer(10);
     }
 
     #region Input
@@ -134,7 +175,7 @@ public class MiniGame2SceneEntryPoint_Compaign : MonoBehaviour
     private void HandleGoToTryAgain()
     {
         Dispose();
-        GoToMainMenu?.Invoke();
+        GoToTryAgain?.Invoke();
     }
 
     #endregion
