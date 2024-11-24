@@ -617,7 +617,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1000445388}
-  - component: {fileID: 1000445389}
+  - component: {fileID: 1000445390}
   m_Layer: 0
   m_Name: SceneEntryPoint
   m_TagString: Untagged
@@ -640,7 +640,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1000445389
+--- !u!114 &1000445390
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -649,11 +649,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000445386}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d2fce0237833b54ba56a69bbdfcd4b2, type: 3}
+  m_Script: {fileID: 11500000, guid: 051147243ce174d4f98333b100f697c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sounds: {fileID: 418624127}
-  sceneRootPrefab: {fileID: 2405726662876918920, guid: 57f482c1fa30fd045b9f3c689e2c5900, type: 3}
+  levelMinigame3_Datas: {fileID: 11400000, guid: 7e4290f598665d145b869ffe1a838fa2, type: 2}
+  sceneRootPrefab: {fileID: 3734938377292428945, guid: f41ef0317c5201e4bbb642e52a3b40d2, type: 3}
 --- !u!1 &1045292926
 GameObject:
   m_ObjectHideFlags: 0

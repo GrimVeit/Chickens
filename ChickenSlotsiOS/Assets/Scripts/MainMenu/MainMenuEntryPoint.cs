@@ -180,7 +180,7 @@ public class MainMenuEntryPoint : MonoBehaviour
 
         gameTrackerPresenter.OnGoToMiniGame1 += HandleGoToMiniGame1_Compaign;
         gameTrackerPresenter.OnGoToMiniGame2 += HandleGoToMiniGame2_Compaign;
-        gameTrackerPresenter.OnGoToMiniGame3 += HandleGoToMiniGame1_Compaign;
+        gameTrackerPresenter.OnGoToMiniGame3 += HandleGoToMiniGame3_Compaign;
     }
 
     private void DeactivateTransitionsSceneEvents()
@@ -191,7 +191,7 @@ public class MainMenuEntryPoint : MonoBehaviour
 
         gameTrackerPresenter.OnGoToMiniGame1 -= HandleGoToMiniGame1_Compaign;
         gameTrackerPresenter.OnGoToMiniGame2 -= HandleGoToMiniGame2_Compaign;
-        gameTrackerPresenter.OnGoToMiniGame3 -= HandleGoToMiniGame1_Compaign;
+        gameTrackerPresenter.OnGoToMiniGame3 -= HandleGoToMiniGame3_Compaign;
     }
 
     private void ActivateEvents()
@@ -285,6 +285,7 @@ public class MainMenuEntryPoint : MonoBehaviour
 
     public event Action GoToMiniGame1_Compaign_Action;
     public event Action GoToMiniGame2_Compaign_Action;
+    public event Action GoToMiniGame3_Compaign_Action;
 
     private void HandleGoToMiniGame1()
     {
@@ -315,6 +316,12 @@ public class MainMenuEntryPoint : MonoBehaviour
     {
         Dispose();
         GoToMiniGame2_Compaign_Action?.Invoke();
+    }
+
+    private void HandleGoToMiniGame3_Compaign()
+    {
+        Dispose();
+        GoToMiniGame3_Compaign_Action?.Invoke();
     }
 
     #endregion
