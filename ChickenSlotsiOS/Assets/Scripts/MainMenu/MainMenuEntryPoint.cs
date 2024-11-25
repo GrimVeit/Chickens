@@ -137,7 +137,7 @@ public class MainMenuEntryPoint : MonoBehaviour
 
                 Debug.Log("Success");
 
-                gameTrackerPresenter = new GameTrackerPresenter(new GameTrackerModel(spriteAnimatorPresenter), viewContainer.GetView<GameTrackerView>());
+                gameTrackerPresenter = new GameTrackerPresenter(new GameTrackerModel(spriteAnimatorPresenter, soundPresenter), viewContainer.GetView<GameTrackerView>());
                 gameTrackerPresenter.Initialize();
 
                 spriteAnimatorPresenter = new SpriteAnimatorPresenter(new SpriteAnimatorModel(), viewContainer.GetView<SpriteAnimatorView>());

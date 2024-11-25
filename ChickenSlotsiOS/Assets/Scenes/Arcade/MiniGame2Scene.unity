@@ -461,7 +461,7 @@ MonoBehaviour:
     pitch: 1
     isLoop: 1
     isPlayAwake: 1
-  - id: Button
+  - id: ClickButton
     audioSource: {fileID: 1133116672}
     audioClip: {fileID: 8300000, guid: f32d8d60f197f204ba10bab042d4cf87, type: 3}
     volume: 0.7

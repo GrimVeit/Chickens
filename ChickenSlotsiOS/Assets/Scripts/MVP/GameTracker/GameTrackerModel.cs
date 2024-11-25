@@ -18,10 +18,12 @@ public class GameTrackerModel
     private List<GameData> gameDatas = new List<GameData>();
 
     private ISpriteAnimator spriteAnimator;
+    private ISoundProvider soundProvider;
 
-    public GameTrackerModel(ISpriteAnimator spriteAnimator)
+    public GameTrackerModel(ISpriteAnimator spriteAnimator, ISoundProvider soundProvider)
     {
         this.spriteAnimator = spriteAnimator;
+        this.soundProvider = soundProvider;
     }
 
     public void SetData(List<GameData> data)
@@ -68,6 +70,8 @@ public class GameTrackerModel
             Debug.Log($"Level {level} not open");
 
         OnSelectGame?.Invoke(gameData.Number);
+
+        soundProvider.PlayOneShot("ClickButton");
 
         switch (typeGame)
         {

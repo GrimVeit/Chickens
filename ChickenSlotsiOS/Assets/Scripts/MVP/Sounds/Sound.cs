@@ -23,6 +23,8 @@ public class Sound : ISound
 
     private bool isMainControl;
 
+    private IEnumerator setVolume_Coroutine;
+
     public void Initialize()
     {
         normalVolume = volume;
@@ -32,7 +34,7 @@ public class Sound : ISound
         audioSource.pitch = pitch;
         audioSource.loop = isLoop;
 
-        Coroutines.Start(ChangeVolume(0, normalVolume));
+        SetVolume(0, normalVolume);
 
         if (isPlayAwake)
             audioSource.Play();
@@ -41,14 +43,16 @@ public class Sound : ISound
     public void MainMute()
     {
         isMainControl = true;
-        Coroutines.Start(ChangeVolume(normalVolume, 0, () => audioSource.mute = true));
+
+        SetVolume(normalVolume, 0, () => audioSource.mute = true);
     }
 
     public void MainUnmute()
     {
         audioSource.mute = false;
-        Coroutines.Start(ChangeVolume(0, normalVolume));
         isMainControl = false;
+
+        SetVolume(0, normalVolume);
     }
 
     public void Mute()
@@ -94,10 +98,15 @@ public class Sound : ISound
 
     public void Dispose()
     {
-        Coroutines.Start(ChangeVolume(normalVolume, 0));
+        SetVolume(normalVolume, 0);
     }
 
-    private IEnumerator ChangeVolume(float startVolume, float endVolume, Action actionOnend = null)
+    public void SetVolume(float startVolume, float endVolume, Action action = null)
+    {
+        Coroutines.Start(ChangeVolume_Coroutine(startVolume, endVolume, action));
+    }
+
+    private IEnumerator ChangeVolume_Coroutine(float startVolume, float endVolume, Action actionOnend)
     {
         if (audioSource == null) yield break;
         audioSource.volume = startVolume;
@@ -122,5 +131,6 @@ public interface ISound
     public void PlayOneShot();
     public void Stop();
     public void SetVolume(float vol);
+    public void SetVolume(float startVolume, float endVolume, Action action = null);
     public void SetPitch(float pitch);
 }

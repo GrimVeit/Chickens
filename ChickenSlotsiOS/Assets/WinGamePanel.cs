@@ -33,7 +33,7 @@ public class WinGamePanel : MovePanel
 
     private void HandlerGoToMainMenu()
     {
-        soundProvider.PlayOneShot("Button");
+        soundProvider.PlayOneShot("ClickButton");
         GoToMainMenu?.Invoke();
     }
 }

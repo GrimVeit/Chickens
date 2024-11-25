@@ -71,8 +71,6 @@ public class UIMiniGame2SceneRoot : MonoBehaviour
 
     private void HandlerGoToMainMenu()
     {
-        soundProvider.PlayOneShot("Button");
-
         currentPanel.DeactivatePanel();
 
         GoToMainMenu?.Invoke();
