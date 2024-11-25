@@ -17,6 +17,13 @@ public class GameTrackerModel
 
     private List<GameData> gameDatas = new List<GameData>();
 
+    private ISpriteAnimator spriteAnimator;
+
+    public GameTrackerModel(ISpriteAnimator spriteAnimator)
+    {
+        this.spriteAnimator = spriteAnimator;
+    }
+
     public void SetData(List<GameData> data)
     {
         gameDatas = data;
@@ -36,6 +43,7 @@ public class GameTrackerModel
                 {
                     if (gameDatas[i].IsOpen)
                     {
+                        spriteAnimator.StartAnimator($"Chicken_{gameDatas[i].Number}");
                         OnAvailableLevel?.Invoke(i);
                     }
                     else

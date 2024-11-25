@@ -319,7 +319,7 @@ GameObject:
   - component: {fileID: 5633455836826972390}
   - component: {fileID: 7056861172489624658}
   - component: {fileID: 3856731828821707932}
-  - component: {fileID: 5313736083479277532}
+  - component: {fileID: 8286012660189625675}
   - component: {fileID: 4164742394327657523}
   m_Layer: 5
   m_Name: MiniGame2Scene_UI_Compaign
@@ -587,7 +587,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: Preparation
   textCount: {fileID: 5738244521129075997}
---- !u!114 &5313736083479277532
+--- !u!114 &8286012660189625675
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -596,7 +596,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 814119222677865395}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69e536dd8558f474297bd7adbd24b216, type: 3}
+  m_Script: {fileID: 11500000, guid: eaf236e512a11684784bebe65816dff3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   id: Main

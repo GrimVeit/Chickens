@@ -3,9 +3,9 @@ using System;
 public class TimerPresenter
 {
     private TimerModel timerModel;
-    private TimerView timerView;
+    private ITimerView timerView;
 
-    public TimerPresenter(TimerModel timerModel, TimerView timerView)
+    public TimerPresenter(TimerModel timerModel, ITimerView timerView)
     {
         this.timerModel = timerModel;
         this.timerView = timerView;
@@ -56,4 +56,13 @@ public class TimerPresenter
     }
 
     #endregion
+}
+
+public interface ITimerView
+{
+    public void ChangeTime(int sec);
+
+    public void ActivateTimer();
+
+    public void DeactivateTimer();
 }

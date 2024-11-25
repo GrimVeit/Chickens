@@ -31,6 +31,8 @@ public class MainMenuEntryPoint : MonoBehaviour
     private GameProgressPresenter gameProgressPresenter;
     private GameTrackerPresenter gameTrackerPresenter;
 
+    private SpriteAnimatorPresenter spriteAnimatorPresenter;
+
     public void Run(UIRootView uIRootView)
     {
         sceneRoot = Instantiate(menuRootPrefab);
@@ -58,6 +60,11 @@ public class MainMenuEntryPoint : MonoBehaviour
                     (new ParticleEffectModel(),
                     viewContainer.GetView<ParticleEffectView>());
                 particleEffectPresenter.Initialize();
+
+                spriteAnimatorPresenter = new SpriteAnimatorPresenter
+                    (new SpriteAnimatorModel(), 
+                    viewContainer.GetView<SpriteAnimatorView>());
+                spriteAnimatorPresenter.Initialize();
 
                 Debug.Log("Success");
 
@@ -130,8 +137,11 @@ public class MainMenuEntryPoint : MonoBehaviour
 
                 Debug.Log("Success");
 
-                gameTrackerPresenter = new GameTrackerPresenter(new GameTrackerModel(), viewContainer.GetView<GameTrackerView>());
+                gameTrackerPresenter = new GameTrackerPresenter(new GameTrackerModel(spriteAnimatorPresenter), viewContainer.GetView<GameTrackerView>());
                 gameTrackerPresenter.Initialize();
+
+                spriteAnimatorPresenter = new SpriteAnimatorPresenter(new SpriteAnimatorModel(), viewContainer.GetView<SpriteAnimatorView>());
+                spriteAnimatorPresenter.Initialize();
 
                 Debug.Log("Success");
 
@@ -275,6 +285,7 @@ public class MainMenuEntryPoint : MonoBehaviour
 
         gameProgressPresenter?.Dispose();
         gameTrackerPresenter?.Dispose();
+        spriteAnimatorPresenter?.Dispose();
     }
 
     #region Input actions

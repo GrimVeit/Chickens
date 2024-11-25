@@ -234,6 +234,7 @@ GameObject:
   m_Component:
   - component: {fileID: 342685939044244887}
   - component: {fileID: 3658153218401256019}
+  - component: {fileID: 4765199162650480361}
   m_Layer: 5
   m_Name: Level_27
   m_TagString: Untagged
@@ -283,6 +284,26 @@ MonoBehaviour:
   object_UnavailableEgg: {fileID: 5297176452322274335}
   objectTextEgg: {fileID: 2805828355948466384}
   objectTextChicken: {fileID: 1490750015545392082}
+--- !u!114 &4765199162650480361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112079029431556641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e479f65adc1d8459f2d105631c844e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Chicken_26
+  imageAnimate: {fileID: 543612600929499215}
+  sprites:
+  - {fileID: 21300000, guid: 1da723620f5f3e344b978b713fd34427, type: 3}
+  - {fileID: 21300000, guid: 7937c25f467b17346af8e917dba0fd9f, type: 3}
+  timeMinReload: 0.2
+  timeMaxReload: 1
+  isPlayOnAwake: 0
 --- !u!1 &114560169289950540
 GameObject:
   m_ObjectHideFlags: 0
@@ -1216,6 +1237,7 @@ GameObject:
   - component: {fileID: 8276238368154947879}
   - component: {fileID: 2942229909978274616}
   - component: {fileID: 2120715736695717274}
+  - component: {fileID: 8415466901513665051}
   m_Layer: 5
   m_Name: "\u041F\u0435\u0442\u0443\u0445"
   m_TagString: Untagged
@@ -1280,6 +1302,26 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8415466901513665051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453884945020976010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e479f65adc1d8459f2d105631c844e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Cock
+  imageAnimate: {fileID: 2120715736695717274}
+  sprites:
+  - {fileID: 21300000, guid: 26ffac4301eb5aa4f83507c08983e4f5, type: 3}
+  - {fileID: 21300000, guid: ab7046441b22b5e4dad11435c4bd5539, type: 3}
+  timeMinReload: 0.2
+  timeMaxReload: 1
+  isPlayOnAwake: 1
 --- !u!1 &473046093315886881
 GameObject:
   m_ObjectHideFlags: 0
@@ -1562,6 +1604,7 @@ GameObject:
   - component: {fileID: 1983115564697232540}
   - component: {fileID: 2480378352211328189}
   - component: {fileID: 854513169667397440}
+  - component: {fileID: 29121827399890551}
   m_Layer: 5
   m_Name: MainMenuScene_UI
   m_TagString: Untagged
@@ -1951,6 +1994,54 @@ MonoBehaviour:
   - {fileID: 8635520622494240071}
   - {fileID: 1102966987523438815}
   - {fileID: 6507759137510355283}
+--- !u!114 &29121827399890551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 634108021261027015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 449b5d20a81e4724aaa073cdf48c2d8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteAnimators:
+  - {fileID: 6504008889832452329}
+  - {fileID: 2162622684787421235}
+  - {fileID: 6907387619651050631}
+  - {fileID: 8415466901513665051}
+  - {fileID: 4700131633870112079}
+  - {fileID: 7263036323735461455}
+  - {fileID: 6603955167124108907}
+  - {fileID: 2217098579292334263}
+  - {fileID: 3917606980101890180}
+  - {fileID: 8742885733785443405}
+  - {fileID: 942307538891078352}
+  - {fileID: 1337021464831722776}
+  - {fileID: 3215819907015838868}
+  - {fileID: 3588377695386787684}
+  - {fileID: 6261369436220184503}
+  - {fileID: 3435730715426708879}
+  - {fileID: 1490186814976692686}
+  - {fileID: 1517646522625155187}
+  - {fileID: 6219151300880470094}
+  - {fileID: 3899145970086992977}
+  - {fileID: 5397981596496782170}
+  - {fileID: 6477107476452285783}
+  - {fileID: 4630266611751840274}
+  - {fileID: 4829636542171639882}
+  - {fileID: 7667141351685344843}
+  - {fileID: 1484150201635930311}
+  - {fileID: 7647925542830924635}
+  - {fileID: 1390843679094812131}
+  - {fileID: 8920190515238198810}
+  - {fileID: 6090940036020995831}
+  - {fileID: 2867288185076304260}
+  - {fileID: 4765199162650480361}
+  - {fileID: 6865269067598388818}
+  - {fileID: 1467818061723273892}
+  - {fileID: 9110234368273683250}
 --- !u!1 &647516027819808330
 GameObject:
   m_ObjectHideFlags: 0
@@ -2496,6 +2587,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6263878150996470392}
   - component: {fileID: 2513993418973980748}
+  - component: {fileID: 6477107476452285783}
   m_Layer: 5
   m_Name: Level_17
   m_TagString: Untagged
@@ -2545,6 +2637,26 @@ MonoBehaviour:
   object_UnavailableEgg: {fileID: 1783081192722367272}
   objectTextEgg: {fileID: 2247437804496588124}
   objectTextChicken: {fileID: 5768486017217116068}
+--- !u!114 &6477107476452285783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828788039744460367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e479f65adc1d8459f2d105631c844e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Chicken_16
+  imageAnimate: {fileID: 8026480777555322449}
+  sprites:
+  - {fileID: 21300000, guid: 1da723620f5f3e344b978b713fd34427, type: 3}
+  - {fileID: 21300000, guid: 7937c25f467b17346af8e917dba0fd9f, type: 3}
+  timeMinReload: 0.2
+  timeMaxReload: 1
+  isPlayOnAwake: 0
 --- !u!1 &852520655592130327
 GameObject:
   m_ObjectHideFlags: 0
@@ -3011,6 +3123,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3386281950921826394}
   - component: {fileID: 27724443272643792}
+  - component: {fileID: 5397981596496782170}
   m_Layer: 5
   m_Name: Level_16
   m_TagString: Untagged
@@ -3060,6 +3173,26 @@ MonoBehaviour:
   object_UnavailableEgg: {fileID: 8344629881785011159}
   objectTextEgg: {fileID: 1066194358208437116}
   objectTextChicken: {fileID: 1106395278171559807}
+--- !u!114 &5397981596496782170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1028671889887231434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e479f65adc1d8459f2d105631c844e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Chicken_15
+  imageAnimate: {fileID: 6802943739414770803}
+  sprites:
+  - {fileID: 21300000, guid: 1da723620f5f3e344b978b713fd34427, type: 3}
+  - {fileID: 21300000, guid: 7937c25f467b17346af8e917dba0fd9f, type: 3}
+  timeMinReload: 0.2
+  timeMaxReload: 1
+  isPlayOnAwake: 0
 --- !u!1 &1066194358208437116
 GameObject:
   m_ObjectHideFlags: 0
@@ -6226,6 +6359,7 @@ GameObject:
   m_Component:
   - component: {fileID: 848003479757342656}
   - component: {fileID: 1190965827894585715}
+  - component: {fileID: 3899145970086992977}
   m_Layer: 5
   m_Name: Level_15
   m_TagString: Untagged
@@ -6275,6 +6409,26 @@ MonoBehaviour:
   object_UnavailableEgg: {fileID: 114560169289950540}
   objectTextEgg: {fileID: 4357006187376766991}
   objectTextChicken: {fileID: 1623709817531851635}
+--- !u!114 &3899145970086992977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1702521165333048180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e479f65adc1d8459f2d105631c844e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Chicken_14
+  imageAnimate: {fileID: 5991406040403027983}
+  sprites:
+  - {fileID: 21300000, guid: 1da723620f5f3e344b978b713fd34427, type: 3}
+  - {fileID: 21300000, guid: 7937c25f467b17346af8e917dba0fd9f, type: 3}
+  timeMinReload: 0.2
+  timeMaxReload: 1
+  isPlayOnAwake: 0
 --- !u!1 &1746298171519066756
 GameObject:
   m_ObjectHideFlags: 0
@@ -6871,6 +7025,7 @@ GameObject:
   - component: {fileID: 3320320391048556624}
   - component: {fileID: 6480928366748390510}
   - component: {fileID: 2147803029813771974}
+  - component: {fileID: 6504008889832452329}
   m_Layer: 5
   m_Name: CampaignMode
   m_TagString: Untagged
@@ -6979,6 +7134,30 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6504008889832452329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879007694366559618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e479f65adc1d8459f2d105631c844e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: CampaignGame
+  imageAnimate: {fileID: 6480928366748390510}
+  sprites:
+  - {fileID: 21300000, guid: cf08b1f8fedacb048ac42b385d25fb52, type: 3}
+  - {fileID: 21300000, guid: 8909228f0a6205f46ae7d88256f3ec36, type: 3}
+  - {fileID: 21300000, guid: 1b7bf5b4dd9ceac4fa34468167a43417, type: 3}
+  - {fileID: 21300000, guid: 9a5df3e67d3217d4db6c2795210d5781, type: 3}
+  - {fileID: 21300000, guid: 22bc85fc4b349bb4bb1929967cba0df2, type: 3}
+  - {fileID: 21300000, guid: 6f6d63658be33434db2275976c6abd64, type: 3}
+  timeMinReload: 0.2
+  timeMaxReload: 1
+  isPlayOnAwake: 1
 --- !u!1 &1981773519271359170
 GameObject:
   m_ObjectHideFlags: 0
@@ -6989,6 +7168,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2394303066052586203}
   - component: {fileID: 7371017949084255276}
+  - component: {fileID: 1390843679094812131}
   m_Layer: 5
   m_Name: Level_23
   m_TagString: Untagged
@@ -7038,6 +7218,26 @@ MonoBehaviour:
   object_UnavailableEgg: {fileID: 7950310211274740659}
   objectTextEgg: {fileID: 1147190506340940652}
   objectTextChicken: {fileID: 8708985368880223950}
+--- !u!114 &1390843679094812131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981773519271359170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e479f65adc1d8459f2d105631c844e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Chicken_22
+  imageAnimate: {fileID: 7009704902619392299}
+  sprites:
+  - {fileID: 21300000, guid: 1da723620f5f3e344b978b713fd34427, type: 3}
+  - {fileID: 21300000, guid: 7937c25f467b17346af8e917dba0fd9f, type: 3}
+  timeMinReload: 0.2
+  timeMaxReload: 1
+  isPlayOnAwake: 0
 --- !u!1 &1994548961886483575
 GameObject:
   m_ObjectHideFlags: 0
@@ -8749,8 +8949,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 24.09, y: -65}
-  m_SizeDelta: {x: 1088.1802, y: -370}
+  m_AnchoredPosition: {x: 24.09, y: -69.753136}
+  m_SizeDelta: {x: 1088.1802, y: -379.5063}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6327159590317758239
 CanvasRenderer:
@@ -8805,7 +9005,7 @@ MonoBehaviour:
   m_Content: {fileID: 9173891472684960199}
   m_Horizontal: 1
   m_Vertical: 1
-  m_MovementType: 1
+  m_MovementType: 2
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
@@ -10034,6 +10234,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7513072376684431317}
   - component: {fileID: 8738118452916732107}
+  - component: {fileID: 4630266611751840274}
   m_Layer: 5
   m_Name: Level_18
   m_TagString: Untagged
@@ -10083,6 +10284,26 @@ MonoBehaviour:
   object_UnavailableEgg: {fileID: 6961756546478680568}
   objectTextEgg: {fileID: 3827523091262886864}
   objectTextChicken: {fileID: 6076376757022592581}
+--- !u!114 &4630266611751840274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2766020064784727586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e479f65adc1d8459f2d105631c844e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Chicken_17
+  imageAnimate: {fileID: 6480689446493775021}
+  sprites:
+  - {fileID: 21300000, guid: 1da723620f5f3e344b978b713fd34427, type: 3}
+  - {fileID: 21300000, guid: 7937c25f467b17346af8e917dba0fd9f, type: 3}
+  timeMinReload: 0.2
+  timeMaxReload: 1
+  isPlayOnAwake: 0
 --- !u!1 &2805828355948466384
 GameObject:
   m_ObjectHideFlags: 0
@@ -12222,6 +12443,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1124874094208845414}
   - component: {fileID: 3372285587096073902}
+  - component: {fileID: 2217098579292334263}
   m_Layer: 5
   m_Name: Level_3
   m_TagString: Untagged
@@ -12271,6 +12493,26 @@ MonoBehaviour:
   object_UnavailableEgg: {fileID: 174843843249497399}
   objectTextEgg: {fileID: 3648744808660846599}
   objectTextChicken: {fileID: 1080882308240310816}
+--- !u!114 &2217098579292334263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3227975789294672185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e479f65adc1d8459f2d105631c844e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Chicken_2
+  imageAnimate: {fileID: 8380450109292250694}
+  sprites:
+  - {fileID: 21300000, guid: 1da723620f5f3e344b978b713fd34427, type: 3}
+  - {fileID: 21300000, guid: 7937c25f467b17346af8e917dba0fd9f, type: 3}
+  timeMinReload: 0.2
+  timeMaxReload: 1
+  isPlayOnAwake: 0
 --- !u!1 &3230197754113378551
 GameObject:
   m_ObjectHideFlags: 0
@@ -12656,6 +12898,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6757397402223730364}
   - component: {fileID: 7158060742381223337}
+  - component: {fileID: 7263036323735461455}
   m_Layer: 5
   m_Name: Level_1
   m_TagString: Untagged
@@ -12705,6 +12948,26 @@ MonoBehaviour:
   object_UnavailableEgg: {fileID: 1261322490626472788}
   objectTextEgg: {fileID: 6589595972751970483}
   objectTextChicken: {fileID: 7946704692297694066}
+--- !u!114 &7263036323735461455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3251420011335499881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e479f65adc1d8459f2d105631c844e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Chicken_0
+  imageAnimate: {fileID: 6416950012703214593}
+  sprites:
+  - {fileID: 21300000, guid: 1da723620f5f3e344b978b713fd34427, type: 3}
+  - {fileID: 21300000, guid: 7937c25f467b17346af8e917dba0fd9f, type: 3}
+  timeMinReload: 0.2
+  timeMaxReload: 1
+  isPlayOnAwake: 0
 --- !u!1 &3274909329705229990
 GameObject:
   m_ObjectHideFlags: 0
@@ -13538,6 +13801,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8510013049923788257}
   - component: {fileID: 2956354095450191141}
+  - component: {fileID: 1490186814976692686}
   m_Layer: 5
   m_Name: Level_12
   m_TagString: Untagged
@@ -13587,6 +13851,26 @@ MonoBehaviour:
   object_UnavailableEgg: {fileID: 8609266943472303474}
   objectTextEgg: {fileID: 1012463607713969773}
   objectTextChicken: {fileID: 6536577230581446365}
+--- !u!114 &1490186814976692686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3624876405053568848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e479f65adc1d8459f2d105631c844e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Chicken_11
+  imageAnimate: {fileID: 6946532961803291073}
+  sprites:
+  - {fileID: 21300000, guid: 1da723620f5f3e344b978b713fd34427, type: 3}
+  - {fileID: 21300000, guid: 7937c25f467b17346af8e917dba0fd9f, type: 3}
+  timeMinReload: 0.2
+  timeMaxReload: 1
+  isPlayOnAwake: 0
 --- !u!1 &3628125305888475362
 GameObject:
   m_ObjectHideFlags: 0
@@ -14620,6 +14904,7 @@ GameObject:
   - component: {fileID: 4960715870728312313}
   - component: {fileID: 2272257191030673484}
   - component: {fileID: 3938576173094693090}
+  - component: {fileID: 6871283690548927795}
   m_Layer: 5
   m_Name: ChooseCompaignGamePAnel
   m_TagString: Untagged
@@ -14645,7 +14930,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -300, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4960715870728312313
@@ -14686,6 +14971,81 @@ MonoBehaviour:
   time: 0.2
   canvasGroup: {fileID: 2272257191030673484}
   backButton: {fileID: 9081325256071624502}
+--- !u!114 &6871283690548927795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3877219801263805475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 573c7fd5dfdd0ee489aa66d4ed092498, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  contentTransform: {fileID: 5446487000396562811}
+  buttonTransforms:
+  - {fileID: 6757397402223730364}
+  - {fileID: 918078051859834425}
+  - {fileID: 1124874094208845414}
+  - {fileID: 6048242928773149722}
+  - {fileID: 1978662823255027835}
+  - {fileID: 2021642480011264176}
+  - {fileID: 9176109327344005337}
+  - {fileID: 5888694577589516488}
+  - {fileID: 7518250618953478688}
+  - {fileID: 4528719177797883112}
+  - {fileID: 1568362929130240875}
+  - {fileID: 8510013049923788257}
+  - {fileID: 6134894955141538716}
+  - {fileID: 5543758018611053965}
+  - {fileID: 848003479757342656}
+  - {fileID: 3386281950921826394}
+  - {fileID: 6263878150996470392}
+  - {fileID: 7513072376684431317}
+  - {fileID: 1628789164514383578}
+  - {fileID: 133693449155901887}
+  - {fileID: 2026610644281767766}
+  - {fileID: 6349331642987257292}
+  - {fileID: 2394303066052586203}
+  - {fileID: 5366329379575215263}
+  - {fileID: 1405262316945001632}
+  - {fileID: 8145192753602023669}
+  - {fileID: 342685939044244887}
+  - {fileID: 3142454321786044384}
+  - {fileID: 1359155536662223797}
+  - {fileID: 7700623934439342320}
+  vectorRelatives:
+  - {x: -0.447, y: 0.29}
+  - {x: -0.4, y: 0.11}
+  - {x: -0.367, y: -0.14}
+  - {x: -0.312, y: 0.03}
+  - {x: -0.266, y: 0.23}
+  - {x: -0.309, y: 0.35}
+  - {x: -0.232, y: 0.37}
+  - {x: -0.192, y: 0.24}
+  - {x: -0.2, y: -0.01}
+  - {x: -0.15, y: -0.11}
+  - {x: -0.114, y: 0.08}
+  - {x: -0.123, y: 0.33}
+  - {x: -0.059, y: 0.35}
+  - {x: -0.006, y: 0.17}
+  - {x: -0.049, y: 0.02}
+  - {x: 0.026, y: -0.09}
+  - {x: 0.078, y: 0.09}
+  - {x: 0.07, y: 0.32}
+  - {x: 0.144, y: 0.26}
+  - {x: 0.15, y: 0.02}
+  - {x: 0.178, y: -0.13}
+  - {x: 0.215, y: 0.06}
+  - {x: 0.247, y: 0.33}
+  - {x: 0.286, y: 0.17}
+  - {x: 0.305, y: -0.09}
+  - {x: 0.365, y: -0.22}
+  - {x: 0.393, y: 0.05}
+  - {x: 0.353, y: 0.31}
+  - {x: 0.437, y: 0.22}
+  - {x: 0.463, y: -0.03}
 --- !u!1 &3891842069128130765
 GameObject:
   m_ObjectHideFlags: 0
@@ -15876,6 +16236,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2021642480011264176}
   - component: {fileID: 9014356637640116197}
+  - component: {fileID: 942307538891078352}
   m_Layer: 5
   m_Name: Level_6
   m_TagString: Untagged
@@ -15925,6 +16286,26 @@ MonoBehaviour:
   object_UnavailableEgg: {fileID: 2737933721721798526}
   objectTextEgg: {fileID: 9038225914300255567}
   objectTextChicken: {fileID: 1220238678534842428}
+--- !u!114 &942307538891078352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4328901213094793509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e479f65adc1d8459f2d105631c844e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Chicken_5
+  imageAnimate: {fileID: 6881533736925689124}
+  sprites:
+  - {fileID: 21300000, guid: 1da723620f5f3e344b978b713fd34427, type: 3}
+  - {fileID: 21300000, guid: 7937c25f467b17346af8e917dba0fd9f, type: 3}
+  timeMinReload: 0.2
+  timeMaxReload: 1
+  isPlayOnAwake: 0
 --- !u!1 &4344375050347260328
 GameObject:
   m_ObjectHideFlags: 0
@@ -16314,6 +16695,7 @@ GameObject:
   - component: {fileID: 3235482718670102640}
   - component: {fileID: 2991766852897608559}
   - component: {fileID: 2039180732850646859}
+  - component: {fileID: 2162622684787421235}
   m_Layer: 5
   m_Name: ArcadeMode
   m_TagString: Untagged
@@ -16422,6 +16804,30 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2162622684787421235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4390433835413849498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e479f65adc1d8459f2d105631c844e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: ArcadeGame
+  imageAnimate: {fileID: 2991766852897608559}
+  sprites:
+  - {fileID: 21300000, guid: 9435173cd0daeff4eba5e5bccf5fb308, type: 3}
+  - {fileID: 21300000, guid: 0f40ddc18071e474d85a07d83d701e57, type: 3}
+  - {fileID: 21300000, guid: f5caf67c8cbde6249981700c1bf34c44, type: 3}
+  - {fileID: 21300000, guid: 9c55097bca325544bbd74c8f9aa52c8b, type: 3}
+  - {fileID: 21300000, guid: 137e1845a551d714b81f021f4213fb97, type: 3}
+  - {fileID: 21300000, guid: 00770960c34902d4b918f8f42454123b, type: 3}
+  timeMinReload: 0.2
+  timeMaxReload: 1
+  isPlayOnAwake: 1
 --- !u!1 &4430766610877918939
 GameObject:
   m_ObjectHideFlags: 0
@@ -17238,6 +17644,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2026610644281767766}
   - component: {fileID: 5450391071673808842}
+  - component: {fileID: 1484150201635930311}
   m_Layer: 5
   m_Name: Level_21
   m_TagString: Untagged
@@ -17287,6 +17694,26 @@ MonoBehaviour:
   object_UnavailableEgg: {fileID: 3628125305888475362}
   objectTextEgg: {fileID: 1240275066957225123}
   objectTextChicken: {fileID: 2964372854387042618}
+--- !u!114 &1484150201635930311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4573788046969279017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e479f65adc1d8459f2d105631c844e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Chicken_20
+  imageAnimate: {fileID: 736092275739065117}
+  sprites:
+  - {fileID: 21300000, guid: 1da723620f5f3e344b978b713fd34427, type: 3}
+  - {fileID: 21300000, guid: 7937c25f467b17346af8e917dba0fd9f, type: 3}
+  timeMinReload: 0.2
+  timeMaxReload: 1
+  isPlayOnAwake: 0
 --- !u!1 &4586369934586284694
 GameObject:
   m_ObjectHideFlags: 0
@@ -17503,6 +17930,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5543758018611053965}
   - component: {fileID: 1677887426153078705}
+  - component: {fileID: 6219151300880470094}
   m_Layer: 5
   m_Name: Level_14
   m_TagString: Untagged
@@ -17552,6 +17980,26 @@ MonoBehaviour:
   object_UnavailableEgg: {fileID: 2884991948633500838}
   objectTextEgg: {fileID: 4865625311085494741}
   objectTextChicken: {fileID: 294846266479425776}
+--- !u!114 &6219151300880470094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4651511161771502693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e479f65adc1d8459f2d105631c844e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Chicken_13
+  imageAnimate: {fileID: 2717670687893650383}
+  sprites:
+  - {fileID: 21300000, guid: 1da723620f5f3e344b978b713fd34427, type: 3}
+  - {fileID: 21300000, guid: 7937c25f467b17346af8e917dba0fd9f, type: 3}
+  timeMinReload: 0.2
+  timeMaxReload: 1
+  isPlayOnAwake: 0
 --- !u!1 &4667133512727035097
 GameObject:
   m_ObjectHideFlags: 0
@@ -18178,6 +18626,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7518250618953478688}
   - component: {fileID: 8997365785460760305}
+  - component: {fileID: 3588377695386787684}
   m_Layer: 5
   m_Name: Level_9
   m_TagString: Untagged
@@ -18227,6 +18676,26 @@ MonoBehaviour:
   object_UnavailableEgg: {fileID: 5850041012069802951}
   objectTextEgg: {fileID: 4444274916685293747}
   objectTextChicken: {fileID: 4522946818191394542}
+--- !u!114 &3588377695386787684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4800745999016400953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e479f65adc1d8459f2d105631c844e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Chicken_8
+  imageAnimate: {fileID: 4401158915268304634}
+  sprites:
+  - {fileID: 21300000, guid: 1da723620f5f3e344b978b713fd34427, type: 3}
+  - {fileID: 21300000, guid: 7937c25f467b17346af8e917dba0fd9f, type: 3}
+  timeMinReload: 0.2
+  timeMaxReload: 1
+  isPlayOnAwake: 0
 --- !u!1 &4810694151495338385
 GameObject:
   m_ObjectHideFlags: 0
@@ -18846,6 +19315,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1405262316945001632}
   - component: {fileID: 3866962487313521016}
+  - component: {fileID: 6090940036020995831}
   m_Layer: 5
   m_Name: Level_25
   m_TagString: Untagged
@@ -18895,6 +19365,26 @@ MonoBehaviour:
   object_UnavailableEgg: {fileID: 3678944673386040503}
   objectTextEgg: {fileID: 5530380526605846595}
   objectTextChicken: {fileID: 4512985472426323705}
+--- !u!114 &6090940036020995831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4946668674370441393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e479f65adc1d8459f2d105631c844e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Chicken_24
+  imageAnimate: {fileID: 8616185839437813490}
+  sprites:
+  - {fileID: 21300000, guid: 1da723620f5f3e344b978b713fd34427, type: 3}
+  - {fileID: 21300000, guid: 7937c25f467b17346af8e917dba0fd9f, type: 3}
+  timeMinReload: 0.2
+  timeMaxReload: 1
+  isPlayOnAwake: 0
 --- !u!1 &5009675780149755129
 GameObject:
   m_ObjectHideFlags: 0
@@ -20061,6 +20551,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1978662823255027835}
   - component: {fileID: 189312222285629578}
+  - component: {fileID: 8742885733785443405}
   m_Layer: 5
   m_Name: Level_5
   m_TagString: Untagged
@@ -20110,6 +20601,26 @@ MonoBehaviour:
   object_UnavailableEgg: {fileID: 3925106239073184930}
   objectTextEgg: {fileID: 7894034371393640583}
   objectTextChicken: {fileID: 8618139243358586284}
+--- !u!114 &8742885733785443405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5399766486233389433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e479f65adc1d8459f2d105631c844e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Chicken_4
+  imageAnimate: {fileID: 5907446793678048481}
+  sprites:
+  - {fileID: 21300000, guid: 1da723620f5f3e344b978b713fd34427, type: 3}
+  - {fileID: 21300000, guid: 7937c25f467b17346af8e917dba0fd9f, type: 3}
+  timeMinReload: 0.2
+  timeMaxReload: 1
+  isPlayOnAwake: 0
 --- !u!1 &5401935759098767635
 GameObject:
   m_ObjectHideFlags: 0
@@ -20699,6 +21210,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1359155536662223797}
   - component: {fileID: 1102966987523438815}
+  - component: {fileID: 1467818061723273892}
   m_Layer: 5
   m_Name: Level_29
   m_TagString: Untagged
@@ -20748,6 +21260,26 @@ MonoBehaviour:
   object_UnavailableEgg: {fileID: 1423869240642991280}
   objectTextEgg: {fileID: 5228544785149407406}
   objectTextChicken: {fileID: 3019030177649160638}
+--- !u!114 &1467818061723273892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5712170722505968906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e479f65adc1d8459f2d105631c844e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Chicken_28
+  imageAnimate: {fileID: 2964536247759373334}
+  sprites:
+  - {fileID: 21300000, guid: 1da723620f5f3e344b978b713fd34427, type: 3}
+  - {fileID: 21300000, guid: 7937c25f467b17346af8e917dba0fd9f, type: 3}
+  timeMinReload: 0.2
+  timeMaxReload: 1
+  isPlayOnAwake: 0
 --- !u!1 &5768486017217116068
 GameObject:
   m_ObjectHideFlags: 0
@@ -20893,6 +21425,7 @@ GameObject:
   - component: {fileID: 2187301053990123736}
   - component: {fileID: 5541728034900460670}
   - component: {fileID: 1934115299156594148}
+  - component: {fileID: 4700131633870112079}
   m_Layer: 5
   m_Name: "\u041A\u043E\u0440\u0437\u0438\u043D\u0430"
   m_TagString: Untagged
@@ -20957,6 +21490,26 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4700131633870112079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5803997513234739117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e479f65adc1d8459f2d105631c844e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Korzina
+  imageAnimate: {fileID: 1934115299156594148}
+  sprites:
+  - {fileID: 21300000, guid: 509bd9d0d92eb7044b6940822580a70b, type: 3}
+  - {fileID: 21300000, guid: 154a8a68874091d4dae02e7ca9ad88a7, type: 3}
+  timeMinReload: 0.2
+  timeMaxReload: 1
+  isPlayOnAwake: 1
 --- !u!1 &5850041012069802951
 GameObject:
   m_ObjectHideFlags: 0
@@ -22148,6 +22701,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1628789164514383578}
   - component: {fileID: 7352301911974112441}
+  - component: {fileID: 4829636542171639882}
   m_Layer: 5
   m_Name: Level_19
   m_TagString: Untagged
@@ -22197,6 +22751,26 @@ MonoBehaviour:
   object_UnavailableEgg: {fileID: 3313825150367994301}
   objectTextEgg: {fileID: 7118255647328247511}
   objectTextChicken: {fileID: 5080601503353871131}
+--- !u!114 &4829636542171639882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6181182778699271535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e479f65adc1d8459f2d105631c844e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Chicken_18
+  imageAnimate: {fileID: 2527634933868768487}
+  sprites:
+  - {fileID: 21300000, guid: 1da723620f5f3e344b978b713fd34427, type: 3}
+  - {fileID: 21300000, guid: 7937c25f467b17346af8e917dba0fd9f, type: 3}
+  timeMinReload: 0.2
+  timeMaxReload: 1
+  isPlayOnAwake: 0
 --- !u!1 &6196063544606405518
 GameObject:
   m_ObjectHideFlags: 0
@@ -22970,6 +23544,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5366329379575215263}
   - component: {fileID: 8896502325358217792}
+  - component: {fileID: 8920190515238198810}
   m_Layer: 5
   m_Name: Level_24
   m_TagString: Untagged
@@ -23019,6 +23594,26 @@ MonoBehaviour:
   object_UnavailableEgg: {fileID: 7012752670355806217}
   objectTextEgg: {fileID: 7698768866924959084}
   objectTextChicken: {fileID: 6933456373579263396}
+--- !u!114 &8920190515238198810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6576420168027584178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e479f65adc1d8459f2d105631c844e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Chicken_23
+  imageAnimate: {fileID: 5006078617337782215}
+  sprites:
+  - {fileID: 21300000, guid: 1da723620f5f3e344b978b713fd34427, type: 3}
+  - {fileID: 21300000, guid: 7937c25f467b17346af8e917dba0fd9f, type: 3}
+  timeMinReload: 0.2
+  timeMaxReload: 1
+  isPlayOnAwake: 0
 --- !u!1 &6589595972751970483
 GameObject:
   m_ObjectHideFlags: 0
@@ -23423,6 +24018,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6134894955141538716}
   - component: {fileID: 1574476188414841886}
+  - component: {fileID: 1517646522625155187}
   m_Layer: 5
   m_Name: Level_13
   m_TagString: Untagged
@@ -23472,6 +24068,26 @@ MonoBehaviour:
   object_UnavailableEgg: {fileID: 4491800358876814660}
   objectTextEgg: {fileID: 2044826280529002015}
   objectTextChicken: {fileID: 1755389716563654555}
+--- !u!114 &1517646522625155187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6642186321955293580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e479f65adc1d8459f2d105631c844e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Chicken_12
+  imageAnimate: {fileID: 3116152021620584450}
+  sprites:
+  - {fileID: 21300000, guid: 1da723620f5f3e344b978b713fd34427, type: 3}
+  - {fileID: 21300000, guid: 7937c25f467b17346af8e917dba0fd9f, type: 3}
+  timeMinReload: 0.2
+  timeMaxReload: 1
+  isPlayOnAwake: 0
 --- !u!1 &6674267383493504496
 GameObject:
   m_ObjectHideFlags: 0
@@ -23951,6 +24567,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1568362929130240875}
   - component: {fileID: 9117618066981314455}
+  - component: {fileID: 3435730715426708879}
   m_Layer: 5
   m_Name: Level_11
   m_TagString: Untagged
@@ -24000,6 +24617,26 @@ MonoBehaviour:
   object_UnavailableEgg: {fileID: 1187618893825882830}
   objectTextEgg: {fileID: 2247881383134949895}
   objectTextChicken: {fileID: 8651823244188539299}
+--- !u!114 &3435730715426708879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6853515141978408400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e479f65adc1d8459f2d105631c844e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Chicken_10
+  imageAnimate: {fileID: 4539446520930033480}
+  sprites:
+  - {fileID: 21300000, guid: 1da723620f5f3e344b978b713fd34427, type: 3}
+  - {fileID: 21300000, guid: 7937c25f467b17346af8e917dba0fd9f, type: 3}
+  timeMinReload: 0.2
+  timeMaxReload: 1
+  isPlayOnAwake: 0
 --- !u!1 &6862943904613748761
 GameObject:
   m_ObjectHideFlags: 0
@@ -26177,6 +26814,7 @@ GameObject:
   m_Component:
   - component: {fileID: 918078051859834425}
   - component: {fileID: 3541318528259102407}
+  - component: {fileID: 6603955167124108907}
   m_Layer: 5
   m_Name: Level_2
   m_TagString: Untagged
@@ -26226,6 +26864,26 @@ MonoBehaviour:
   object_UnavailableEgg: {fileID: 4443371148431963547}
   objectTextEgg: {fileID: 6093771693204710219}
   objectTextChicken: {fileID: 5931564390860878632}
+--- !u!114 &6603955167124108907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7227444578075192312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e479f65adc1d8459f2d105631c844e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Chicken_1
+  imageAnimate: {fileID: 2729610621793993627}
+  sprites:
+  - {fileID: 21300000, guid: 1da723620f5f3e344b978b713fd34427, type: 3}
+  - {fileID: 21300000, guid: 7937c25f467b17346af8e917dba0fd9f, type: 3}
+  timeMinReload: 0.2
+  timeMaxReload: 1
+  isPlayOnAwake: 0
 --- !u!1 &7354837003873987721
 GameObject:
   m_ObjectHideFlags: 0
@@ -26236,6 +26894,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7700623934439342320}
   - component: {fileID: 6507759137510355283}
+  - component: {fileID: 9110234368273683250}
   m_Layer: 5
   m_Name: Level_30
   m_TagString: Untagged
@@ -26285,6 +26944,26 @@ MonoBehaviour:
   object_UnavailableEgg: {fileID: 3714929745848531332}
   objectTextEgg: {fileID: 4924383134454323111}
   objectTextChicken: {fileID: 3249140926551815138}
+--- !u!114 &9110234368273683250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7354837003873987721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e479f65adc1d8459f2d105631c844e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Chicken_29
+  imageAnimate: {fileID: 4931224614297265156}
+  sprites:
+  - {fileID: 21300000, guid: 1da723620f5f3e344b978b713fd34427, type: 3}
+  - {fileID: 21300000, guid: 7937c25f467b17346af8e917dba0fd9f, type: 3}
+  timeMinReload: 0.2
+  timeMaxReload: 1
+  isPlayOnAwake: 0
 --- !u!1 &7359471058921981386
 GameObject:
   m_ObjectHideFlags: 0
@@ -26491,6 +27170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4528719177797883112}
   - component: {fileID: 7393652911241079503}
+  - component: {fileID: 6261369436220184503}
   m_Layer: 5
   m_Name: Level_10
   m_TagString: Untagged
@@ -26540,6 +27220,26 @@ MonoBehaviour:
   object_UnavailableEgg: {fileID: 864590069762957959}
   objectTextEgg: {fileID: 2360201138837125358}
   objectTextChicken: {fileID: 1254673453365700046}
+--- !u!114 &6261369436220184503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7472384739608201776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e479f65adc1d8459f2d105631c844e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Chicken_9
+  imageAnimate: {fileID: 624105965147351983}
+  sprites:
+  - {fileID: 21300000, guid: 1da723620f5f3e344b978b713fd34427, type: 3}
+  - {fileID: 21300000, guid: 7937c25f467b17346af8e917dba0fd9f, type: 3}
+  timeMinReload: 0.2
+  timeMaxReload: 1
+  isPlayOnAwake: 0
 --- !u!1 &7532261345459588279
 GameObject:
   m_ObjectHideFlags: 0
@@ -26883,6 +27583,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5888694577589516488}
   - component: {fileID: 9070515973717755305}
+  - component: {fileID: 3215819907015838868}
   m_Layer: 5
   m_Name: Level_8
   m_TagString: Untagged
@@ -26932,6 +27633,26 @@ MonoBehaviour:
   object_UnavailableEgg: {fileID: 5009675780149755129}
   objectTextEgg: {fileID: 1645519795948350994}
   objectTextChicken: {fileID: 6928056567583369042}
+--- !u!114 &3215819907015838868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7605002773938663378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e479f65adc1d8459f2d105631c844e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Chicken_7
+  imageAnimate: {fileID: 4650030486318253313}
+  sprites:
+  - {fileID: 21300000, guid: 1da723620f5f3e344b978b713fd34427, type: 3}
+  - {fileID: 21300000, guid: 7937c25f467b17346af8e917dba0fd9f, type: 3}
+  timeMinReload: 0.2
+  timeMaxReload: 1
+  isPlayOnAwake: 0
 --- !u!1 &7608416917930039637
 GameObject:
   m_ObjectHideFlags: 0
@@ -27451,6 +28172,7 @@ GameObject:
   m_Component:
   - component: {fileID: 133693449155901887}
   - component: {fileID: 4315941049864332351}
+  - component: {fileID: 7667141351685344843}
   m_Layer: 5
   m_Name: Level_20
   m_TagString: Untagged
@@ -27500,6 +28222,26 @@ MonoBehaviour:
   object_UnavailableEgg: {fileID: 6559168679114865740}
   objectTextEgg: {fileID: 6634243615597434523}
   objectTextChicken: {fileID: 2132637836178007323}
+--- !u!114 &7667141351685344843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7737230986270790731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e479f65adc1d8459f2d105631c844e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Chicken_19
+  imageAnimate: {fileID: 7785840843024521671}
+  sprites:
+  - {fileID: 21300000, guid: 1da723620f5f3e344b978b713fd34427, type: 3}
+  - {fileID: 21300000, guid: 7937c25f467b17346af8e917dba0fd9f, type: 3}
+  timeMinReload: 0.2
+  timeMaxReload: 1
+  isPlayOnAwake: 0
 --- !u!1 &7779421950509209642
 GameObject:
   m_ObjectHideFlags: 0
@@ -27934,6 +28676,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6048242928773149722}
   - component: {fileID: 4652200370826837923}
+  - component: {fileID: 3917606980101890180}
   m_Layer: 5
   m_Name: Level_4
   m_TagString: Untagged
@@ -27983,6 +28726,26 @@ MonoBehaviour:
   object_UnavailableEgg: {fileID: 5624266662204654437}
   objectTextEgg: {fileID: 4835712873758807071}
   objectTextChicken: {fileID: 2024405582785227516}
+--- !u!114 &3917606980101890180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7896816608854973134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e479f65adc1d8459f2d105631c844e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Chicken_3
+  imageAnimate: {fileID: 3123162367693603126}
+  sprites:
+  - {fileID: 21300000, guid: 1da723620f5f3e344b978b713fd34427, type: 3}
+  - {fileID: 21300000, guid: 7937c25f467b17346af8e917dba0fd9f, type: 3}
+  timeMinReload: 0.2
+  timeMaxReload: 1
+  isPlayOnAwake: 0
 --- !u!1 &7904554712202634635
 GameObject:
   m_ObjectHideFlags: 0
@@ -28277,6 +29040,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6349331642987257292}
   - component: {fileID: 258534508115765969}
+  - component: {fileID: 7647925542830924635}
   m_Layer: 5
   m_Name: Level_22
   m_TagString: Untagged
@@ -28326,6 +29090,26 @@ MonoBehaviour:
   object_UnavailableEgg: {fileID: 5997433280547191125}
   objectTextEgg: {fileID: 8101641009839352666}
   objectTextChicken: {fileID: 2042853467324211070}
+--- !u!114 &7647925542830924635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8024046196479360309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e479f65adc1d8459f2d105631c844e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Chicken_21
+  imageAnimate: {fileID: 27640419794381099}
+  sprites:
+  - {fileID: 21300000, guid: 1da723620f5f3e344b978b713fd34427, type: 3}
+  - {fileID: 21300000, guid: 7937c25f467b17346af8e917dba0fd9f, type: 3}
+  timeMinReload: 0.2
+  timeMaxReload: 1
+  isPlayOnAwake: 0
 --- !u!1 &8026004879416337434
 GameObject:
   m_ObjectHideFlags: 0
@@ -28386,6 +29170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3142454321786044384}
   - component: {fileID: 8635520622494240071}
+  - component: {fileID: 6865269067598388818}
   m_Layer: 5
   m_Name: Level_28
   m_TagString: Untagged
@@ -28435,6 +29220,26 @@ MonoBehaviour:
   object_UnavailableEgg: {fileID: 4328586841731504592}
   objectTextEgg: {fileID: 1809894965220242691}
   objectTextChicken: {fileID: 9142737238422936331}
+--- !u!114 &6865269067598388818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8043311509378329872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e479f65adc1d8459f2d105631c844e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Chicken_27
+  imageAnimate: {fileID: 194563827836642546}
+  sprites:
+  - {fileID: 21300000, guid: 1da723620f5f3e344b978b713fd34427, type: 3}
+  - {fileID: 21300000, guid: 7937c25f467b17346af8e917dba0fd9f, type: 3}
+  timeMinReload: 0.2
+  timeMaxReload: 1
+  isPlayOnAwake: 0
 --- !u!1 &8090187170814524645
 GameObject:
   m_ObjectHideFlags: 0
@@ -29244,6 +30049,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9176109327344005337}
   - component: {fileID: 1207749528439331414}
+  - component: {fileID: 1337021464831722776}
   m_Layer: 5
   m_Name: Level_7
   m_TagString: Untagged
@@ -29293,6 +30099,26 @@ MonoBehaviour:
   object_UnavailableEgg: {fileID: 3904873071802717187}
   objectTextEgg: {fileID: 4355705132974558372}
   objectTextChicken: {fileID: 2119680985698192168}
+--- !u!114 &1337021464831722776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8426523508205765312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e479f65adc1d8459f2d105631c844e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Chicken_6
+  imageAnimate: {fileID: 4975040568937669836}
+  sprites:
+  - {fileID: 21300000, guid: 1da723620f5f3e344b978b713fd34427, type: 3}
+  - {fileID: 21300000, guid: 7937c25f467b17346af8e917dba0fd9f, type: 3}
+  timeMinReload: 0.2
+  timeMaxReload: 1
+  isPlayOnAwake: 0
 --- !u!1 &8487999142522901851
 GameObject:
   m_ObjectHideFlags: 0
@@ -29724,6 +30550,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8145192753602023669}
   - component: {fileID: 840022774524179360}
+  - component: {fileID: 2867288185076304260}
   m_Layer: 5
   m_Name: Level_26
   m_TagString: Untagged
@@ -29773,6 +30600,26 @@ MonoBehaviour:
   object_UnavailableEgg: {fileID: 6927494639585615828}
   objectTextEgg: {fileID: 8173575510621152023}
   objectTextChicken: {fileID: 7695207232968213970}
+--- !u!114 &2867288185076304260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8601803482904257437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e479f65adc1d8459f2d105631c844e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Chicken_25
+  imageAnimate: {fileID: 6235626603557036341}
+  sprites:
+  - {fileID: 21300000, guid: 1da723620f5f3e344b978b713fd34427, type: 3}
+  - {fileID: 21300000, guid: 7937c25f467b17346af8e917dba0fd9f, type: 3}
+  timeMinReload: 0.2
+  timeMaxReload: 1
+  isPlayOnAwake: 0
 --- !u!1 &8609266943472303474
 GameObject:
   m_ObjectHideFlags: 0
@@ -30127,6 +30974,7 @@ GameObject:
   - component: {fileID: 7387759472214182838}
   - component: {fileID: 6632775244465333551}
   - component: {fileID: 3731372261912368569}
+  - component: {fileID: 6907387619651050631}
   m_Layer: 5
   m_Name: "\u041B\u044F\u0433\u0443\u0448\u043A\u0430"
   m_TagString: Untagged
@@ -30191,6 +31039,26 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6907387619651050631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8653352111309681157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e479f65adc1d8459f2d105631c844e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Frog
+  imageAnimate: {fileID: 3731372261912368569}
+  sprites:
+  - {fileID: 21300000, guid: 02ccd70def51b3e4bb8586e98ae213e5, type: 3}
+  - {fileID: 21300000, guid: 0636f66e1dbe7024daecd9baa16cd02e, type: 3}
+  timeMinReload: 0.2
+  timeMaxReload: 1
+  isPlayOnAwake: 1
 --- !u!1 &8653471285744777168
 GameObject:
   m_ObjectHideFlags: 0

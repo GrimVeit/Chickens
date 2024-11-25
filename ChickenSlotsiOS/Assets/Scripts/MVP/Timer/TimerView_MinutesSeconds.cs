@@ -1,7 +1,9 @@
+using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class TimerView : View, ITimerView, IIdentify
+public class TimerView_MinutesSeconds : View, ITimerView, IIdentify
 {
     public string GetID() => id;
 
@@ -10,7 +12,9 @@ public class TimerView : View, ITimerView, IIdentify
 
     public void ChangeTime(int sec)
     {
-        textCount.text = sec.ToString();
+        int minutes = sec / 60;
+        int seconds = sec % 60;
+        textCount.text = $"{minutes}:{seconds:D2}";
     }
 
     public void ActivateTimer()
