@@ -5,10 +5,6 @@ using UnityEngine;
 
 public class GameTrackerModel
 {
-    public event Action OnGoToMiniGame1;
-    public event Action OnGoToMiniGame2;
-    public event Action OnGoToMiniGame3;
-
     public event Action<int> OnSelectGame;
 
     public event Action<int> OnAvailableLevel;
@@ -37,7 +33,15 @@ public class GameTrackerModel
         if (currentGameData != null)
         {
             int curentLevelIndex = gameDatas.IndexOf(currentGameData);
-            OnCurrentLevel?.Invoke(curentLevelIndex);
+
+            if(curentLevelIndex == gameDatas.Count - 1 && gameDatas[curentLevelIndex].IsComplete)
+            {
+                OnAvailableLevel?.Invoke(curentLevelIndex);
+            }
+            else
+            {
+                OnCurrentLevel?.Invoke(curentLevelIndex);
+            }
 
             for (int i = 0; i < gameDatas.Count; i++)
             {
@@ -72,17 +76,5 @@ public class GameTrackerModel
         OnSelectGame?.Invoke(gameData.Number);
 
         soundProvider.PlayOneShot("ClickButton");
-
-        switch (typeGame)
-        {
-            case 0:
-                OnGoToMiniGame1?.Invoke(); break;
-            case 1:
-                OnGoToMiniGame2?.Invoke(); break;
-            case 2:
-                OnGoToMiniGame3?.Invoke(); break;
-            default: 
-                Debug.LogError($"Game {typeGame} not found"); break;
-        }
     }
 }

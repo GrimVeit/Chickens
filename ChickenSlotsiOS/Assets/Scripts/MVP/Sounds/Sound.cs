@@ -131,6 +131,6 @@ public interface ISound
     public void PlayOneShot();
     public void Stop();
     public void SetVolume(float vol);
-    public void SetVolume(float startVolume, float endVolume, Action action = null);
+    public void SetVolume(float startVolume, float endVolume, Action action = null); 
     public void SetPitch(float pitch);
 }

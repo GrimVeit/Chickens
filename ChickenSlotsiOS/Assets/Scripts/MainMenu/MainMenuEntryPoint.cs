@@ -132,7 +132,7 @@ public class MainMenuEntryPoint : MonoBehaviour
 
                 Debug.Log("Success");
 
-                gameProgressPresenter = new GameProgressPresenter(new GameProgressModel());
+                gameProgressPresenter = new GameProgressPresenter(new GameProgressModel(), viewContainer.GetView<GameProgressView_None>());
                 gameProgressPresenter.UnselectAll();
 
                 Debug.Log("Success");
@@ -188,9 +188,9 @@ public class MainMenuEntryPoint : MonoBehaviour
         sceneRoot.GoToMiniGame2_Action += HandleGoToMiniGame2;
         sceneRoot.GoToMiniGame3_Action += HandleGoToMiniGame3;
 
-        gameTrackerPresenter.OnGoToMiniGame1 += HandleGoToMiniGame1_Compaign;
-        gameTrackerPresenter.OnGoToMiniGame2 += HandleGoToMiniGame2_Compaign;
-        gameTrackerPresenter.OnGoToMiniGame3 += HandleGoToMiniGame3_Compaign;
+        gameProgressPresenter.OnGoToGame1 += HandleGoToMiniGame1_Compaign;
+        gameProgressPresenter.OnGoToGame2 += HandleGoToMiniGame2_Compaign;
+        gameProgressPresenter.OnGoToGame3 += HandleGoToMiniGame3_Compaign;
     }
 
     private void DeactivateTransitionsSceneEvents()
@@ -199,9 +199,9 @@ public class MainMenuEntryPoint : MonoBehaviour
         sceneRoot.GoToMiniGame2_Action -= HandleGoToMiniGame2;
         sceneRoot.GoToMiniGame3_Action -= HandleGoToMiniGame3;
 
-        gameTrackerPresenter.OnGoToMiniGame1 -= HandleGoToMiniGame1_Compaign;
-        gameTrackerPresenter.OnGoToMiniGame2 -= HandleGoToMiniGame2_Compaign;
-        gameTrackerPresenter.OnGoToMiniGame3 -= HandleGoToMiniGame3_Compaign;
+        gameProgressPresenter.OnGoToGame1 -= HandleGoToMiniGame1_Compaign;
+        gameProgressPresenter.OnGoToGame2 -= HandleGoToMiniGame2_Compaign;
+        gameProgressPresenter.OnGoToGame3 -= HandleGoToMiniGame3_Compaign;
     }
 
     private void ActivateEvents()
@@ -209,12 +209,12 @@ public class MainMenuEntryPoint : MonoBehaviour
         dailyRewardPresenter.OnGetDailyReward += cooldownDailyRewardPresenter.ActivateCooldown;
         cooldownDailyRewardPresenter.OnClickToActivatedButton += sceneRoot.OpenDailyRewardPanel;
         cooldownDailyRewardPresenter.OnClickToDeactivatedButton += sceneRoot.OpenCooldownDailyRewardPanel;
-        cooldownDailyRewardPresenter.OnAvailable += sceneRoot.CloseCooldownDailyRewardPanel;
+        //cooldownDailyRewardPresenter.OnAvailable += sceneRoot.CloseCooldownDailyRewardPanel;
 
         dailyBonusPresenter.OnActivateSpin += cooldownDailyBonusPresenter.ActivateCooldown;
         cooldownDailyBonusPresenter.OnClickToActivatedButton += sceneRoot.OpenDailyBonusPanel;
         cooldownDailyBonusPresenter.OnClickToDeactivatedButton += sceneRoot.OpenCooldownDailyBonusPanel;
-        cooldownDailyBonusPresenter.OnAvailable += sceneRoot.CloseCooldownDailyBonusPanel;
+        //cooldownDailyBonusPresenter.OnAvailable += sceneRoot.CloseCooldownDailyBonusPanel;
 
         cooldownDailyBonusPresenter.OnUnvailable += dailyBonusPresenter.SetUnvailable;
         cooldownDailyBonusPresenter.OnAvailable += dailyBonusPresenter.SetAvailable;
@@ -225,10 +225,12 @@ public class MainMenuEntryPoint : MonoBehaviour
 
         firebaseAuthenticationPresenter.OnSignUp += firebaseDatabaseRealtimePresenter.CreateEmptyDataToServer;
         firebaseAuthenticationPresenter.OnSignUp += firebaseDatabaseRealtimePresenter.DisplayUsersRecords;
-        firebaseAuthenticationPresenter.OnSignUp += sceneRoot.OpenRegisterPanel;
+        firebaseAuthenticationPresenter.OnSignUp += sceneRoot.OpenMainChoosePanel;
+        firebaseAuthenticationPresenter.OnSignUp += sceneRoot.OpenFooterPanel;
+        firebaseAuthenticationPresenter.OnSignUp += sceneRoot.OpenHeaderPanel;
 
         gameProgressPresenter.OnGetData += gameTrackerPresenter.SetData;
-        gameTrackerPresenter.OnSelectGame += gameProgressPresenter.SelectGame;
+        gameTrackerPresenter.OnSelectGame += gameProgressPresenter.OpenGame;
     }
 
     private void DeactivateEvents()
@@ -254,9 +256,11 @@ public class MainMenuEntryPoint : MonoBehaviour
         firebaseAuthenticationPresenter.OnSignUp -= firebaseDatabaseRealtimePresenter.CreateEmptyDataToServer;
         firebaseAuthenticationPresenter.OnSignUp -= firebaseDatabaseRealtimePresenter.DisplayUsersRecords;
         firebaseAuthenticationPresenter.OnSignUp -= sceneRoot.OpenMainChoosePanel;
+        firebaseAuthenticationPresenter.OnSignUp -= sceneRoot.OpenFooterPanel;
+        firebaseAuthenticationPresenter.OnSignUp -= sceneRoot.OpenHeaderPanel;
 
         gameProgressPresenter.OnGetData -= gameTrackerPresenter.SetData;
-        gameTrackerPresenter.OnSelectGame += gameProgressPresenter.SelectGame;
+        gameTrackerPresenter.OnSelectGame += gameProgressPresenter.OpenGame;
     }
 
     private void OnDestroy()

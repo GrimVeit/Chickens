@@ -1605,6 +1605,7 @@ GameObject:
   - component: {fileID: 2480378352211328189}
   - component: {fileID: 854513169667397440}
   - component: {fileID: 29121827399890551}
+  - component: {fileID: 2188625554085976590}
   m_Layer: 5
   m_Name: MainMenuScene_UI
   m_TagString: Untagged
@@ -2042,6 +2043,18 @@ MonoBehaviour:
   - {fileID: 6865269067598388818}
   - {fileID: 1467818061723273892}
   - {fileID: 9110234368273683250}
+--- !u!114 &2188625554085976590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 634108021261027015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1203ab2492daba478cffc0d64f9bb55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &647516027819808330
 GameObject:
   m_ObjectHideFlags: 0
@@ -8622,7 +8635,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2218284474031852458}
   m_Enabled: 1
-  m_Alpha: 0.02
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0

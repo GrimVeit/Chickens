@@ -46,24 +46,6 @@ public class GameTrackerPresenter
 
     #region Input
 
-    public event Action OnGoToMiniGame1
-    {
-        add { gameTrackerModel.OnGoToMiniGame1 += value; }
-        remove { gameTrackerModel.OnGoToMiniGame1 -= value; }
-    }
-
-    public event Action OnGoToMiniGame2
-    {
-        add { gameTrackerModel.OnGoToMiniGame2 += value; }
-        remove { gameTrackerModel.OnGoToMiniGame2 -= value; }
-    }
-
-    public event Action OnGoToMiniGame3
-    {
-        add { gameTrackerModel.OnGoToMiniGame3 += value; }
-        remove { gameTrackerModel.OnGoToMiniGame3 -= value; }
-    }
-
     public event Action<int> OnSelectGame
     {
         add { gameTrackerModel.OnSelectGame += value; }

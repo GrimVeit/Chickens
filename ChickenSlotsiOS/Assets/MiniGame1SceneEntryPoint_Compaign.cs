@@ -60,7 +60,7 @@ public class MiniGame1SceneEntryPoint_Compaign : MonoBehaviour
         timerMainPresenter = new TimerPresenter(new TimerModel(), viewContainer.GetView<TimerView_MinutesSeconds>("Main"));
         timerMainPresenter.Initialize();
 
-        gameProgressPresenter = new GameProgressPresenter(new GameProgressModel());
+        gameProgressPresenter = new GameProgressPresenter(new GameProgressModel(), viewContainer.GetView<GameProgressView>());
 
         levelPresenter = new LevelMinigame1_Presenter
             (new LevelMinigame1_Model(levelMinigame1_Datas), 

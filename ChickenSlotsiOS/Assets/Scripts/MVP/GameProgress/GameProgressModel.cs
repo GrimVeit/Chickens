@@ -1,13 +1,18 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameProgressModel
 {
+    public event Action OnGoToGame1;
+    public event Action OnGoToGame2;
+    public event Action OnGoToGame3;
+
+    public event Action OnUnlockSecondGame;
+    public event Action OnNoneUnlockSecondGame;
+
     public event Action<int> OnGetSelectGame;
     public event Action<List<GameData>> OnGetData;
 
@@ -34,11 +39,11 @@ public class GameProgressModel
             {
                 if(i == 0)
                 {
-                    Datas.Add(new GameData(i, true, false));
+                    Datas.Add(new GameData(i, true, false, i % 3, true));
                 }
                 else
                 {
-                    Datas.Add(new GameData(i, false, false));
+                    Datas.Add(new GameData(i, true, false, i % 3, true));
                 }
             }
         }
@@ -47,11 +52,11 @@ public class GameProgressModel
         Debug.Log("Start Game:");
         for (int i = 0; i < Datas.Count; i++)
         {
-            Debug.Log($"NumberGame - {Datas[i].Number}, Unlocked - {Datas[i].IsOpen}, Select - {Datas[i].isSelect}");
+            Debug.Log($"NumberGame - {Datas[i].Number}, Unlocked - {Datas[i].IsOpen}, Select - {Datas[i].IsSelect}");
         }
 
         OnGetData?.Invoke(Datas);
-        OnGetSelectGame?.Invoke(SelectGame());
+        OnGetSelectGame?.Invoke(SelectedGame().Number);
     }
 
     public void Dispose()
@@ -60,88 +65,132 @@ public class GameProgressModel
         File.WriteAllText(FilePath, json);
     }
 
+    public void UnselectAll()
+    {
+        Datas
+            .Where(data => data.IsSelect)
+            .ToList()
+            .ForEach(data => data.IsSelect = false);
+
+        Debug.Log("Unselect All:");
+        for (int i = 0; i < Datas.Count; i++)
+        {
+            Debug.Log($"NumberGame - {Datas[i].Number}, Unlocked - {Datas[i].IsOpen}, Select - {Datas[i].IsSelect}");
+        }
+    }
+
     public void UnlockGame(int number)
     {
         var gameData = Datas.FirstOrDefault(gd => gd.Number == number);
 
-        if(gameData != null && !gameData.IsOpen)
+        if (gameData != null && !gameData.IsOpen)
         {
             gameData.IsOpen = true;
-            OnGetData?.Invoke(Datas);
 
             Debug.Log("Unlock Game:" + number);
             for (int i = 0; i < Datas.Count; i++)
             {
-                Debug.Log($"NumberGame - {Datas[i].Number}, Unlocked - {Datas[i].IsOpen}, Select - {Datas[i].isSelect}");
+                Debug.Log($"NumberGame - {Datas[i].Number}, Unlocked - {Datas[i].IsOpen}, Select - {Datas[i].IsSelect}");
             }
 
             return;
         }
     }
 
-    public void SelectGame(int number)
+    public void UnlockSecondGame()
+    {
+        var gameData = Datas[Datas.IndexOf(SelectedGame()) + 1];
+
+        if (gameData != null)
+        {
+            OnUnlockSecondGame?.Invoke();
+
+            gameData.IsOpen = true;
+
+            Debug.Log("Unlock Game:" + gameData.Number);
+            for (int i = 0; i < Datas.Count; i++)
+            {
+                Debug.Log($"NumberGame - {Datas[i].Number}, Unlocked - {Datas[i].IsOpen}, Select - {Datas[i].IsSelect}");
+            }
+
+            return;
+        }
+
+        OnNoneUnlockSecondGame?.Invoke();
+    }
+
+    public void OpenGame(int number)
     {
         UnselectAll();
 
         var gameData = Datas.FirstOrDefault(gd => gd.Number == number);
 
-        if(gameData != null && !gameData.isSelect)
+        if (gameData != null && !gameData.IsSelect)
         {
-            gameData.isSelect = true;
+            gameData.IsSelect = true;
 
             Debug.Log("Select Game:" + number);
             for (int i = 0; i < Datas.Count; i++)
             {
-                Debug.Log($"NumberGame - {Datas[i].Number}, Unlocked - {Datas[i].IsOpen}, Select - {Datas[i].isSelect}");
+                Debug.Log($"NumberGame - {Datas[i].Number}, Unlocked - {Datas[i].IsOpen}, Select - {Datas[i].IsSelect}");
             }
+
+            OpenScene(gameData.Scene);
         }
     }
 
-    public void UnselectAll()
+    public void OpenSecondGame()
     {
-        Datas
-            .Where(data => data.isSelect)
-            .ToList()
-            .ForEach(data => data.isSelect = false);
+        var game = Datas[SelectedGame().Number + 1];
 
-        Debug.Log("Unselect All:");
-        for (int i = 0; i < Datas.Count; i++)
+        if(game != null)
         {
-            Debug.Log($"NumberGame - {Datas[i].Number}, Unlocked - {Datas[i].IsOpen}, Select - {Datas[i].isSelect}");
+            UnselectAll();
+
+            game.IsSelect = true;
+
+            OpenScene(game.Scene);
         }
     }
 
-    public void UnlockSecondGame()
+    public GameData SelectedGame()
     {
-        var gameData = Datas.FirstOrDefault(data => data.isSelect);
+        return Datas.FirstOrDefault(data => data.IsSelect);
+    }
 
-        Datas[Datas.IndexOf(gameData) + 1].IsOpen = true;
-
-        Debug.Log("Unlock Second Game:");
-        for (int i = 0; i < Datas.Count; i++)
+    private void OpenScene(int scene)
+    {
+        switch (scene)
         {
-            Debug.Log($"NumberGame - {Datas[i].Number}, Unlocked - {Datas[i].IsOpen}, Select - {Datas[i].isSelect}");
+            case 0:
+                OnGoToGame1?.Invoke();
+                break;
+            case 1:
+                OnGoToGame2?.Invoke();
+                break;
+            case 2:
+                OnGoToGame3?.Invoke();
+                break;
         }
-    }
-
-    public int SelectGame()
-    {
-        return Datas.FirstOrDefault(data => data.isSelect).Number;
     }
 }
 
-[System.Serializable]
+[Serializable]
 public class GameData
 {
     public int Number;
     public bool IsOpen;
-    public bool isSelect;
+    public bool IsSelect;
+    public bool IsComplete;
+    public int Scene;
 
-    public GameData(int number, bool isOpen, bool isSelect)
+    public GameData(int number, bool isOpen, bool isSelect, int scene, bool isComplete)
     {
         Number = number;
         IsOpen = isOpen;
-        this.isSelect = isSelect;
+        IsSelect = isSelect;
+        Scene = scene;
+        IsComplete = isComplete;
     }
 }
 

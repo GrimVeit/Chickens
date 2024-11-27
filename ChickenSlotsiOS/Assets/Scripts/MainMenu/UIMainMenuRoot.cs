@@ -189,6 +189,7 @@ public class UIMainMenuRoot : MonoBehaviour
 
     public void OpenHeaderPanel()
     {
+        Debug.Log("Open");
         OpenOtherPanel(headerPanel);
     }
 
