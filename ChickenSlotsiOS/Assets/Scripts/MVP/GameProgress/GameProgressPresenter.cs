@@ -39,10 +39,10 @@ public class GameProgressPresenter : IGameUnlocker
 
     private void DeactivateEvents()
     {
-        gameProgressView.OnClickToSecondGame += gameProgressModel.OpenSecondGame;
+        gameProgressView.OnClickToSecondGame -= gameProgressModel.OpenSecondGame;
 
-        gameProgressModel.OnNoneUnlockSecondGame += gameProgressView.DeactivateSecondGameButton;
-        gameProgressModel.OnUnlockSecondGame += gameProgressView.ActivateSecondGameButton;
+        gameProgressModel.OnNoneUnlockSecondGame -= gameProgressView.DeactivateSecondGameButton;
+        gameProgressModel.OnUnlockSecondGame -= gameProgressView.ActivateSecondGameButton;
     }
 
     #region Input

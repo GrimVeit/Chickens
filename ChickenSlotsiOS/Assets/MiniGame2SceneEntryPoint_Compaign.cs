@@ -86,6 +86,9 @@ public class MiniGame2SceneEntryPoint_Compaign : MonoBehaviour
     {
         sceneRoot.GoToMainMenu += HandleGoToMainMenu;
         sceneRoot.TryAgain += HandleGoToTryAgain;
+        gameProgressPresenter.OnGoToGame1 += HandleGoToGame1;
+        gameProgressPresenter.OnGoToGame2 += HandleGoToGame2;
+        gameProgressPresenter.OnGoToGame3 += HandleGoToGame3;
 
         gameProgressPresenter.OnGetSelectGame += levelPresenter.ChooseLevel;
         levelPresenter.OnSetSpawnerData += eggCatcherPresenter.SetTimerSpawnerData;
@@ -112,6 +115,9 @@ public class MiniGame2SceneEntryPoint_Compaign : MonoBehaviour
     {
         sceneRoot.GoToMainMenu -= HandleGoToMainMenu;
         sceneRoot.TryAgain -= HandleGoToTryAgain;
+        gameProgressPresenter.OnGoToGame1 -= HandleGoToGame1;
+        gameProgressPresenter.OnGoToGame2 -= HandleGoToGame2;
+        gameProgressPresenter.OnGoToGame3 -= HandleGoToGame3;
 
         gameProgressPresenter.OnGetSelectGame -= levelPresenter.ChooseLevel;
         levelPresenter.OnSetSpawnerData -= eggCatcherPresenter.SetTimerSpawnerData;
@@ -165,17 +171,33 @@ public class MiniGame2SceneEntryPoint_Compaign : MonoBehaviour
 
     public event Action GoToMainMenu;
     public event Action GoToTryAgain;
+    public event Action GoToGame1;
+    public event Action GoToGame2;
+    public event Action GoToGame3;
 
     private void HandleGoToMainMenu()
     {
-        Dispose();
         GoToMainMenu?.Invoke();
     }
 
     private void HandleGoToTryAgain()
     {
-        Dispose();
         GoToTryAgain?.Invoke();
+    }
+
+    private void HandleGoToGame1()
+    {
+        GoToGame1?.Invoke();
+    }
+
+    private void HandleGoToGame2()
+    {
+        GoToGame2?.Invoke();
+    }
+
+    private void HandleGoToGame3()
+    {
+        GoToGame3?.Invoke();
     }
 
     #endregion

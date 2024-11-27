@@ -231,6 +231,10 @@ public class GameEntryPoint
         sceneEntryPoint.GoToMainMenu += () => coroutines.StartCoroutine(LoadAndStartMainMenu());
         sceneEntryPoint.GoToTryAgain += () => coroutines.StartCoroutine(LoadAndStartSceneMiniGame1_Compaign());
 
+        sceneEntryPoint.GoToGame1 += () => coroutines.StartCoroutine(LoadAndStartSceneMiniGame1_Compaign());
+        sceneEntryPoint.GoToGame2 += () => coroutines.StartCoroutine(LoadAndStartSceneMiniGame2_Compaign());
+        sceneEntryPoint.GoToGame3 += () => coroutines.StartCoroutine(LoadAndStartSceneMiniGame3_Compaign());
+
         Debug.Log("ClosePanel_Transit");
         yield return rootView.HideLoadingScreen();
     }
@@ -254,6 +258,10 @@ public class GameEntryPoint
         sceneEntryPoint.GoToMainMenu += () => coroutines.StartCoroutine(LoadAndStartMainMenu());
         sceneEntryPoint.GoToTryAgain += () => coroutines.StartCoroutine(LoadAndStartSceneMiniGame2_Compaign());
 
+        sceneEntryPoint.GoToGame1 += () => coroutines.StartCoroutine(LoadAndStartSceneMiniGame1_Compaign());
+        sceneEntryPoint.GoToGame2 += () => coroutines.StartCoroutine(LoadAndStartSceneMiniGame2_Compaign());
+        sceneEntryPoint.GoToGame3 += () => coroutines.StartCoroutine(LoadAndStartSceneMiniGame3_Compaign());
+
         Debug.Log("ClosePanel_Transit");
         yield return rootView.HideLoadingScreen();
     }
@@ -276,6 +284,10 @@ public class GameEntryPoint
 
         sceneEntryPoint.GoToMainMenu += () => coroutines.StartCoroutine(LoadAndStartMainMenu());
         sceneEntryPoint.GoToTryAgain += () => coroutines.StartCoroutine(LoadAndStartSceneMiniGame3_Compaign());
+
+        sceneEntryPoint.GoToGame1 += () => coroutines.StartCoroutine(LoadAndStartSceneMiniGame1_Compaign());
+        sceneEntryPoint.GoToGame2 += () => coroutines.StartCoroutine(LoadAndStartSceneMiniGame2_Compaign());
+        sceneEntryPoint.GoToGame3 += () => coroutines.StartCoroutine(LoadAndStartSceneMiniGame3_Compaign());
 
         Debug.Log("ClosePanel_Transit");
         yield return rootView.HideLoadingScreen();
