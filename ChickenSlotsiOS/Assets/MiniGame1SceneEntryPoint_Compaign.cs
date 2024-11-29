@@ -22,6 +22,7 @@ public class MiniGame1SceneEntryPoint_Compaign : MonoBehaviour
     private TimerPresenter timerMainPresenter;
 
     private GameProgressPresenter gameProgressPresenter;
+    private GameHistoryPresenter gameHistoryPresenter;
 
     private LevelMinigame1_Presenter levelPresenter;
 
@@ -67,6 +68,9 @@ public class MiniGame1SceneEntryPoint_Compaign : MonoBehaviour
             viewContainer.GetView<LevelMinigame1_View>());
         levelPresenter.Initialize();
 
+        gameHistoryPresenter = new GameHistoryPresenter(new GameHistoryModel(PlayerPrefsKeys.GAME_HISTORY_TYPE));
+        gameHistoryPresenter.Initialize();
+
         ActivateEvents();
 
         gameProgressPresenter.Initialize();
@@ -75,6 +79,7 @@ public class MiniGame1SceneEntryPoint_Compaign : MonoBehaviour
         sceneRoot.SetParticleProvider(particleEffectPresenter);
         sceneRoot.Initialize();
 
+        gameHistoryPresenter.SetCurrentTypeGame(TypeGame.Campaign);
         timerPreparationPresenter.ActivateTimer(3);
         basketPresenter.Start();
     }
@@ -103,6 +108,7 @@ public class MiniGame1SceneEntryPoint_Compaign : MonoBehaviour
 
         timerMainPresenter.OnStopTimer += basketPresenter.Stop;
         timerMainPresenter.OnStopTimer += sceneRoot.OpenWinGamePanel;
+        timerMainPresenter.OnStopTimer += gameProgressPresenter.CompleteGame;
         timerMainPresenter.OnStopTimer += gameProgressPresenter.UnlockSecondGame;
         timerMainPresenter.OnStopTimer += eggCatcherPresenter.DeactivateSpawner;
 
@@ -132,6 +138,7 @@ public class MiniGame1SceneEntryPoint_Compaign : MonoBehaviour
 
         timerMainPresenter.OnStopTimer -= basketPresenter.Stop;
         timerMainPresenter.OnStopTimer -= sceneRoot.OpenWinGamePanel;
+        timerMainPresenter.OnStopTimer -= gameProgressPresenter.CompleteGame;
         timerMainPresenter.OnStopTimer -= gameProgressPresenter.UnlockSecondGame;
         timerMainPresenter.OnStopTimer -= eggCatcherPresenter.DeactivateSpawner;
     }
@@ -142,7 +149,6 @@ public class MiniGame1SceneEntryPoint_Compaign : MonoBehaviour
         DeactivateEvents();
 
         sceneRoot?.Dispose();
-        soundPresenter?.Dispose();
         scorePresenter?.Dispose();
         eggCatcherPresenter?.Dispose();
         basketPresenter?.Dispose();
@@ -152,11 +158,17 @@ public class MiniGame1SceneEntryPoint_Compaign : MonoBehaviour
         timerMainPresenter?.Dispose();
         levelPresenter?.Dispose();
         gameProgressPresenter?.Dispose();
+        gameHistoryPresenter?.Dispose();
     }
 
     private void OnDestroy()
     {
         Dispose();
+    }
+
+    private void OnApplicationQuit()
+    {
+        gameHistoryPresenter.DeleteHistory();
     }
 
     private void ActivateMainTimer()
@@ -175,26 +187,31 @@ public class MiniGame1SceneEntryPoint_Compaign : MonoBehaviour
 
     private void HandleGoToMainMenu()
     {
+        soundPresenter?.Dispose();
         GoToMainMenu?.Invoke();
     }
 
     private void HandleGoToTryAgain()
     {
+        soundPresenter?.Dispose();
         GoToTryAgain?.Invoke();
     }
 
     private void HandleGoToGame1()
     {
+        soundPresenter?.Dispose();
         GoToGame1?.Invoke();
     }
 
     private void HandleGoToGame2()
     {
+        soundPresenter?.Dispose();
         GoToGame2?.Invoke();
     }
 
     private void HandleGoToGame3()
     {
+        soundPresenter?.Dispose();
         GoToGame3?.Invoke();
     }
 

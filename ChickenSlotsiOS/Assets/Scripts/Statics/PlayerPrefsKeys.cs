@@ -14,4 +14,6 @@ public static class PlayerPrefsKeys
 
     public const string HEALTH_COUNT = "COUNT_HEALTH";
     public const string GAME_RECORD = "GAME_RECORD";
+
+    public const string GAME_HISTORY_TYPE = "GAME_HISTORY_TYPE";
 }

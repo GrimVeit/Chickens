@@ -99,6 +99,13 @@ public class GameProgressModel
 
     public void UnlockSecondGame()
     {
+        if(Datas.IndexOf(SelectedGame()) == Datas.Count - 1)
+        {
+            OnNoneUnlockSecondGame?.Invoke();
+
+            return;
+        }
+
         var gameData = Datas[Datas.IndexOf(SelectedGame()) + 1];
 
         if (gameData != null)
@@ -115,8 +122,6 @@ public class GameProgressModel
 
             return;
         }
-
-        OnNoneUnlockSecondGame?.Invoke();
     }
 
     public void OpenGame(int number)
@@ -151,6 +156,11 @@ public class GameProgressModel
 
             OpenScene(game.Scene);
         }
+    }
+
+    public void CompleteGame()
+    {
+        SelectedGame().IsComplete = true;
     }
 
     public GameData SelectedGame()

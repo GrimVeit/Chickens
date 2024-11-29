@@ -19,6 +19,8 @@ public class MiniGame2SceneEntryPoint : MonoBehaviour
     private PointAnimationPresenter pointAnimationPresenter;
     private TimerPresenter timerPresenter;
 
+    private GameHistoryPresenter gameHistoryPresenter;
+
     public void Run(UIRootView uIRootView)
     {
         sceneRoot = Instantiate(sceneRootPrefab);
@@ -51,12 +53,16 @@ public class MiniGame2SceneEntryPoint : MonoBehaviour
         timerPresenter = new TimerPresenter(new TimerModel(), viewContainer.GetView<TimerView>());
         timerPresenter.Initialize();
 
+        gameHistoryPresenter = new GameHistoryPresenter(new GameHistoryModel(PlayerPrefsKeys.GAME_HISTORY_TYPE));
+        gameHistoryPresenter.Initialize();
+
         ActivateEvents();
 
         sceneRoot.SetSoundProvider(soundPresenter);
         sceneRoot.SetParticleProvider(particleEffectPresenter);
         sceneRoot.Initialize();
 
+        gameHistoryPresenter.SetCurrentTypeGame(TypeGame.Arcada);
         timerPresenter.ActivateTimer(3);
         basketPresenter.Start();
     }
@@ -96,13 +102,23 @@ public class MiniGame2SceneEntryPoint : MonoBehaviour
         DeactivateEvents();
 
         sceneRoot?.Dispose();
-        soundPresenter?.Dispose();
         scorePresenter?.Dispose();
         eggCatcherPresenter?.Dispose();
         basketPresenter?.Dispose();
         bankPresenter?.Dispose();
         pointAnimationPresenter?.Dispose();
         timerPresenter?.Dispose();
+        gameHistoryPresenter?.Dispose();
+    }
+
+    private void OnDestroy()
+    {
+        Dispose();
+    }
+
+    private void OnApplicationQuit()
+    {
+        gameHistoryPresenter.DeleteHistory();
     }
 
     #region Input
@@ -111,7 +127,7 @@ public class MiniGame2SceneEntryPoint : MonoBehaviour
 
     private void HandleGoToMainMenu()
     {
-        Dispose();
+        soundPresenter?.Dispose();
         GoToMainMenu?.Invoke();
     }
 

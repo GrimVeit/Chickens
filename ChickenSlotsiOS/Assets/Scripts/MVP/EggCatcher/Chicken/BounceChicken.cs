@@ -73,7 +73,7 @@ public class BounceChicken : Chicken
             currentJumpPower = Mathf.Lerp(maxJumpPower, minJumpPower, elapsedTime / durationChanges);
             currentJumpDuration = Mathf.Lerp(maxJumpDuration, minJumpDuration, elapsedTime / durationChanges);
 
-            Debug.Log("Power - " + currentJumpPower + ", Duration in air - " + currentJumpDuration);
+            //Debug.Log("Power - " + currentJumpPower + ", Duration in air - " + currentJumpDuration);
 
             elapsedTime += Time.deltaTime;
 

@@ -109,6 +109,9 @@ public class Sound : ISound
     private IEnumerator ChangeVolume_Coroutine(float startVolume, float endVolume, Action actionOnend)
     {
         if (audioSource == null) yield break;
+
+        if(audioSource.volume == endVolume) yield break;
+
         audioSource.volume = startVolume;
         float elapsedTime = 0f;
 

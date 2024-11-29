@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MiniGame3SceneEntryPoint_Compaign : MonoBehaviour
@@ -25,6 +23,7 @@ public class MiniGame3SceneEntryPoint_Compaign : MonoBehaviour
     private TimerPresenter timerMainPresenter;
 
     private GameProgressPresenter gameProgressPresenter;
+    private GameHistoryPresenter gameHistoryPresenter;
 
     private LevelMinigame3_Presenter levelPresenter;
 
@@ -70,6 +69,9 @@ public class MiniGame3SceneEntryPoint_Compaign : MonoBehaviour
             viewContainer.GetView<LevelMinigame3_View>());
         levelPresenter.Initailize();
 
+        gameHistoryPresenter = new GameHistoryPresenter(new GameHistoryModel(PlayerPrefsKeys.GAME_HISTORY_TYPE));
+        gameHistoryPresenter.Initialize();
+
         ActivateEvents();
 
         gameProgressPresenter.Initialize();
@@ -78,6 +80,7 @@ public class MiniGame3SceneEntryPoint_Compaign : MonoBehaviour
         sceneRoot.SetParticleProvider(particleEffectPresenter);
         sceneRoot.Initialize();
 
+        gameHistoryPresenter.SetCurrentTypeGame(TypeGame.Campaign);
         timerPreparationPresenter.ActivateTimer(3);
         basketPresenter.Start();
     }
@@ -107,8 +110,9 @@ public class MiniGame3SceneEntryPoint_Compaign : MonoBehaviour
 
         timerMainPresenter.OnStopTimer += basketPresenter.Stop;
         timerMainPresenter.OnStopTimer += sceneRoot.OpenWinGamePanel;
-        timerMainPresenter.OnStopTimer += gameProgressPresenter.UnlockSecondGame;
+        timerMainPresenter.OnStopTimer += gameProgressPresenter.CompleteGame;
         timerMainPresenter.OnStopTimer += eggCatcherPresenter.DeactivateSpawner;
+        timerMainPresenter.OnStopTimer += gameProgressPresenter.UnlockSecondGame;
 
     }
 
@@ -137,6 +141,7 @@ public class MiniGame3SceneEntryPoint_Compaign : MonoBehaviour
 
         timerMainPresenter.OnStopTimer -= basketPresenter.Stop;
         timerMainPresenter.OnStopTimer -= sceneRoot.OpenWinGamePanel;
+        timerMainPresenter.OnStopTimer -= gameProgressPresenter.CompleteGame;
         timerMainPresenter.OnStopTimer -= gameProgressPresenter.UnlockSecondGame;
         timerMainPresenter.OnStopTimer -= eggCatcherPresenter.DeactivateSpawner;
     }
@@ -147,7 +152,6 @@ public class MiniGame3SceneEntryPoint_Compaign : MonoBehaviour
         DeactivateEvents();
 
         sceneRoot?.Dispose();
-        soundPresenter?.Dispose();
         scorePresenter?.Dispose();
         bankPresenter?.Dispose();
         basketPresenter?.Dispose();
@@ -157,6 +161,7 @@ public class MiniGame3SceneEntryPoint_Compaign : MonoBehaviour
         timerMainPresenter?.Dispose();
         gameProgressPresenter?.Dispose();
         levelPresenter?.Dispose();
+        gameHistoryPresenter?.Dispose();
     }
 
     private void OnDestroy()
@@ -169,6 +174,11 @@ public class MiniGame3SceneEntryPoint_Compaign : MonoBehaviour
         timerMainPresenter.ActivateTimer(10);
     }
 
+    private void OnApplicationQuit()
+    {
+        gameHistoryPresenter.DeleteHistory();
+    }
+
     #region Input
 
     public event Action GoToMainMenu;
@@ -179,26 +189,31 @@ public class MiniGame3SceneEntryPoint_Compaign : MonoBehaviour
 
     private void HandleGoToMainMenu()
     {
+        soundPresenter?.Dispose();
         GoToMainMenu?.Invoke();
     }
 
     private void HandleGoToTryAgain()
     {
+        soundPresenter?.Dispose();
         GoToTryAgain?.Invoke();
     }
 
     private void HandleGoToGame1()
     {
+        soundPresenter?.Dispose();
         GoToGame1?.Invoke();
     }
 
     private void HandleGoToGame2()
     {
+        soundPresenter?.Dispose();
         GoToGame2?.Invoke();
     }
 
     private void HandleGoToGame3()
     {
+        soundPresenter?.Dispose();
         GoToGame3?.Invoke();
     }
 

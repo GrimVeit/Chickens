@@ -57,8 +57,8 @@ public class UIMainMenuRoot : MonoBehaviour
         chooseGamePanel.OnClickToChooseArcadaGameButton += OpenArcadaPanel;
         chooseGamePanel.OnClickToChooseCompaignGameButton += OpenCompaignPanel;
 
-        arcadaPanel.OnGoToBack += OpenMainChoosePanel;
-        compaignPanel.OnGoToBack += OpenMainChoosePanel;
+        arcadaPanel.OnGoToBack += OpenMainPanelPanel;
+        compaignPanel.OnGoToBack += OpenMainPanelPanel;
 
         arcadaPanel.GoToMiniGame1_Action += HandlerGoToMiniGame1;
         arcadaPanel.GoToMiniGame2_Action += HandlerGoToMiniGame2;
@@ -82,8 +82,8 @@ public class UIMainMenuRoot : MonoBehaviour
         chooseGamePanel.OnClickToChooseArcadaGameButton -= OpenArcadaPanel;
         chooseGamePanel.OnClickToChooseCompaignGameButton -= OpenCompaignPanel;
 
-        arcadaPanel.OnGoToBack -= OpenMainChoosePanel;
-        compaignPanel.OnGoToBack -= OpenMainChoosePanel;
+        arcadaPanel.OnGoToBack -= OpenMainPanelPanel;
+        compaignPanel.OnGoToBack -= OpenMainPanelPanel;
 
         arcadaPanel.GoToMiniGame1_Action -= HandlerGoToMiniGame1;
         arcadaPanel.GoToMiniGame2_Action -= HandlerGoToMiniGame2;
@@ -161,12 +161,10 @@ public class UIMainMenuRoot : MonoBehaviour
         OpenPanel(compaignPanel);
     }
 
-    public void OpenMainChoosePanel()
+    public void OpenMainPanelPanel()
     {
         OpenPanel(chooseGamePanel); 
     }
-
-
 
     public void OpenRegisterPanel()
     {

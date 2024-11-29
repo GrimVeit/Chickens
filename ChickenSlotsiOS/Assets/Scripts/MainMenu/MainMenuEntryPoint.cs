@@ -30,6 +30,7 @@ public class MainMenuEntryPoint : MonoBehaviour
 
     private GameProgressPresenter gameProgressPresenter;
     private GameTrackerPresenter gameTrackerPresenter;
+    private GameHistoryPresenter gameHistoryPresenter;
 
     private SpriteAnimatorPresenter spriteAnimatorPresenter;
 
@@ -143,6 +144,9 @@ public class MainMenuEntryPoint : MonoBehaviour
                 spriteAnimatorPresenter = new SpriteAnimatorPresenter(new SpriteAnimatorModel(), viewContainer.GetView<SpriteAnimatorView>());
                 spriteAnimatorPresenter.Initialize();
 
+                gameHistoryPresenter = new GameHistoryPresenter(new GameHistoryModel(PlayerPrefsKeys.GAME_HISTORY_TYPE));
+                
+
                 Debug.Log("Success");
 
                 sceneRoot.SetSoundProvider(soundPresenter);
@@ -155,6 +159,7 @@ public class MainMenuEntryPoint : MonoBehaviour
                 Debug.Log("Success");
 
                 gameProgressPresenter.Initialize();
+                gameHistoryPresenter.Initialize();
 
                 Debug.Log("Success");
 
@@ -164,7 +169,7 @@ public class MainMenuEntryPoint : MonoBehaviour
 
                 if (firebaseAuthenticationPresenter.CheckAuthenticated())
                 {
-                    sceneRoot.OpenMainChoosePanel();
+                    gameHistoryPresenter.Initialize();
                     sceneRoot.OpenHeaderPanel();
                     sceneRoot.OpenFooterPanel();
                 }
@@ -225,12 +230,16 @@ public class MainMenuEntryPoint : MonoBehaviour
 
         firebaseAuthenticationPresenter.OnSignUp += firebaseDatabaseRealtimePresenter.CreateEmptyDataToServer;
         firebaseAuthenticationPresenter.OnSignUp += firebaseDatabaseRealtimePresenter.DisplayUsersRecords;
-        firebaseAuthenticationPresenter.OnSignUp += sceneRoot.OpenMainChoosePanel;
+        firebaseAuthenticationPresenter.OnSignUp += sceneRoot.OpenMainPanelPanel;
         firebaseAuthenticationPresenter.OnSignUp += sceneRoot.OpenFooterPanel;
         firebaseAuthenticationPresenter.OnSignUp += sceneRoot.OpenHeaderPanel;
 
         gameProgressPresenter.OnGetData += gameTrackerPresenter.SetData;
         gameTrackerPresenter.OnSelectGame += gameProgressPresenter.OpenGame;
+
+        gameHistoryPresenter.OnNoneLastGame += sceneRoot.OpenMainPanelPanel;
+        gameHistoryPresenter.OnLastGameIsArcada += sceneRoot.OpenArcadaPanel;
+        gameHistoryPresenter.OnLastGameIsCampaign += sceneRoot.OpenCompaignPanel;
     }
 
     private void DeactivateEvents()
@@ -255,17 +264,16 @@ public class MainMenuEntryPoint : MonoBehaviour
 
         firebaseAuthenticationPresenter.OnSignUp -= firebaseDatabaseRealtimePresenter.CreateEmptyDataToServer;
         firebaseAuthenticationPresenter.OnSignUp -= firebaseDatabaseRealtimePresenter.DisplayUsersRecords;
-        firebaseAuthenticationPresenter.OnSignUp -= sceneRoot.OpenMainChoosePanel;
+        firebaseAuthenticationPresenter.OnSignUp -= sceneRoot.OpenMainPanelPanel;
         firebaseAuthenticationPresenter.OnSignUp -= sceneRoot.OpenFooterPanel;
         firebaseAuthenticationPresenter.OnSignUp -= sceneRoot.OpenHeaderPanel;
 
         gameProgressPresenter.OnGetData -= gameTrackerPresenter.SetData;
         gameTrackerPresenter.OnSelectGame += gameProgressPresenter.OpenGame;
-    }
 
-    private void OnDestroy()
-    {
-        Dispose();
+        gameHistoryPresenter.OnNoneLastGame -= sceneRoot.OpenMainPanelPanel;
+        gameHistoryPresenter.OnLastGameIsArcada -= sceneRoot.OpenArcadaPanel;
+        gameHistoryPresenter.OnLastGameIsCampaign -= sceneRoot.OpenCompaignPanel;
     }
 
     private void Dispose()
@@ -276,7 +284,6 @@ public class MainMenuEntryPoint : MonoBehaviour
 
         sceneRoot?.Dispose();
         particleEffectPresenter?.Dispose();
-        soundPresenter?.Dispose();
         bankPresenter?.Dispose();
         dailyRewardPresenter?.Dispose();
         cooldownDailyRewardPresenter?.Dispose();
@@ -292,6 +299,16 @@ public class MainMenuEntryPoint : MonoBehaviour
         spriteAnimatorPresenter?.Dispose();
     }
 
+    private void OnDestroy()
+    {
+        Dispose();
+    }
+
+    private void OnApplicationQuit()
+    {
+        gameHistoryPresenter.DeleteHistory();
+    }
+
     #region Input actions
 
     public event Action GoToMiniGame1_Action;
@@ -304,38 +321,38 @@ public class MainMenuEntryPoint : MonoBehaviour
 
     private void HandleGoToMiniGame1()
     {
-        Dispose();
+        soundPresenter?.Dispose();
         GoToMiniGame1_Action?.Invoke();
     }
 
     private void HandleGoToMiniGame2()
     {
-        Dispose();
+        soundPresenter?.Dispose();
         GoToMiniGame2_Action?.Invoke();
     }
 
     private void HandleGoToMiniGame3()
     {
-        Dispose();
+        soundPresenter?.Dispose();
         GoToMiniGame3_Action?.Invoke();
     }
 
 
     private void HandleGoToMiniGame1_Compaign()
     {
-        Dispose();
+        soundPresenter?.Dispose();
         GoToMiniGame1_Compaign_Action?.Invoke();
     }
 
     private void HandleGoToMiniGame2_Compaign()
     {
-        Dispose();
+        soundPresenter?.Dispose();
         GoToMiniGame2_Compaign_Action?.Invoke();
     }
 
     private void HandleGoToMiniGame3_Compaign()
     {
-        Dispose();
+        soundPresenter?.Dispose();
         GoToMiniGame3_Compaign_Action?.Invoke();
     }
 

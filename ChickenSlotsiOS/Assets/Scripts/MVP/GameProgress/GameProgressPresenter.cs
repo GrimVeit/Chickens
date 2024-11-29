@@ -47,6 +47,11 @@ public class GameProgressPresenter : IGameUnlocker
 
     #region Input
 
+    public void CompleteGame()
+    {
+        gameProgressModel.CompleteGame();
+    }
+
     public void UnlockSecondGame()
     {
         gameProgressModel.UnlockSecondGame();
