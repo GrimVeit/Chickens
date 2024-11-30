@@ -33,7 +33,7 @@ public class LevelMinigame2_Presenter
 
     #region Input
 
-    public event Action<float, float, float> OnSetSpawnerData
+    public event Action<float, float, float, float> OnSetSpawnerData
     {
         add { levelModel.OnSetSpawnerData += value; }
         remove { levelModel.OnSetSpawnerData -= value; }

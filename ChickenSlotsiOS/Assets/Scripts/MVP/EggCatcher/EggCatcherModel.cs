@@ -12,6 +12,8 @@ public class EggCatcherModel
 
     public event Action OnSpawnEgg;
 
+    public event Action<float> OnChangeMoveTime;
+
     private float initialDelay = 2f;
     private float minDelay = 0.4f;
     private float decreaseAmount = 0.02f;
@@ -35,11 +37,14 @@ public class EggCatcherModel
         this.particleEffectProvider = particleEffectProvider;
     }
 
-    public void SetTimerSpawnerData(float initialDelay, float minDelay, float decreaseAmount)
+    public void SetTimerSpawnerData(float initialDelay, float minDelay, float decreaseAmount, float moveTime)
     {
         this.initialDelay = initialDelay;
         this.minDelay= minDelay;
         this.decreaseAmount = decreaseAmount;
+
+
+        OnChangeMoveTime?.Invoke(moveTime);
     }
 
     public void Initialize()

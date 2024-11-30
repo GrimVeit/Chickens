@@ -7,6 +7,8 @@ public class PerchingChicken : Chicken
 
     private NormalEgg currentEgg;
 
+    private float moveTime;
+
     public override void SpawnEgg(EggPrefab prefab)
     {
         currentEgg = Instantiate(prefab.egg, spawnTransform) as NormalEgg;
@@ -16,7 +18,7 @@ public class PerchingChicken : Chicken
         ActivateEvents(currentEgg);
 
         currentEgg.Initialize(prefab.eggValue);
-        currentEgg.MoveTo(eggToPosition.position, 1, MoveEggToFinish);
+        currentEgg.MoveTo(eggToPosition.position, moveTime, MoveEggToFinish);
         currentEgg.Rotate();
 
         if (changeSkinIEnumerator != null)
@@ -29,6 +31,11 @@ public class PerchingChicken : Chicken
 
     private void MoveEggToFinish()
     {
-        currentEgg.MoveTo(eggTransformFinish.position, 1);
+        currentEgg.MoveTo(eggTransformFinish.position, moveTime);
+    }
+
+    public override void SetMoveTime(float time)
+    {
+        moveTime = time;
     }
 }

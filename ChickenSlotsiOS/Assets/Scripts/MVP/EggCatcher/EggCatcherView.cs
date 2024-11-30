@@ -30,6 +30,14 @@ public class EggCatcherView : View
         }
     }
 
+    public void SetMoveTime(float time)
+    {
+        for (int i = 0; i < chickens.Count; i++)
+        {
+            chickens[i].SetMoveTime(time);
+        }
+    }
+
     public void Spawn()
     {
         chickens[UnityEngine.Random.Range(0, chickens.Count)].SpawnEgg(eggsPrefabs.GetRandomEgg());

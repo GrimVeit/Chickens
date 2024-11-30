@@ -39,11 +39,11 @@ public class GameProgressModel
             {
                 if(i == 0)
                 {
-                    Datas.Add(new GameData(i, true, false, i % 3, false));
+                    Datas.Add(new GameData(i, true, false, i % 3, true));
                 }
                 else
                 {
-                    Datas.Add(new GameData(i, false, false, i % 3, false));
+                    Datas.Add(new GameData(i, true, false, i % 3, true));
                 }
             }
         }

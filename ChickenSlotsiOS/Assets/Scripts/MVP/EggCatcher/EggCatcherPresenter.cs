@@ -35,6 +35,7 @@ public class EggCatcherPresenter
         eggCatcherView.OnEggJump += eggCatcherModel.EggJump;
 
         eggCatcherModel.OnSpawnEgg += eggCatcherView.Spawn;
+        eggCatcherModel.OnChangeMoveTime += eggCatcherView.SetMoveTime;
     }
 
     private void DeactivateEvents()
@@ -44,6 +45,7 @@ public class EggCatcherPresenter
         eggCatcherView.OnEggJump -= eggCatcherModel.EggJump;
 
         eggCatcherModel.OnSpawnEgg -= eggCatcherView.Spawn;
+        eggCatcherModel.OnChangeMoveTime -= eggCatcherView.SetMoveTime;
     }
 
     #region Input
@@ -78,9 +80,9 @@ public class EggCatcherPresenter
         remove { eggCatcherModel.OnEggWin_EggValue -= value; }
     }
 
-    public void SetTimerSpawnerData(float initialDelay, float minDelay, float decreaseAmount)
+    public void SetTimerSpawnerData(float initialDelay, float minDelay, float decreaseAmount, float moveTime)
     {
-        eggCatcherModel.SetTimerSpawnerData(initialDelay , minDelay , decreaseAmount);
+        eggCatcherModel.SetTimerSpawnerData(initialDelay , minDelay , decreaseAmount, moveTime);
     }
 
     public void StartSpawner()

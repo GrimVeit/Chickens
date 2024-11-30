@@ -17,10 +17,12 @@ public class LevelMinigame1_Data
     [SerializeField] private float initialDelay = 2f;
     [SerializeField] private float minDelay = 0.4f;
     [SerializeField] private float decreaseAmount = 0.02f;
+    [SerializeField] private float timeMove = 1;
 
     public int Level => level;
     public float InitialDelay => initialDelay;
     public float MinDelay => minDelay;
     public float DecreaseAmount => decreaseAmount;
+    public float TimeMove => timeMove;
 
 }

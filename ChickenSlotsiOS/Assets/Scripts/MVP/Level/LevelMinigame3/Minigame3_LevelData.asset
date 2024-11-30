@@ -14,122 +14,152 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Datas:
   - level: 1
-    initialDelay: 7
-    minDelay: 2
+    initialDelay: 8
+    minDelay: 6
     decreaseAmount: 0.03
+    moveTime: 1
   - level: 2
-    initialDelay: 7
-    minDelay: 2
+    initialDelay: 8
+    minDelay: 6
     decreaseAmount: 0.03
+    moveTime: 1
   - level: 3
-    initialDelay: 7
-    minDelay: 2
+    initialDelay: 8
+    minDelay: 6
     decreaseAmount: 0.03
+    moveTime: 1
   - level: 4
     initialDelay: 6.8
     minDelay: 1.98
     decreaseAmount: 0.31
+    moveTime: 1
   - level: 5
     initialDelay: 6.8
     minDelay: 1.98
     decreaseAmount: 0.31
+    moveTime: 1
   - level: 6
     initialDelay: 6.8
     minDelay: 1.98
     decreaseAmount: 0.31
+    moveTime: 1
   - level: 7
     initialDelay: 6.6
     minDelay: 1.96
     decreaseAmount: 0.033
+    moveTime: 1
   - level: 8
     initialDelay: 6.6
     minDelay: 1.96
     decreaseAmount: 0.033
+    moveTime: 1
   - level: 9
     initialDelay: 6.6
     minDelay: 1.96
     decreaseAmount: 0.033
+    moveTime: 1
   - level: 10
     initialDelay: 6.4
     minDelay: 1.94
     decreaseAmount: 0.034
+    moveTime: 1
   - level: 11
     initialDelay: 6.4
     minDelay: 1.94
     decreaseAmount: 0.034
+    moveTime: 1
   - level: 12
     initialDelay: 6.4
     minDelay: 1.94
     decreaseAmount: 0.034
+    moveTime: 1
   - level: 13
     initialDelay: 6.2
     minDelay: 1.93
     decreaseAmount: 0.035
+    moveTime: 1
   - level: 14
     initialDelay: 6.2
     minDelay: 1.93
     decreaseAmount: 0.035
+    moveTime: 1
   - level: 15
     initialDelay: 6.2
     minDelay: 1.93
     decreaseAmount: 0.035
+    moveTime: 1
   - level: 16
     initialDelay: 6
     minDelay: 1.92
     decreaseAmount: 0.036
+    moveTime: 1
   - level: 17
     initialDelay: 6
     minDelay: 1.92
     decreaseAmount: 0.036
+    moveTime: 1
   - level: 18
     initialDelay: 6
     minDelay: 1.92
     decreaseAmount: 0.036
+    moveTime: 1
   - level: 19
     initialDelay: 5.8
     minDelay: 1.91
     decreaseAmount: 0.037
+    moveTime: 1
   - level: 20
     initialDelay: 5.8
     minDelay: 1.91
     decreaseAmount: 0.037
+    moveTime: 1
   - level: 21
     initialDelay: 5.8
     minDelay: 1.91
     decreaseAmount: 0.037
+    moveTime: 1
   - level: 22
     initialDelay: 5.6
     minDelay: 1.9
     decreaseAmount: 0.038
+    moveTime: 1
   - level: 23
     initialDelay: 5.6
     minDelay: 1.9
     decreaseAmount: 0.038
+    moveTime: 1
   - level: 24
     initialDelay: 5.6
     minDelay: 1.9
     decreaseAmount: 0.038
+    moveTime: 1
   - level: 25
     initialDelay: 5.4
     minDelay: 1.9
     decreaseAmount: 0.039
+    moveTime: 1
   - level: 26
     initialDelay: 5.4
     minDelay: 1.9
     decreaseAmount: 0.039
+    moveTime: 1
   - level: 27
     initialDelay: 5.4
     minDelay: 1.9
     decreaseAmount: 0.039
+    moveTime: 1
   - level: 28
     initialDelay: 5.2
     minDelay: 1.9
     decreaseAmount: 0.04
+    moveTime: 1
   - level: 29
     initialDelay: 5.2
     minDelay: 1.9
     decreaseAmount: 0.04
+    moveTime: 1
   - level: 30
-    initialDelay: 5.2
-    minDelay: 1.9
+    initialDelay: 5
+    minDelay: 1.8
     decreaseAmount: 0.04
+    moveTime: 0.9

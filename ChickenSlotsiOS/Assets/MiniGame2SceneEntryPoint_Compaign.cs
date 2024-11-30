@@ -176,7 +176,7 @@ public class MiniGame2SceneEntryPoint_Compaign : MonoBehaviour
 
     private void ActivateMainTimer()
     {
-        timerMainPresenter.ActivateTimer(10);
+        timerMainPresenter.ActivateTimer(90);
     }
 
     #region Input

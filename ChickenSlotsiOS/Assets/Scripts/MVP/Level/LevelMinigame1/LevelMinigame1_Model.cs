@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class LevelMinigame1_Model
 {
-    public event Action<float, float, float> OnSetSpawnerData;
+    public event Action<float, float, float, float> OnSetSpawnerData;
     public event Action<int> OnChooseLevel;
 
     public LevelMinigame1_Datas minigame1_LevelDatas;
@@ -20,6 +20,6 @@ public class LevelMinigame1_Model
         var data = minigame1_LevelDatas.Datas.FirstOrDefault(data => data.Level == level + 1);
 
         OnChooseLevel?.Invoke(data.Level);
-        OnSetSpawnerData?.Invoke(data.InitialDelay, data.MinDelay, data.DecreaseAmount);
+        OnSetSpawnerData?.Invoke(data.InitialDelay, data.MinDelay, data.DecreaseAmount, data.TimeMove);
     }
 }

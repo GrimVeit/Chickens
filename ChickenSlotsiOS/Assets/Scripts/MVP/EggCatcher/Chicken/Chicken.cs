@@ -28,6 +28,11 @@ public abstract class Chicken : MonoBehaviour
 
     }
 
+    public virtual void SetMoveTime(float time)
+    {
+
+    }
+
     public abstract void SpawnEgg(EggPrefab prefab);
 
     private protected void DestroyEgg(Egg egg)

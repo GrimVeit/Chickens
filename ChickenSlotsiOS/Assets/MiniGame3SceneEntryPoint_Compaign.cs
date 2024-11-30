@@ -171,7 +171,7 @@ public class MiniGame3SceneEntryPoint_Compaign : MonoBehaviour
 
     private void ActivateMainTimer()
     {
-        timerMainPresenter.ActivateTimer(10);
+        timerMainPresenter.ActivateTimer(90);
     }
 
     private void OnApplicationQuit()
